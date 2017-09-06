@@ -54,8 +54,8 @@ describe('GET route /records/:id', function() {
 
   it('test API should send an error if not found',  function() {
     return $http.get('/recor')
-    .then(res => {
-      res.status.should.equal(404)
+    .catch(err => {
+      err.should.exist()
     })
   })
 
