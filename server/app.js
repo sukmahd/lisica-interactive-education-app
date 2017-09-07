@@ -8,6 +8,12 @@ let app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
+const user = require('./routes/user')
+const record = require('./routes/records')
+
+app.use('/user', user)
+app.use('/records', record)
+
 app.get('/', (req,res) => {
   res.send('hai')
 })
