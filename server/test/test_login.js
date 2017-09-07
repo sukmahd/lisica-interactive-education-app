@@ -11,22 +11,33 @@ const $http = axios.create({
 
 describe('GET: /login', () => {
 
-	it('Should return success GET status' () => {
-		return $http.post('/login')
+	it('Should return success GET status', () => {
+		return $http.post('/user/login', {
+			email: 'adith@gmail.com',
+			password: 'adith123'
+		})
 			.then(response => {
 				response.status.should.equal(200);
 			})
 		});
 		
-	it('Should return fail GET status, because there is no such endpoint' () => {
-		return $http.post('/logins')
-			.then(response => {
-				response.status.should.equal(400);
+	it('Should return fail GET status, because email or password is incorrect', () => {
+		return $http.post('/user/login', {
+			email: 'adith@gmail.com',
+			password: 'wR0n6_P4A55WoRd'
+		})
+			.catch(err => {
+				let failAuthState = err.data;
+				authState.should.have.property('message').and.to.be.a('string');
 			})
+
 	});
 	
 	it(`Should return true because have 'email:' property`, () => {
-		return $http.post('/login')
+		return $http.post('/user/login', {
+			email: 'adith@gmail.com',
+			password: 'adith123'
+		})
 		.then(response => {
 			let authState = response.data;
 			authState.should.have.property('email').and.to.be.a('string');
@@ -34,7 +45,10 @@ describe('GET: /login', () => {
 	})
 
 	it(`Should return true because have 'email:' property and have '@'`, () => {
-		return $http.post('/login')
+		return $http.post('/user/login', {
+			email: 'adith@gmail.com',
+			password: 'adith123'
+		})
 		.then(response => {
 			let authState = response.data;
 			authState.should.have.property('email').and.have.string('@');
@@ -42,7 +56,10 @@ describe('GET: /login', () => {
 	})
 	
 	it(`Should return true because have 'providerData:' property`, () => {
-		return $http.post('/login')
+		return $http.post('/user/login', {
+			email: 'adith@gmail.com',
+			password: 'adith123'
+		})
 		.then(response => {
 			let authState = response.data;
 			authState.should.have.property('providerData').and.to.be.an('array');
@@ -50,7 +67,10 @@ describe('GET: /login', () => {
 	})
 
 	it(`Should return true because have 'providerData:' property and have certain length`, () => {
-		return $http.post('/login')
+		return $http.post('/user/login', {
+			email: 'adith@gmail.com',
+			password: 'adith123'
+		})
 		.then(response => {
 			let authState = response.data;
 			authState.should.have.property('providerData').and.to.be.an('array').and.to.have.lengthOf(1);
@@ -58,7 +78,10 @@ describe('GET: /login', () => {
 	})
 
 	it(`Should return true because have 'emailVerified:' property and valued false`, () => {
-		return $http.post('/login')
+		return $http.post('/user/login', {
+			email: 'adith@gmail.com',
+			password: 'adith123'
+		})
 		.then(response => {
 			let authState = response.data;
 			authState.should.have.property('emailVerified').and.to.be.false;
@@ -66,27 +89,36 @@ describe('GET: /login', () => {
 	})
 
 	it(`Should return true because have 'displayName:' property and valued null because app doesn't allow full name`, () => {
-		return $http.post('/login')
+		return $http.post('/user/login', {
+			email: 'adith@gmail.com',
+			password: 'adith123'
+		})
 		.then(response => {
 			let authState = response.data;
 			authState.should.have.property('displayName').and.to.be.null;
 		})
 	})
 
-	it(`Should return true because have 'La: and Lc' property and valued null`, () => {
-		return $http.post('/login')
-		.then(response => {
-			let authState = response.data;
-			authState.should.have.property('La').and.to.be.false;
-			authState.should.have.property('Lc').and.to.be.false;
+	it(`Should return true because have 'stsTokenManager:' property and is and object that contains importan objects`, () => {
+		return $http.post('/user/login', {
+			email: 'adith@gmail.com',
+			password: 'adith123'
 		})
-	})
-
-	it(`Should return true because have 'K:' property and have 0 length of array`, () => {
-		return $http.post('/login')
 		.then(response => {
 			let authState = response.data;
-			authState.should.have.property('K').and.to.be.an('array').that.is.empty;
+			authState.should.have.property('stsTokenManager').and.to.be.an('object')
 		})
 	})
 });
+
+it(`Should return true because have 'apiKey: and accessToken:' property inside stsTokenManager object`, () => {
+		return $http.post('/user/login', {
+			email: 'adith@gmail.com',
+			password: 'adith123'
+		})
+		.then(response => {
+			let authState = response.data.stsTokenManager;
+			authState.should.have.property('apiKey')
+			authState.should.have.property('accessToken')
+		})
+	})
