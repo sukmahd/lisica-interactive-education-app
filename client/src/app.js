@@ -3,8 +3,10 @@ import { View, Text } from 'react-native';
 import { StackNavigator } from 'react-navigation'
 
 import MainMenu from './screens/MainMenu';
+import ParentOption from './screens/ParentOption';
 
 const AppNavigator = StackNavigator({
+	ParentOptionScreen: { screen: ParentOption },
 	MainMenuScreen: { screen: MainMenu }
 })
 
