@@ -5,7 +5,7 @@ const assert = chai.assert
 const axios = require('axios')
 
 const $http = axios.create({
-  baseURL: 'http://localhost:3000'
+  baseURL: 'http://localhost:3000/user'
 })
 
 describe("GET method on route /register", () => {
@@ -13,13 +13,6 @@ describe("GET method on route /register", () => {
     return $http.post('/register', { email: 'email@email.com', password:'k7u8ii' })
     .then(resp => {
       assert.equal(resp.status, 200)
-    })
-  })
-
-  it("Connect status 404 NOT FOUND", () => {
-    return $http.post('/wrongEndPoint', { email: 'email@email.com', password:'k7u8ii' })
-    .then(resp => {
-      assert.equal(resp.status, 404)
     })
   })
 
@@ -47,14 +40,14 @@ describe("GET method on route /register", () => {
   it("Email should use email format", () => {
     return $http.post('/register', { email: 'email.com', password:'k7u8ii' })
     .then(resp => {
-      assert.equal(resp.data.msg, 'Email is badly formatted')
+      assert.equal(resp.data.message, 'The email address is badly formatted.')
     })
   })
 
   it("Password should be at least 6 character", () => {
     return $http.post('/register', { email: 'email@email.com', password:'i' })
     .then(resp => {
-      assert.equal(resp.data.msg, 'Password should have at least 6 character')
+      assert.equal(resp.data.message, 'Password should be at least 6 characters')
     })
   })
 
