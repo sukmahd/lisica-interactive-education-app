@@ -17,13 +17,13 @@ const styles = {
 	textStyle: {
 		alignSelf: 'center',
 		color: '#fff',
-		fontSize: 24,
+		fontSize: 28,
 		fontWeight: 'bold',
 		paddingTop: 14,
 		paddingBottom: 14
 	},
 	buttonStyle: {
-		width: 230,
+		width: 260,
 		justifyContent: 'flex-end',
 		backgroundColor: '#1ebea5',
 		borderRadius: 50
