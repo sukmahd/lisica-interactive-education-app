@@ -109,9 +109,8 @@ describe('GET: /user/login', () => {
 			authState.should.have.property('stsTokenManager').and.to.be.an('object')
 		})
 	})
-});
 
-it(`Should return true because have 'apiKey: and accessToken:' property inside stsTokenManager object`, () => {
+	it(`Should return true because have 'apiKey: and accessToken:' property inside stsTokenManager object`, () => {
 		return $http.post('/user/login', {
 			email: 'adith@gmail.com',
 			password: 'adith123'
@@ -122,3 +121,7 @@ it(`Should return true because have 'apiKey: and accessToken:' property inside s
 			authState.should.have.property('accessToken')
 		})
 	})
+
+});
+
+
