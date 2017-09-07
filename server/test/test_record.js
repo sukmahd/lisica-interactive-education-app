@@ -18,46 +18,26 @@ describe('GET route /records/:id', function() {
   })
 
   it('test API return an Array', function(){
-    return $http.get('/records/:id')
+    return $http.get('/records/adit@gmail.com')
     .then(resp => {
       resp.data.should.be.an('array')
     })
   })
 
   it('test API should not return an error ', function(){
-    return $http.get('/records/asdasd')
+    return $http.get('/records/adit@gmail.com')
     .catch(err => {
       should.not.exist(err)
     })
   })
 
   it('test API should return an array that have object property email',  function(){
-    return $http.get('/records/:id')
+    return $http.get('/records/adit@gmail.com')
     .then(res => {
       res.data[0].should.have.property('email')
     })
   })
 
-  it('test API should return an array that have object property data',  function(){
-    return $http.get('/records/:id')
-    .then(res => {
-      res.data[0].should.have.property('data')
-    })
-  })
-
-  it('test API should return an array of object that have property data in array format',  function(){
-    return $http.get('/records/:id')
-    .then(res => {
-      res.data[0].data.should.be.an('array')
-    })
-  })
-
-  it('test API should send an error if not found',  function() {
-    return $http.get('/recor')
-    .catch(err => {
-      err.should.exist()
-    })
-  })
 
   it('test API should send an error if user not found',  function() {
     return $http.get('/records/asd231as')
@@ -67,109 +47,90 @@ describe('GET route /records/:id', function() {
   })
 
   it('object data should have property success',  function(){
-    return $http.get('/records/:id')
+    return $http.get('/records/adit@gmail.com')
     .then(res => {
-      res.data[0].data.should.have.property('success')
+      res.data[0].should.have.property('success')
     })
   })
 
-  it('object data should have property skip',  function(){
-    return $http.get('/records/:id')
-    .then(res => {
-      res.data[0].data.should.have.property('skip')
-    })
-  })
 
   it('object data should have property repeat',  function(){
-    return $http.get('/records/:id')
+    return $http.get('/records/adit@gmail.com')
     .then(res => {
-      res.data[0].data.should.have.property('repeat')
+      res.data[0].should.have.property('repeat')
     })
   })
 
   it('object data should have property word',  function(){
-    return $http.get('/records/:id')
+    return $http.get('/records/adit@gmail.com')
     .then(res => {
-      res.data[0].data.should.have.property('word')
+      res.data[0].should.have.property('word')
     })
   })
 
 
 })
 
-describe('POST routes /records/:id',  function() {
-  it('email required', function() {
-    return $http.post('/records/:id', {
+describe('POST routes /records',  function() {
+  it('it should return status OK 200', function() {
+    return $http.post('/records', {
       email: 'adit@gmail.com',
-      data: {
-        success: true,
-        skip: false,
-        repeat: 1,
-        word: 'ball'
-      }
+      success: true,
+      repeat: 1,
+      word: 'ball'
+    })
+    .then(res => {
+      res.status.should.equal(200)
+    })
+  })
+
+  it('email required', function() {
+    return $http.post('/records', {
+      email: 'adit@gmail.com',
+      success: true,
+      repeat: 1,
+      word: 'ball'
     })
     .then(res => {
       res.data.should.have.property('email')
     })
   })
 
-  it('email required', function() {
-    return $http.post('/records/:id', {
+
+  it('repeat required', function() {
+    return $http.post('/records', {
       email: 'adit@gmail.com',
-      data: {
-        success: true,
-        skip: false,
-        repeat: 1,
-        word: 'ball'
-      }
+      success: true,
+      repeat: 4,
+      word: 'ball'
     })
     .then(res => {
-      res.data.should.have.property('data')
+      res.data.should.have.property('repeat')
     })
   })
 
-  it('repeat format should integer', function() {
-    return $http.post('/records/:id', {
+
+  it('word required', function() {
+    return $http.post('/records', {
       email: 'adit@gmail.com',
-      data: {
-        success: true,
-        skip: false,
-        repeat: '2323',
-        word: 'ball'
-      }
+      success: true,
+      repeat: 3,
+      word: 'dadu'
     })
     .then(res => {
-      res.body.should.to.have.ownPropertyDescriptor('errors')
+      res.data.should.have.property('word')
     })
   })
 
-  it('skip should boolean', function() {
-    return $http.post('/records/:id', {
+  it('success required', function() {
+    return $http.post('/records', {
       email: 'adit@gmail.com',
-      data: {
-        success: true,
-        skip: 'w',
-        repeat: 3,
-        word: 'ball'
-      }
+      success: true,
+      repeat: 3,
+      word: 'dadu'
     })
     .then(res => {
-      res.body.should.to.have.ownPropertyDescriptor('errors')
-    })
-  })
-
-  it('word should string', function() {
-    return $http.post('/records/:id', {
-      email: 'adit@gmail.com',
-      data: {
-        success: true,
-        skip: 'w',
-        repeat: 3,
-        word: 'ball'
-      }
-    })
-    .then(res => {
-      res.body.should.to.have.ownPropertyDescriptor('errors')
+      res.data.should.have.property('success')
     })
   })
 

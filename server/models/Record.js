@@ -4,17 +4,23 @@ const Schema = mongoose.Schema
 const recordSchema = new Schema({
   email: {
     type: String,
-    require: true
+    required: true
   },
-  data: {
-    success: Boolean,
-    skip: Boolean,
-    repeat: Number,
-    word: String,
-    data: {
-      type: Date,
-      default: Date.now
-    }
+  success: {
+    type: Boolean,
+    required: true
+  },
+  repeat: {
+    type: Number,
+    required: true
+  },
+  word: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: Date,
+    default: Date.now
   }
 })
 
