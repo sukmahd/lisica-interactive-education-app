@@ -37,6 +37,7 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		A88FF7691CB1479693BF7C53 /* libVoice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F88EDA60F07147038C9E151C /* libVoice.a */; };
 		BB7A4917BF004EFE94AC52FA /* libSpeechSynthesizer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF9DC80C3A254079BB862E77 /* libSpeechSynthesizer.a */; };
+		8E98A74F6AF94F3D8E194F54 /* libTextToSpeech.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E2758E285914F9F99DAAD99 /* libTextToSpeech.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -260,6 +261,8 @@
 		F88EDA60F07147038C9E151C /* libVoice.a */ = {isa = PBXFileReference; name = "libVoice.a"; path = "libVoice.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		FC5D5848EAEF44AB8CADCA73 /* SpeechSynthesizer.xcodeproj */ = {isa = PBXFileReference; name = "SpeechSynthesizer.xcodeproj"; path = "../node_modules/react-native-speech/SpeechSynthesizer.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		FF9DC80C3A254079BB862E77 /* libSpeechSynthesizer.a */ = {isa = PBXFileReference; name = "libSpeechSynthesizer.a"; path = "libSpeechSynthesizer.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		69EC0AB6FB0E4D61AFBE0097 /* TextToSpeech.xcodeproj */ = {isa = PBXFileReference; name = "TextToSpeech.xcodeproj"; path = "../node_modules/react-native-tts/ios/TextToSpeech.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		2E2758E285914F9F99DAAD99 /* libTextToSpeech.a */ = {isa = PBXFileReference; name = "libTextToSpeech.a"; path = "libTextToSpeech.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,6 +291,7 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				A88FF7691CB1479693BF7C53 /* libVoice.a in Frameworks */,
 				BB7A4917BF004EFE94AC52FA /* libSpeechSynthesizer.a in Frameworks */,
+				8E98A74F6AF94F3D8E194F54 /* libTextToSpeech.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +460,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				6D350BAFCD414EBDA8427B15 /* Voice.xcodeproj */,
 				FC5D5848EAEF44AB8CADCA73 /* SpeechSynthesizer.xcodeproj */,
+				69EC0AB6FB0E4D61AFBE0097 /* TextToSpeech.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -985,11 +990,13 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-voice/ios/Voice",
 					"$(SRCROOT)/../node_modules/react-native-speech",
+					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
 				);
 			};
 			name = Debug;
@@ -1012,11 +1019,13 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-voice/ios/Voice",
 					"$(SRCROOT)/../node_modules/react-native-speech",
+					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
 				);
 			};
 			name = Release;
@@ -1040,6 +1049,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-voice/ios/Voice",
 					"$(SRCROOT)/../node_modules/react-native-speech",
+					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
 				);
 			};
 			name = Debug;
@@ -1062,6 +1072,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-voice/ios/Voice",
 					"$(SRCROOT)/../node_modules/react-native-speech",
+					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
 				);
 			};
 			name = Release;
@@ -1093,11 +1104,13 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-voice/ios/Voice",
 					"$(SRCROOT)/../node_modules/react-native-speech",
+					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
 				);
 			};
 			name = Debug;
@@ -1129,11 +1142,13 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-voice/ios/Voice",
 					"$(SRCROOT)/../node_modules/react-native-speech",
+					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
 				);
 			};
 			name = Release;
@@ -1160,6 +1175,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1184,6 +1200,7 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);

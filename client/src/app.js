@@ -5,6 +5,7 @@ import { StackNavigator } from 'react-navigation'
 import MainMenu from './screens/MainMenu';
 import Test from './screens/test_voice'
 import Suara from './screens/text_to_voice'
+import Ngorte from './screens/text_to_voice_tts'
 
 const AppNavigator = StackNavigator({
 	MainMenuScreen: { screen: MainMenu }
@@ -13,7 +14,7 @@ const AppNavigator = StackNavigator({
 class App extends Component {
 	render() {
 		return(
-			<Suara />
+			<Ngorte />
 		)
 	}
 }
