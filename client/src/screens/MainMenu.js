@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
 
 import { 
 	ButtonSmall,
@@ -17,8 +17,7 @@ class MainMenu extends Component {
 	}
 
 	static navigationOptions = {
-		title: 'Main menu',
-		header: null
+		header: null,
 	}
 
 	render() {
@@ -31,7 +30,11 @@ class MainMenu extends Component {
 		} = styles;
 
 		return(
-			<View style={parentContainerStyle}>
+			<KeyboardAvoidingView behavior="padding" style={parentContainerStyle}>
+
+				<StatusBar 
+					hidden={true}
+				/>
 
 				<View style={topContainerStyle}>
 					<ButtonSmall 
@@ -42,7 +45,7 @@ class MainMenu extends Component {
 				</View>
 				
 				<View style={midContainerStyle}>
-					<Image style={imageStyle} source={require('../assets/images/XMLID_2_.png')} />
+					<Image style={imageStyle} source={require('../assets/images/Eevee.png')} />
 				</View>
 
 				<View style={midContainerStyle}>
@@ -60,7 +63,7 @@ class MainMenu extends Component {
 					</ButtonBig>
 				</View>
 
-			</View>
+			</KeyboardAvoidingView>
 		)
 	}
 }
@@ -69,14 +72,13 @@ const styles = {
 	parentContainerStyle: {
 		flexDirection: 'column',
 		flex: 1,
-		marginTop: 20,
 		backgroundColor: '#f4f9fc'
 	},
 	topContainerStyle: {
 		flexDirection: 'row',
 		justifyContent: 'flex-end',
-		paddingTop: 10,
-		paddingRight: 10
+		paddingTop: 20,
+		paddingRight: 20
 	},
 	bottomContainerStyle: {
 		flexDirection: 'row',
