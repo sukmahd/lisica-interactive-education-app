@@ -11,7 +11,7 @@ const $http = axios.create({
 
 describe('GET route /records/:id', function() {
   it('test connect to endpoint return status OK', function() {
-    return $http.get('/records/:id')
+    return $http.get('/records/adit@gmail.com')
     .then(resp => {
       resp.status.should.equal(200)
     })
@@ -54,8 +54,8 @@ describe('GET route /records/:id', function() {
 
   it('test API should send an error if not found',  function() {
     return $http.get('/recor')
-    .then(res => {
-      res.status.should.equal(404)
+    .catch(err => {
+      err.should.exist()
     })
   })
 
