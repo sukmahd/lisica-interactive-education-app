@@ -4,10 +4,16 @@ import { StackNavigator } from 'react-navigation'
 
 import MainMenu from './screens/MainMenu';
 import ParentOption from './screens/ParentOption';
+import Correct from './screens/Correct';
+import Wrong from './screens/Wrong';
+import GameOver from './screens/GameOver';
 
 const AppNavigator = StackNavigator({
+	GameOverScreen: { screen: GameOver },
+	WrongScreen: { screen: Wrong },
+	CorrectScreen: { screen: Correct },
 	ParentOptionScreen: { screen: ParentOption },
-	MainMenuScreen: { screen: MainMenu }
+	MainMenuScreen: { screen: MainMenu },
 })
 
 class App extends Component {

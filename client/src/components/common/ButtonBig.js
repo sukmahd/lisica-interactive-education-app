@@ -1,19 +1,8 @@
 import React, { Component } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 
-const ButtonBig = ({ onPress, children }) => {
-	const { buttonStyle, textStyle } = styles;
-	
-	return(
-		<TouchableOpacity onPress={onPress} style={buttonStyle}>
-			<Text style={textStyle}>
-				{children}
-			</Text>
-		</TouchableOpacity>
-	)
-}
-
-const styles = {
+const ButtonBig = ({ onPress, children, backgroundColor }) => {
+	const styles = {
 	textStyle: {
 		alignSelf: 'center',
 		color: '#fff',
@@ -25,9 +14,20 @@ const styles = {
 	buttonStyle: {
 		width: 260,
 		justifyContent: 'flex-end',
-		backgroundColor: '#1ebea5',
+		backgroundColor: backgroundColor || '#1ebea5',
 		borderRadius: 50
 	}
 }
+	
+	return(
+		<TouchableOpacity onPress={onPress} style={styles.buttonStyle}>
+			<Text style={styles.textStyle}>
+				{children}
+			</Text>
+		</TouchableOpacity>
+	)
+}
+
+
 
 export { ButtonBig };
