@@ -9,11 +9,11 @@ import Wrong from './screens/Wrong';
 import GameOver from './screens/GameOver';
 
 const AppNavigator = StackNavigator({
+	MainMenuScreen: { screen: MainMenu },
 	GameOverScreen: { screen: GameOver },
 	WrongScreen: { screen: Wrong },
 	CorrectScreen: { screen: Correct },
-	ParentOptionScreen: { screen: ParentOption },
-	MainMenuScreen: { screen: MainMenu },
+	ParentOptionScreen: { screen: ParentOption }
 })
 
 class App extends Component {

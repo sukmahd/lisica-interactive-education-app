@@ -29,6 +29,8 @@ class MainMenu extends Component {
 			midContainerStyle
 		} = styles;
 
+		const { navigate } = this.props.navigation;
+
 		return(
 			<KeyboardAvoidingView behavior="padding" style={parentContainerStyle}>
 
@@ -39,6 +41,7 @@ class MainMenu extends Component {
 				<View style={topContainerStyle}>
 					<ButtonSmall 
 						backgroundColor='#ff85a5'
+						onPress={() => navigate('ParentOptionScreen')}
 					>
 						<Text>PARENT</Text>
 					</ButtonSmall>
