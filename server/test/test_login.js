@@ -9,7 +9,7 @@ const $http = axios.create({
 	baseURL: 'http://localhost:3000'
 });
 
-describe('GET: /login', () => {
+describe('GET: /user/login', () => {
 
 	it('Should return success GET status', () => {
 		return $http.post('/user/login', {
