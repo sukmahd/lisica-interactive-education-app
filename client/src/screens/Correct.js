@@ -7,7 +7,7 @@ import {
 	InputRounded 
 } from '../components/common';
 
-class MainMenu extends Component {
+class Correct extends Component {
 	constructor(props) {
 		super(props);
 
@@ -26,10 +26,9 @@ class MainMenu extends Component {
 			bottomContainerStyle,
 			parentContainerStyle,
 			imageStyle,
-			midContainerStyle
+			midContainerStyle,
+			textStyle
 		} = styles;
-
-		const { navigate } = this.props.navigation;
 
 		return(
 			<KeyboardAvoidingView behavior="padding" style={parentContainerStyle}>
@@ -39,30 +38,18 @@ class MainMenu extends Component {
 				/>
 
 				<View style={topContainerStyle}>
-					<ButtonSmall 
-						backgroundColor='#ff85a5'
-						onPress={() => navigate('ParentOptionScreen')}
-					>
-						<Text>PARENT</Text>
-					</ButtonSmall>
+					<Text style={textStyle}>
+						Yeay! You got it!
+					</Text>
 				</View>
 				
 				<View style={midContainerStyle}>
-					<Image style={imageStyle} source={require('../assets/images/Eevee.png')} />
-				</View>
-
-				<View style={midContainerStyle}>
-					<InputRounded 
-						label="Username"
-						value={this.state.value}
-						placeholder="Your username"
-						secureTextEntry={false}
-					/>
+					<Image style={imageStyle} source={require('../assets/images/XMLID_730_.png')} />
 				</View>
 
 				<View style={bottomContainerStyle}>
 					<ButtonBig>
-						<Text>START</Text>
+						<Text>NEXT</Text>
 					</ButtonBig>
 				</View>
 
@@ -75,13 +62,16 @@ const styles = {
 	parentContainerStyle: {
 		flexDirection: 'column',
 		flex: 1,
-		backgroundColor: '#f4f9fc'
+		backgroundColor: '#faf7eb'
 	},
 	topContainerStyle: {
 		flexDirection: 'row',
-		justifyContent: 'flex-end',
-		paddingTop: 20,
-		paddingRight: 20
+		justifyContent: 'center',
+		marginTop: 60
+	},
+	textStyle: {
+		fontSize: 28,
+		fontWeight: 'bold'
 	},
 	bottomContainerStyle: {
 		flexDirection: 'row',
@@ -100,4 +90,4 @@ const styles = {
 	},
 }
 
-export default MainMenu;
+export default Correct;

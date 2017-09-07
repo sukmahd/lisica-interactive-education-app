@@ -7,7 +7,7 @@ import {
 	InputRounded 
 } from '../components/common';
 
-class MainMenu extends Component {
+class GameOver extends Component {
 	constructor(props) {
 		super(props);
 
@@ -23,13 +23,14 @@ class MainMenu extends Component {
 	render() {
 		const { 
 			topContainerStyle,
+			subTopContainerStyle,
 			bottomContainerStyle,
 			parentContainerStyle,
 			imageStyle,
-			midContainerStyle
+			midContainerStyle,
+			textStyle,
+			subTextStyle
 		} = styles;
-
-		const { navigate } = this.props.navigation;
 
 		return(
 			<KeyboardAvoidingView behavior="padding" style={parentContainerStyle}>
@@ -39,30 +40,24 @@ class MainMenu extends Component {
 				/>
 
 				<View style={topContainerStyle}>
-					<ButtonSmall 
-						backgroundColor='#ff85a5'
-						onPress={() => navigate('ParentOptionScreen')}
-					>
-						<Text>PARENT</Text>
-					</ButtonSmall>
+					<Text style={textStyle}>
+						Congrats, buddy!
+					</Text>
+				</View>
+
+				<View style={subTopContainerStyle}>
+					<Text style={subTextStyle}>
+						+5 Exp!
+					</Text>
 				</View>
 				
 				<View style={midContainerStyle}>
-					<Image style={imageStyle} source={require('../assets/images/Eevee.png')} />
-				</View>
-
-				<View style={midContainerStyle}>
-					<InputRounded 
-						label="Username"
-						value={this.state.value}
-						placeholder="Your username"
-						secureTextEntry={false}
-					/>
+					<Image style={imageStyle} source={require('../assets/images/Medals.png')} />
 				</View>
 
 				<View style={bottomContainerStyle}>
 					<ButtonBig>
-						<Text>START</Text>
+						<Text>NEXT</Text>
 					</ButtonBig>
 				</View>
 
@@ -75,29 +70,41 @@ const styles = {
 	parentContainerStyle: {
 		flexDirection: 'column',
 		flex: 1,
-		backgroundColor: '#f4f9fc'
+		backgroundColor: '#faf7eb'
 	},
 	topContainerStyle: {
 		flexDirection: 'row',
-		justifyContent: 'flex-end',
-		paddingTop: 20,
-		paddingRight: 20
+		justifyContent: 'center',
+		marginTop: 60
+	},
+	subTopContainerStyle: {
+		flexDirection: 'row',
+		justifyContent: 'center',
+		marginTop: 16
+	},
+	textStyle: {
+		fontSize: 28,
+		fontWeight: 'bold'
+	},
+	subTextStyle: {
+		fontSize: 20,
+		fontWeight: 'bold'
 	},
 	bottomContainerStyle: {
 		flexDirection: 'row',
 		justifyContent: 'center',
-		marginTop: 52
+		marginTop: 90
 	},
 	imageStyle: {
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
 	midContainerStyle: {
-		marginTop: 60,
+		marginTop: 40,
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
 }
 
-export default MainMenu;
+export default GameOver;

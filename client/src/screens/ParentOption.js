@@ -7,7 +7,7 @@ import {
 	InputRounded 
 } from '../components/common';
 
-class MainMenu extends Component {
+class ParentOption extends Component {
 	constructor(props) {
 		super(props);
 
@@ -25,7 +25,6 @@ class MainMenu extends Component {
 			topContainerStyle,
 			bottomContainerStyle,
 			parentContainerStyle,
-			imageStyle,
 			midContainerStyle
 		} = styles;
 
@@ -41,29 +40,26 @@ class MainMenu extends Component {
 				<View style={topContainerStyle}>
 					<ButtonSmall 
 						backgroundColor='#ff85a5'
-						onPress={() => navigate('ParentOptionScreen')}
+						fontSize={14}
+						width={80}
+						onPress={() => navigate('MainMenuScreen')}
 					>
-						<Text>PARENT</Text>
+						<Text>BACK</Text>
 					</ButtonSmall>
 				</View>
 				
 				<View style={midContainerStyle}>
-					<Image style={imageStyle} source={require('../assets/images/Eevee.png')} />
-				</View>
+					<View style={bottomContainerStyle}>
+						<ButtonBig>
+							<Text>LOG IN</Text>
+						</ButtonBig>
+					</View>
 
-				<View style={midContainerStyle}>
-					<InputRounded 
-						label="Username"
-						value={this.state.value}
-						placeholder="Your username"
-						secureTextEntry={false}
-					/>
-				</View>
-
-				<View style={bottomContainerStyle}>
-					<ButtonBig>
-						<Text>START</Text>
-					</ButtonBig>
+					<View style={bottomContainerStyle}>
+						<ButtonBig>
+							<Text>KID'S DATA</Text>
+						</ButtonBig>
+					</View>
 				</View>
 
 			</KeyboardAvoidingView>
@@ -75,29 +71,22 @@ const styles = {
 	parentContainerStyle: {
 		flexDirection: 'column',
 		flex: 1,
-		backgroundColor: '#f4f9fc'
+		backgroundColor: '#faf7eb'
 	},
 	topContainerStyle: {
 		flexDirection: 'row',
-		justifyContent: 'flex-end',
+		justifyContent: 'flex-start',
 		paddingTop: 20,
-		paddingRight: 20
+		paddingLeft: 20
 	},
 	bottomContainerStyle: {
 		flexDirection: 'row',
 		justifyContent: 'center',
-		marginTop: 52
-	},
-	imageStyle: {
-		justifyContent: 'center',
-		alignItems: 'center'
+		marginTop: 30
 	},
 	midContainerStyle: {
-		marginTop: 60,
-		flexDirection: 'row',
-		justifyContent: 'center',
-		alignItems: 'center'
-	},
+		marginTop: 80
+	}
 }
 
-export default MainMenu;
+export default ParentOption;
