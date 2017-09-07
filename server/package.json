@@ -2,12 +2,12 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -17,9 +17,10 @@
     "body-parser": "^1.17.2",
     "chai": "^4.1.2",
     "chai-http": "^3.0.0",
-    "mocha": "^3.5.0",
     "cors": "^2.8.4",
     "express": "^4.15.4",
+    "firebase": "^4.3.0",
+    "mocha": "^3.5.0",
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.10"
   }
