@@ -125,8 +125,11 @@ class Guess extends Component {
 			imageStyle,
 			midContainerStyle,
 			textStyle,
-			imgContainerStyle
+			imgContainerStyle,
+			topBtnContainerStyle
 		} = styles;
+
+		const { navigate } = this.props.navigation;
 
 		return(
 			<View behavior="padding" style={parentContainerStyle}>
@@ -135,7 +138,16 @@ class Guess extends Component {
 					hidden={true}
 				/>
 
-				
+				<View style={topBtnContainerStyle}>
+					<ButtonSmall 
+						backgroundColor='#ff85a5'
+						fontSize={14}
+						width={80}
+						onPress={() => navigate('ListObjectsScreen')}
+					>
+						<Text>BACK</Text>
+					</ButtonSmall>
+				</View>
 
 				<View style={topContainerStyle}>
 					<View style={imgContainerStyle}>
@@ -189,7 +201,13 @@ const styles = {
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
-		marginTop: 60
+		marginTop: 20
+	},
+	topBtnContainerStyle: {
+		flexDirection: 'row',
+		justifyContent: 'flex-start',
+		paddingTop: 20,
+		paddingLeft: 20
 	},
 	textStyle: {
 		fontSize: 28,
