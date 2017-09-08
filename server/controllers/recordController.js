@@ -24,7 +24,8 @@ function postData(req,res) {
     email: req.body.email,
     success: req.body.success,
     repeat: req.body.repeat,
-    word: req.body.word
+    word: req.body.word,
+    answer: req.body.answer
   })
   .then(resp => {
     res.send(resp)
