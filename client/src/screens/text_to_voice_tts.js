@@ -9,9 +9,9 @@ import { StackNavigator } from 'react-navigation'
 class Ngorte extends Component {
   
   ngomong(word){
-    for(i = 0; i < word.length; i++) {
-      Tts.speak(word[i]);
-    }
+    // for(i = 0; i < word.length; i++) {
+    //   Tts.speak(word[i]);
+    // }
     
     Tts.speak(word);
   }
@@ -19,7 +19,7 @@ class Ngorte extends Component {
 	render() {
 		return(
       <View>
-      <Button onPress={() => this.ngomong('BALL')} title="Ngorte" />
+      <Button onPress={() => this.ngomong('keyboard')} title="Ngorte" />
       </View>
 		)
 	}
