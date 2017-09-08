@@ -1,8 +1,9 @@
 const initialState = {
-  words: [],
+  words: ['keyboard', 'mouse', 'chicken'],
   word: 'keyboard',
   answer: '',
-  fetch: ''
+  fetch: false,
+  game: false
 }
 
 export default (state = initialState, actions) => {
@@ -15,6 +16,8 @@ export default (state = initialState, actions) => {
       return {...state, answer: actions.payload.answer, fetch: true}
     case 'FETCHING': 
       return {...state, fetch: false}
+    case 'GAME_OVER': 
+      return {...state, game: true}
     default:
       return state
   }

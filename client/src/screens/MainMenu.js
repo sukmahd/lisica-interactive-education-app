@@ -61,7 +61,9 @@ class MainMenu extends Component {
 				</View>
 
 				<View style={bottomContainerStyle}>
-					<ButtonBig>
+					<ButtonBig
+						onPress={() => navigate('CameraScreen')}
+					>
 						<Text>START</Text>
 					</ButtonBig>
 				</View>

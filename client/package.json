@@ -7,10 +7,14 @@
     "test": "jest"
   },
   "dependencies": {
+    "aws-sdk": "^2.111.0",
     "react": "16.0.0-alpha.12",
     "react-native": "0.47.2",
+    "react-native-aws3": "0.0.8",
+    "react-native-camera": "^0.10.0",
     "react-native-elements": "^0.16.0",
     "react-native-speech": "^0.1.2",
+    "react-native-spinkit": "^1.1.1",
     "react-native-tts": "^1.4.0",
     "react-native-vector-icons": "^4.3.0",
     "react-native-voice": "^0.1.12",

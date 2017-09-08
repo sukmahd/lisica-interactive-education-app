@@ -7,6 +7,7 @@ import {
 	InputRounded 
 } from '../components/common';
 
+
 class Correct extends Component {
 	constructor(props) {
 		super(props);
@@ -30,6 +31,8 @@ class Correct extends Component {
 			textStyle
 		} = styles;
 
+		const { navigate } = this.props.navigation;
+
 		return(
 			<KeyboardAvoidingView behavior="padding" style={parentContainerStyle}>
 
@@ -37,25 +40,17 @@ class Correct extends Component {
 					hidden={true}
 				/>
 
-				<View style={topContainerStyle}>
-					<Text style={textStyle}>
-						Oops! Not yet, buddy!
-					</Text>
-				</View>
+				
 				
 				<View style={midContainerStyle}>
-					<Image style={imageStyle} source={require('../assets/images/XMLID_615_.png')} />
+					<Image style={imageStyle} source={require('../assets/images/XMLID_730_.png')} />
 				</View>
 
 				<View style={bottomContainerStyle}>
-					<ButtonBig>
-						<Text>AGAIN</Text>
-					</ButtonBig>
-				</View>
-
-				<View style={bottomContainerStyle}>
-					<ButtonBig backgroundColor="#f14d38">
-						<Text>SKIP</Text>
+					<ButtonBig
+						onPress={() => navigate('CameraComponentScreen')}
+					>
+						<Text>SNAP</Text>
 					</ButtonBig>
 				</View>
 
@@ -82,7 +77,7 @@ const styles = {
 	bottomContainerStyle: {
 		flexDirection: 'row',
 		justifyContent: 'center',
-		marginTop: 30
+		marginTop: 52
 	},
 	imageStyle: {
 		justifyContent: 'center',

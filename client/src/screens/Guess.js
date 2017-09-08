@@ -8,17 +8,18 @@ import { connect } from 'react-redux'
 import { 
 	ButtonSmall,
 	ButtonBig, 
-	InputRounded 
+	InputRounded,
+	Spinner
 } from '../components/common';
 
 class Guess extends Component {
 	constructor(props) {
     super(props);
     this.state = {
-      recognized: '',
+      recognized: false,
       pitch: '',
       error: '',
-      end: '',
+      end: false,
       started: '',
       results: [],
       partialResults: [],
@@ -32,6 +33,7 @@ class Guess extends Component {
     Voice.onSpeechResults = this.onSpeechResults.bind(this);
     Voice.onSpeechPartialResults = this.onSpeechPartialResults.bind(this);
     Voice.onSpeechVolumeChanged = this.onSpeechVolumeChanged.bind(this);
+		
   }
 
 	static navigationOptions = {
@@ -64,6 +66,7 @@ class Guess extends Component {
     });
   }
   onSpeechResults(e) {
+		const { navigate } = this.props.navigation
 		const word = e.value.filter( kata => {
 			return this.props.word == kata
 		})
@@ -72,6 +75,14 @@ class Guess extends Component {
 			status: word,
 			started: false
     });
+		
+		if(this.state.status[0])
+		{
+			navigate('CorrectScreen')
+		}else {
+			navigate('WrongScreen')
+		}
+		
   }
   onSpeechPartialResults(e) {
     this.setState({
@@ -91,7 +102,8 @@ class Guess extends Component {
       started: false,
       results: [],
       partialResults: [],
-			status: ''
+			status: '',
+			end:false
     });
     const error = Voice.start('en');
     if (error) {
@@ -154,7 +166,7 @@ class Guess extends Component {
 					<View style={imgContainerStyle}>
 						<Image style={imageStyle} source={require('../assets/images/XMLID_730_.png')} />
 					</View>
-					<View style={guessAnswerStyle}>
+					{this.state.end ? <Spinner feedback="Processing..."/> : <View style={guessAnswerStyle}>
 						<ButtonSmall 
 							backgroundColor='#ff85a5'
 							onPress={() => this.ngomong(this.props.word)}
@@ -162,30 +174,17 @@ class Guess extends Component {
 						>
 							<Text>🔊 {this.props.word}</Text>
 						</ButtonSmall>
-						<ButtonSmall 
-							backgroundColor='#ff85a5'
-							width={260}
-							marginTop={10}
-						>
-							<Text>🙋 Your answer will show here!</Text>
-						</ButtonSmall>
-					</View>
+						
+					</View>}
 				</View>
 
 				<View style={bottomContainerStyle}>
 					<ButtonBig
-						width={180}
-						marginRight={10}
             onPress={this._startRecognizing.bind(this)}
 					>
-						{this.state.started ? <Text>Listening {this.state.results[0]}</Text> : <Text>SPEAK! {this.state.results[0]}, {this.state.status}</Text>}
+						{this.state.started ? <Text>👂 Listening</Text> : <Text>🗣️ SPEAK!</Text>}
 					</ButtonBig>
-					<ButtonBig
-						width={62}
-						marginLeft={8}
-					>
-						<Text>🤚🏼</Text>
-					</ButtonBig>
+					
 				</View>
 
 				<View style={bottomContainerStyle}>
