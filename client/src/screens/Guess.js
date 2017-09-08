@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
-import { Icon } from 'react-native-elements'
+
+import Tts from 'react-native-tts';
+import Voice from 'react-native-voice';
+import { connect } from 'react-redux'
 
 import { 
 	ButtonSmall,
@@ -10,16 +13,109 @@ import {
 
 class Guess extends Component {
 	constructor(props) {
-		super(props);
-
-		this.state= {
-			username: ''
-		}
-	}
+    super(props);
+    this.state = {
+      recognized: '',
+      pitch: '',
+      error: '',
+      end: '',
+      started: '',
+      results: [],
+      partialResults: [],
+			username: 'Lisica',
+			status: ''
+    };
+    Voice.onSpeechStart = this.onSpeechStart.bind(this);
+    Voice.onSpeechRecognized = this.onSpeechRecognized.bind(this);
+    Voice.onSpeechEnd = this.onSpeechEnd.bind(this);
+    Voice.onSpeechError = this.onSpeechError.bind(this);
+    Voice.onSpeechResults = this.onSpeechResults.bind(this);
+    Voice.onSpeechPartialResults = this.onSpeechPartialResults.bind(this);
+    Voice.onSpeechVolumeChanged = this.onSpeechVolumeChanged.bind(this);
+  }
 
 	static navigationOptions = {
 		header: null,
 	}
+	
+	
+  ngomong(word){    
+    Tts.speak(word);
+  }
+  
+  onSpeechStart(e) {
+    this.setState({
+      started: true,
+    });
+  }
+  onSpeechRecognized(e) {
+    this.setState({
+      recognized: true,
+    });
+  }
+  onSpeechEnd(e) {
+    this.setState({
+      end: true,
+    });
+  }
+  onSpeechError(e) {
+    this.setState({
+      error: e.error,
+    });
+  }
+  onSpeechResults(e) {
+		const word = e.value.filter( kata => {
+			return this.props.word == kata
+		})
+    this.setState({
+      results: e.value,
+			status: word,
+			started: false
+    });
+  }
+  onSpeechPartialResults(e) {
+    this.setState({
+      partialResults: e.value,
+    });
+  }
+  onSpeechVolumeChanged(e) {
+    this.setState({
+      pitch: e.value,
+    });
+  }
+  _startRecognizing(e) {
+    this.setState({
+      recognized: false,
+      pitch: '',
+      error: '',
+      started: false,
+      results: [],
+      partialResults: [],
+			status: ''
+    });
+    const error = Voice.start('en');
+    if (error) {
+      ToastAndroid.show(error, ToastAndroid.SHORT);
+    }
+  }
+  _stopRecognizing(e) {
+    const error = Voice.stop();
+    if (error) {
+      ToastAndroid.show(error, ToastAndroid.SHORT);
+    }
+  }
+  _cancelRecognizing(e) {
+    const error = Voice.cancel();
+    if (error) {
+      ToastAndroid.show(error, ToastAndroid.SHORT);
+    }
+  }
+  _destroyRecognizer(e) {
+    const error = Voice.destroy();
+    if (error) {
+      ToastAndroid.show(error, ToastAndroid.SHORT);
+    }
+  }
 
 	render() {
 		const { 
@@ -58,14 +154,13 @@ class Guess extends Component {
 					<View style={imgContainerStyle}>
 						<Image style={imageStyle} source={require('../assets/images/XMLID_730_.png')} />
 					</View>
-
 					<View style={guessAnswerStyle}>
 						<ButtonSmall 
 							backgroundColor='#ff85a5'
-							onPress={() => navigate('ParentOptionScreen')}
+							onPress={() => this.ngomong(this.props.word)}
 							width={260}
 						>
-							<Text>🔊 OBJECT</Text>
+							<Text>🔊 {this.props.word}</Text>
 						</ButtonSmall>
 						<ButtonSmall 
 							backgroundColor='#ff85a5'
@@ -81,8 +176,9 @@ class Guess extends Component {
 					<ButtonBig
 						width={180}
 						marginRight={10}
+            onPress={this._startRecognizing.bind(this)}
 					>
-						<Text>🗣️ SPEAK!</Text>
+						{this.state.started ? <Text>Listening {this.state.results[0]}</Text> : <Text>SPEAK! {this.state.results[0]}, {this.state.status}</Text>}
 					</ButtonBig>
 					<ButtonBig
 						width={62}
@@ -93,7 +189,7 @@ class Guess extends Component {
 				</View>
 
 				<View style={bottomContainerStyle}>
-					<ButtonBig backgroundColor="#f14d38">
+					<ButtonBig  backgroundColor="#f14d38">
 						<Text>SKIP</Text>
 					</ButtonBig>
 				</View>
@@ -160,4 +256,10 @@ const styles = {
 	},
 }
 
-export default Guess;
+const mapStateToProps = (state) => {
+	return {
+		word: state.wordStore.word
+	}
+}
+
+export default connect(mapStateToProps)(Guess);
