@@ -13,9 +13,10 @@ import Wrong from './screens/Wrong';
 import GameOver from './screens/GameOver';
 import store from './stores'
 import Guess from './screens/Guess';
-
+import ListObjects from './screens/ListObjects';
 
 const AppNavigator = StackNavigator({
+	ListObjectsScreen: { screen: ListObjects },
 	GuessScreen: { screen: Guess },
 	MainMenuScreen: { screen: MainMenu },
 	GameOverScreen: { screen: GameOver },
@@ -28,7 +29,7 @@ class App extends Component {
 	render() {
 		return(
 			<Provider store={store}>
-				<Test/>
+				<AppNavigator />
 			</Provider>
 		)
 	}
