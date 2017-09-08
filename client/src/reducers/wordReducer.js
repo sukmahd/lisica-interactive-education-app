@@ -1,6 +1,6 @@
 const initialState = {
   words: [],
-  word: '',
+  word: 'keyboard',
   answer: '',
   fetch: ''
 }

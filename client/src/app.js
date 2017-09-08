@@ -28,7 +28,7 @@ class App extends Component {
 	render() {
 		return(
 			<Provider store={store}>
-				<Test/>
+				<AppNavigator/>
 			</Provider>
 		)
 	}
