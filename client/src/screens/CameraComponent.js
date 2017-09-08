@@ -7,15 +7,16 @@ import {
   Image,
   Text,
 } from 'react-native';
+import { ACCESS_KEY_ID, SECRET_ACCESS_KEY } from 'react-native-dotenv'
 
 import Camera from 'react-native-camera';
 import { RNS3 } from 'react-native-aws3';
-import Spinner from 'react-native-spinkit'
-import AWS from 'aws-sdk/dist/aws-sdk-react-native'
+import Spinner from 'react-native-spinkit';
+import AWS from 'aws-sdk/dist/aws-sdk-react-native';
 
 AWS.config.update({
-  accessKeyId: 'AKIAJBXWNUBWGAIFT2FA',
-  secretAccessKey: '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',
+  accessKeyId: ACCESS_KEY_ID,
+  secretAccessKey: SECRET_ACCESS_KEY,
   region: 'us-east-1'
 })
 
@@ -131,8 +132,8 @@ class CameraComponent extends Component {
       keyPrefix: "uploads/",
       bucket: "lisica-interactive-education-app",
       region: "us-east-1",
-      accessKey: "AKIAJBXWNUBWGAIFT2FA",
-      secretKey: "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",
+      accessKey: ACCESS_KEY_ID,
+      secretKey: SECRET_ACCESS_KEY,
       successActionStatus: 201
     }
 

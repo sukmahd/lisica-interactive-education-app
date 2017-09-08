@@ -18,9 +18,9 @@ import DetailGraph from './screens/DetailGraph';
 import CameraComponent from './screens/CameraComponent';
 
 const AppNavigator = StackNavigator({
+	MainMenuScreen: { screen: MainMenu },
 	GuessScreen: { screen: Guess },
 	ListObjectsScreen: { screen: ListObjects },
-	MainMenuScreen: { screen: MainMenu },
 	GameOverScreen: { screen: GameOver },
 	WrongScreen: { screen: Wrong },
 	CorrectScreen: { screen: Correct },
