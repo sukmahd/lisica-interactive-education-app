@@ -19,8 +19,9 @@ class Correct extends Component {
 	static navigationOptions = {
 		header: null,
 	}
-
 	render() {
+		const { navigate } = this.props.navigation
+		
 		const { 
 			topContainerStyle,
 			bottomContainerStyle,
@@ -48,7 +49,7 @@ class Correct extends Component {
 				</View>
 
 				<View style={bottomContainerStyle}>
-					<ButtonBig>
+					<ButtonBig onPress={() => navigate('GuessScreen')}>
 						<Text>AGAIN</Text>
 					</ButtonBig>
 				</View>
