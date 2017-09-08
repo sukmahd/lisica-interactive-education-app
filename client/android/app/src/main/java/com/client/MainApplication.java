@@ -5,6 +5,8 @@ import android.app.Application;
 import com.facebook.react.ReactApplication;
 import com.react.rnspinkit.RNSpinkitPackage;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
+import net.no_mad.tts.TextToSpeechPackage;
+import com.wenkesj.voice.VoicePackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -26,7 +28,9 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             new RNSpinkitPackage(),
-            new RCTCameraPackage()
+            new RCTCameraPackage(),
+            new TextToSpeechPackage(),
+            new VoicePackage()
       );
     }
   };

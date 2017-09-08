@@ -12,7 +12,15 @@
     "react-native-aws3": "0.0.8",
     "react-native-camera": "^0.10.0",
     "react-native-spinkit": "^1.1.1",
-    "react-navigation": "^1.0.0-beta.11"
+    "react-native-elements": "^0.16.0",
+    "react-native-speech": "^0.1.2",
+    "react-native-tts": "^1.4.0",
+    "react-native-vector-icons": "^4.3.0",
+    "react-native-voice": "^0.1.12",
+    "react-navigation": "^1.0.0-beta.11",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "babel-jest": "21.0.0",
