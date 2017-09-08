@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
+
 import Tts from 'react-native-tts';
 import Voice from 'react-native-voice';
 import { connect } from 'react-redux'
-
 
 import { 
 	ButtonSmall,
@@ -126,7 +126,8 @@ class Guess extends Component {
 			midContainerStyle,
 			textStyle,
 			imgContainerStyle,
-			topBtnContainerStyle
+			topBtnContainerStyle,
+			guessAnswerStyle
 		} = styles;
 
 		const { navigate } = this.props.navigation;
@@ -145,7 +146,7 @@ class Guess extends Component {
 						width={80}
 						onPress={() => navigate('ListObjectsScreen')}
 					>
-						<Text>BACK</Text>
+						<Text>👈 BACK</Text>
 					</ButtonSmall>
 				</View>
 
@@ -153,18 +154,37 @@ class Guess extends Component {
 					<View style={imgContainerStyle}>
 						<Image style={imageStyle} source={require('../assets/images/XMLID_730_.png')} />
 					</View>
-
-					<ButtonSmall 
-						backgroundColor='#ff85a5'
-						onPress={() => this.ngomong(this.props.word)}
-					>
-						<Text>{this.props.word}</Text>
-					</ButtonSmall>
+					<View style={guessAnswerStyle}>
+						<ButtonSmall 
+							backgroundColor='#ff85a5'
+							onPress={() => this.ngomong(this.props.word)}
+							width={260}
+						>
+							<Text>🔊 {this.props.word}</Text>
+						</ButtonSmall>
+						<ButtonSmall 
+							backgroundColor='#ff85a5'
+							width={260}
+							marginTop={10}
+						>
+							<Text>🙋 Your answer will show here!</Text>
+						</ButtonSmall>
+					</View>
 				</View>
 
 				<View style={bottomContainerStyle}>
-					<ButtonBig onPress={this._startRecognizing.bind(this)}>
+					<ButtonBig
+						width={180}
+						marginRight={10}
+            onPress={this._startRecognizing.bind(this)}
+					>
 						{this.state.started ? <Text>Listening {this.state.results[0]}</Text> : <Text>SPEAK! {this.state.results[0]}, {this.state.status}</Text>}
+					</ButtonBig>
+					<ButtonBig
+						width={62}
+						marginLeft={8}
+					>
+						<Text>🤚🏼</Text>
 					</ButtonBig>
 				</View>
 
@@ -201,7 +221,13 @@ const styles = {
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
-		marginTop: 20
+		marginTop: 20,
+		marginBottom: 20
+	},
+	guessAnswerStyle: {
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center'
 	},
 	topBtnContainerStyle: {
 		flexDirection: 'row',
@@ -216,7 +242,7 @@ const styles = {
 	bottomContainerStyle: {
 		flexDirection: 'row',
 		justifyContent: 'center',
-		marginTop: 30
+		marginTop: 16
 	},
 	imageStyle: {
 		justifyContent: 'center',
