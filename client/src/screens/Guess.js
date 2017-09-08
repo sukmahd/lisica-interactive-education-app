@@ -115,7 +115,7 @@ class Guess extends Component {
     if (error) {
       ToastAndroid.show(error, ToastAndroid.SHORT);
     }
-  }
+	}
 
 	render() {
 		const { 
@@ -178,7 +178,7 @@ class Guess extends Component {
 						marginRight={10}
             onPress={this._startRecognizing.bind(this)}
 					>
-						{this.state.started ? <Text>Listening {this.state.results[0]}</Text> : <Text>SPEAK! {this.state.results[0]}, {this.state.status}</Text>}
+						{this.state.started ? <Text>👂 Listening {this.state.results[0]}</Text> : <Text>🗣️ SPEAK! {this.state.results[0]}, {this.state.status}</Text>}
 					</ButtonBig>
 					<ButtonBig
 						width={62}
