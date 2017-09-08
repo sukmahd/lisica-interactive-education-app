@@ -7,8 +7,10 @@ import {
   Image,
   TouchableHighlight,
   ToastAndroid,
+  Button
 } from 'react-native';
 
+import Tts from 'react-native-tts';
 import Voice from 'react-native-voice';
 
 class VoiceTest extends Component {
@@ -31,6 +33,15 @@ class VoiceTest extends Component {
     Voice.onSpeechPartialResults = this.onSpeechPartialResults.bind(this);
     Voice.onSpeechVolumeChanged = this.onSpeechVolumeChanged.bind(this);
   }
+  
+  ngomong(word){
+    // for(i = 0; i < word.length; i++) {
+    //   Tts.speak(word[i]);
+    // }
+    
+    Tts.speak(word);
+  }
+  
   onSpeechStart(e) {
     this.setState({
       started: '√',
@@ -129,11 +140,7 @@ class VoiceTest extends Component {
         </Text>
         {this.state.results.map((result, index) => {
           return (
-            <Text
-              key={`result-${index}`}
-              style={styles.stat}>
-              {result}
-            </Text>
+            <Button key={`partial-result-${index}`} onPress={() => this.ngomong(result)} title={result} />
           )
         })}
         <Text
