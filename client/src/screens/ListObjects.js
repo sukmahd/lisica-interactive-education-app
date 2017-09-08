@@ -7,7 +7,7 @@ import {
 	InputRounded 
 } from '../components/common';
 
-class Guess extends Component {
+class ListObjects extends Component {
 	constructor(props) {
 		super(props);
 
@@ -46,9 +46,9 @@ class Guess extends Component {
 						backgroundColor='#ff85a5'
 						fontSize={14}
 						width={80}
-						onPress={() => navigate('ListObjectsScreen')}
+						onPress={() => navigate('MainMenuScreen')}
 					>
-						<Text>BACK</Text>
+						<Text>MAIN</Text>
 					</ButtonSmall>
 				</View>
 
@@ -56,13 +56,14 @@ class Guess extends Component {
 					<View style={imgContainerStyle}>
 						<Image style={imageStyle} source={require('../assets/images/XMLID_730_.png')} />
 					</View>
+				</View>
 
-					<ButtonSmall 
-						backgroundColor='#ff85a5'
-						onPress={() => navigate('ParentOptionScreen')}
+				<View style={bottomContainerStyle}>
+					<ButtonBig
+						onPress={() => navigate('GuessScreen')}
 					>
-						<Text>DARI VOICE</Text>
-					</ButtonSmall>
+						<Text>SPEAK!</Text>
+					</ButtonBig>
 				</View>
 
 				<View style={bottomContainerStyle}>
@@ -70,10 +71,10 @@ class Guess extends Component {
 						<Text>SPEAK!</Text>
 					</ButtonBig>
 				</View>
-
+				
 				<View style={bottomContainerStyle}>
-					<ButtonBig backgroundColor="#f14d38">
-						<Text>SKIP</Text>
+					<ButtonBig>
+						<Text>SPEAK!</Text>
 					</ButtonBig>
 				</View>
 
@@ -119,7 +120,7 @@ const styles = {
 	bottomContainerStyle: {
 		flexDirection: 'row',
 		justifyContent: 'center',
-		marginTop: 30
+		marginTop: 20
 	},
 	imageStyle: {
 		justifyContent: 'center',
@@ -133,4 +134,4 @@ const styles = {
 	},
 }
 
-export default Guess;
+export default ListObjects;
