@@ -18,6 +18,8 @@ import DetailGraph from './screens/DetailGraph';
 import CameraComponent from './screens/CameraComponent';
 
 const AppNavigator = StackNavigator({
+	CameraComponentScreen: { screen: CameraComponent },
+	DetailGraphScreen: { screen: DetailGraph },
 	MainMenuScreen: { screen: MainMenu },
 	GuessScreen: { screen: Guess },
 	ListObjectsScreen: { screen: ListObjects },
@@ -25,9 +27,7 @@ const AppNavigator = StackNavigator({
 	WrongScreen: { screen: Wrong },
 	CorrectScreen: { screen: Correct },
 	ParentOptionScreen: { screen: ParentOption },
-	CameraScreen: { screen: Camera },
-  CameraComponentScreen: { screen: CameraComponent },
-	DetailGraphScreen: { screen: DetailGraph }
+	CameraScreen: { screen: Camera }
 })
 
 class App extends Component {

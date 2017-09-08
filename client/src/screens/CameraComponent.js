@@ -114,6 +114,7 @@ class CameraComponent extends Component {
 
 
   uploadImageToS3 () {
+    const { navigate } = this.props.navigation
     this.setState({ isUploading: true })
     console.log(this.state.path);
     let imageName = this.state.path.split("Pictures/")[1]
@@ -163,13 +164,17 @@ class CameraComponent extends Component {
       }
 
       console.log('saatnya rekog');
-
+      let self = this
       rekognition.detectLabels(params, function(err, data) {
-       if (err) console.log(err, err.stack); // an error occurred
-       else     console.log(data);           // successful response
+        if (err) console.log(err, err.stack); // an error occurred
+        else {
+          console.log(data)
+          console.log(data.Labels[0]);
+          self.setState({ isProcessing: false })
+          console.log('kokokokokokoko');
+          navigate('ListObjectsScreen', { labels: data.Labels })
+        }
       });
-
-      this.setState({ isProcessing: false })
       /**
        * {
        *   postResponse: {
@@ -180,6 +185,8 @@ class CameraComponent extends Component {
        *   }
        * }
        */
+
+
     })
   }
 
