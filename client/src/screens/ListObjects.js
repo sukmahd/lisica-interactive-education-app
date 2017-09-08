@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
 
-import { 
+import {
 	ButtonSmall,
-	ButtonBig, 
-	InputRounded 
+	ButtonBig,
+	InputRounded
 } from '../components/common';
 
 class ListObjects extends Component {
@@ -21,7 +21,7 @@ class ListObjects extends Component {
 	}
 
 	render() {
-		const { 
+		const {
 			topContainerStyle,
 			bottomContainerStyle,
 			parentContainerStyle,
@@ -33,16 +33,17 @@ class ListObjects extends Component {
 		} = styles;
 
 		const { navigate } = this.props.navigation;
+		const dataLabels = this.props.navigation.state.params.labels
 
 		return(
 			<View behavior="padding" style={parentContainerStyle}>
 
-				<StatusBar 
+				<StatusBar
 					hidden={true}
 				/>
 
 				<View style={topBtnContainerStyle}>
-					<ButtonSmall 
+					<ButtonSmall
 						backgroundColor='#ff85a5'
 						fontSize={14}
 						width={80}
@@ -62,19 +63,19 @@ class ListObjects extends Component {
 					<ButtonBig
 						onPress={() => navigate('GuessScreen')}
 					>
-						<Text>SPEAK!</Text>
+						<Text>{ dataLabels[0].Name }</Text>
 					</ButtonBig>
 				</View>
 
 				<View style={bottomContainerStyle}>
 					<ButtonBig>
-						<Text>SPEAK!</Text>
+						<Text>{ dataLabels[1].Name }</Text>
 					</ButtonBig>
 				</View>
-				
+
 				<View style={bottomContainerStyle}>
 					<ButtonBig>
-						<Text>SPEAK!</Text>
+						<Text>{ dataLabels[2].Name }</Text>
 					</ButtonBig>
 				</View>
 

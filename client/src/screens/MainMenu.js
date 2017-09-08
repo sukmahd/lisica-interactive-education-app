@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
 
-import { 
+import {
 	ButtonSmall,
-	ButtonBig, 
-	InputRounded 
+	ButtonBig,
+	InputRounded
 } from '../components/common';
 
 class MainMenu extends Component {
@@ -21,7 +21,7 @@ class MainMenu extends Component {
 	}
 
 	render() {
-		const { 
+		const {
 			topContainerStyle,
 			bottomContainerStyle,
 			parentContainerStyle,
@@ -34,25 +34,25 @@ class MainMenu extends Component {
 		return(
 			<KeyboardAvoidingView behavior="padding" style={parentContainerStyle}>
 
-				<StatusBar 
+				<StatusBar
 					hidden={true}
 				/>
 
 				<View style={topContainerStyle}>
-					<ButtonSmall 
+					<ButtonSmall
 						backgroundColor='#ff85a5'
 						onPress={() => navigate('ParentOptionScreen')}
 					>
 						<Text>PARENT</Text>
 					</ButtonSmall>
 				</View>
-				
+
 				<View style={midContainerStyle}>
 					<Image style={imageStyle} source={require('../assets/images/Eevee.png')} />
 				</View>
 
 				<View style={midContainerStyle}>
-					<InputRounded 
+					<InputRounded
 						label="Username"
 						value={this.state.value}
 						placeholder="Your username"

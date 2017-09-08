@@ -1,12 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, ART, View, Button, Text } from 'react-native'
-const {
-  Surface,
-  Group,
-  Shape,
-} = ART;
-
-
+import { Pie } from 'react-native-pathjs-charts'
 
 class DetailGraph extends Component {
   static navigationOptions = {
@@ -14,33 +8,60 @@ class DetailGraph extends Component {
     header: null
   }
 
-  ReactNativeART() {
+  render() {
+    let data = [{
+      "name": "Anak anda Bodoh",
+      "population": 7694980
+    }, {
+      "name": "Anak anda Cupu",
+      "population": 2584160
+    }, {
+      "name": "Anak anda Galer",
+      "population": 6590667
+    }, {
+      "name": "Anak anda Pintar",
+      "population": 7284698
+    }]
+
+    let options = {
+      margin: {
+        top: 20,
+        left: 20,
+        right: 20,
+        bottom: 20
+      },
+      width: 350,
+      height: 350,
+      color: '#2980B9',
+      r: 50,
+      R: 150,
+      legendPosition: 'topLeft',
+      animate: {
+        type: 'oneByOne',
+        duration: 200,
+        fillTransition: 10
+      },
+      label: {
+        fontFamily: 'Arial',
+        fontSize: 8,
+        fontWeight: true,
+        color: '#ECF0F1'
+      }
+    }
+
     return (
       <View>
-        <Surface width={500} height={500}>
-          <Group x={100} y={0}>
-            <Shape
-              d="M10 10 C 40 10, 65 10, 95 80 S 150 150, 180 80"
-              stroke="#2ecc71"
-              strokeWidth = {12}
-              strokeDash = {[10, 20]}
-              strokeCap="butt"
-              strokeJoin="bevel"
-            />
-          </Group>
-        </Surface>
+        <Pie
+          data={data}
+          options={options}
+          accessorKey="population" />
       </View>
     )
   }
 
-  render () {
-    return (
-      <View>
-        <Text>hay</Text>
-        { this.ReactNativeART() }
-      </View>
-    )
-  }
+
+
+
 }
 
 export default DetailGraph
