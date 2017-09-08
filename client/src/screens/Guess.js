@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
+import { Icon } from 'react-native-elements'
 
 import { 
 	ButtonSmall,
@@ -29,7 +30,8 @@ class Guess extends Component {
 			midContainerStyle,
 			textStyle,
 			imgContainerStyle,
-			topBtnContainerStyle
+			topBtnContainerStyle,
+			guessAnswerStyle
 		} = styles;
 
 		const { navigate } = this.props.navigation;
@@ -48,7 +50,7 @@ class Guess extends Component {
 						width={80}
 						onPress={() => navigate('ListObjectsScreen')}
 					>
-						<Text>BACK</Text>
+						<Text>👈 BACK</Text>
 					</ButtonSmall>
 				</View>
 
@@ -57,17 +59,36 @@ class Guess extends Component {
 						<Image style={imageStyle} source={require('../assets/images/XMLID_730_.png')} />
 					</View>
 
-					<ButtonSmall 
-						backgroundColor='#ff85a5'
-						onPress={() => navigate('ParentOptionScreen')}
-					>
-						<Text>DARI VOICE</Text>
-					</ButtonSmall>
+					<View style={guessAnswerStyle}>
+						<ButtonSmall 
+							backgroundColor='#ff85a5'
+							onPress={() => navigate('ParentOptionScreen')}
+							width={260}
+						>
+							<Text>🔊 OBJECT</Text>
+						</ButtonSmall>
+						<ButtonSmall 
+							backgroundColor='#ff85a5'
+							width={260}
+							marginTop={10}
+						>
+							<Text>🙋 Your answer will show here!</Text>
+						</ButtonSmall>
+					</View>
 				</View>
 
 				<View style={bottomContainerStyle}>
-					<ButtonBig>
-						<Text>SPEAK!</Text>
+					<ButtonBig
+						width={180}
+						marginRight={10}
+					>
+						<Text>🗣️ SPEAK!</Text>
+					</ButtonBig>
+					<ButtonBig
+						width={62}
+						marginLeft={8}
+					>
+						<Text>🤚🏼</Text>
 					</ButtonBig>
 				</View>
 
@@ -104,7 +125,13 @@ const styles = {
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
-		marginTop: 20
+		marginTop: 20,
+		marginBottom: 20
+	},
+	guessAnswerStyle: {
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center'
 	},
 	topBtnContainerStyle: {
 		flexDirection: 'row',
@@ -119,7 +146,7 @@ const styles = {
 	bottomContainerStyle: {
 		flexDirection: 'row',
 		justifyContent: 'center',
-		marginTop: 30
+		marginTop: 16
 	},
 	imageStyle: {
 		justifyContent: 'center',
