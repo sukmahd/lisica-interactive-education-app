@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
+import { Icon } from 'react-native-elements'
 
 import { 
 	ButtonSmall,
@@ -29,7 +30,8 @@ class Guess extends Component {
 			midContainerStyle,
 			textStyle,
 			imgContainerStyle,
-			topBtnContainerStyle
+			topBtnContainerStyle,
+			guessAnswerStyle
 		} = styles;
 
 		const { navigate } = this.props.navigation;
@@ -57,17 +59,35 @@ class Guess extends Component {
 						<Image style={imageStyle} source={require('../assets/images/XMLID_730_.png')} />
 					</View>
 
-					<ButtonSmall 
-						backgroundColor='#ff85a5'
-						onPress={() => navigate('ParentOptionScreen')}
-					>
-						<Text>DARI VOICE</Text>
-					</ButtonSmall>
+					<View style={guessAnswerStyle}>
+						<ButtonSmall 
+							backgroundColor='#ff85a5'
+							onPress={() => navigate('ParentOptionScreen')}
+							marginRight={20}
+						>
+							<Text>DARI VOICE</Text>
+						</ButtonSmall>
+						<ButtonSmall 
+							backgroundColor='#ff85a5'
+							marginLeft={20}
+						>
+							<Text>JAWABAN</Text>
+						</ButtonSmall>
+					</View>
 				</View>
 
 				<View style={bottomContainerStyle}>
-					<ButtonBig>
+					<ButtonBig
+						width={180}
+						marginRight={10}
+					>
 						<Text>SPEAK!</Text>
+					</ButtonBig>
+					<ButtonBig
+						width={60}
+						marginLeft={10}
+					>
+						<Text>!</Text>
 					</ButtonBig>
 				</View>
 
@@ -104,7 +124,13 @@ const styles = {
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
-		marginTop: 20
+		marginTop: 20,
+		marginBottom: 20
+	},
+	guessAnswerStyle: {
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center'
 	},
 	topBtnContainerStyle: {
 		flexDirection: 'row',

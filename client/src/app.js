@@ -16,8 +16,8 @@ import Guess from './screens/Guess';
 import ListObjects from './screens/ListObjects';
 
 const AppNavigator = StackNavigator({
-	ListObjectsScreen: { screen: ListObjects },
 	GuessScreen: { screen: Guess },
+	ListObjectsScreen: { screen: ListObjects },
 	MainMenuScreen: { screen: MainMenu },
 	GameOverScreen: { screen: GameOver },
 	WrongScreen: { screen: Wrong },
