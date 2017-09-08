@@ -48,7 +48,7 @@ class Correct extends Component {
 
 				<View style={bottomContainerStyle}>
 					<ButtonBig
-						onPress={() => navigate('ListObjectsScreen')}
+						onPress={() => navigate('CameraComponentScreen')}
 					>
 						<Text>SNAP</Text>
 					</ButtonBig>

@@ -25,7 +25,7 @@ const AppNavigator = StackNavigator({
 	WrongScreen: { screen: Wrong },
 	CorrectScreen: { screen: Correct },
 	ParentOptionScreen: { screen: ParentOption },
-	CameraScreen: { screen: Camera }
+	CameraScreen: { screen: Camera },
   CameraComponentScreen: { screen: CameraComponent },
 	DetailGraphScreen: { screen: DetailGraph }
 })
