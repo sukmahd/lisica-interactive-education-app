@@ -1,3 +1,7 @@
 rootProject.name = 'client'
+include ':react-native-tts'
+project(':react-native-tts').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-tts/android')
+include ':react-native-voice'
+project(':react-native-voice').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-voice/android')
 
 include ':app'
