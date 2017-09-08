@@ -32,6 +32,7 @@ class Guess extends Component {
     Voice.onSpeechResults = this.onSpeechResults.bind(this);
     Voice.onSpeechPartialResults = this.onSpeechPartialResults.bind(this);
     Voice.onSpeechVolumeChanged = this.onSpeechVolumeChanged.bind(this);
+		
   }
 
 	static navigationOptions = {
@@ -64,6 +65,7 @@ class Guess extends Component {
     });
   }
   onSpeechResults(e) {
+		const { navigate } = this.props.navigation
 		const word = e.value.filter( kata => {
 			return this.props.word == kata
 		})
@@ -72,6 +74,14 @@ class Guess extends Component {
 			status: word,
 			started: false
     });
+		
+		if(this.state.status[0])
+		{
+			navigate('CorrectScreen')
+		}else {
+			navigate('WrongScreen')
+		}
+		
   }
   onSpeechPartialResults(e) {
     this.setState({
@@ -127,16 +137,13 @@ class Guess extends Component {
 			textStyle,
 			imgContainerStyle
 		} = styles;
-
 		return(
 			<View behavior="padding" style={parentContainerStyle}>
 
 				<StatusBar 
 					hidden={true}
 				/>
-
 				
-
 				<View style={topContainerStyle}>
 					<View style={imgContainerStyle}>
 						<Image style={imageStyle} source={require('../assets/images/XMLID_730_.png')} />
