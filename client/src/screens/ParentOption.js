@@ -44,7 +44,7 @@ class ParentOption extends Component {
 						width={80}
 						onPress={() => navigate('MainMenuScreen')}
 					>
-						<Text>BACK</Text>
+						<Text>MAIN</Text>
 					</ButtonSmall>
 				</View>
 				
