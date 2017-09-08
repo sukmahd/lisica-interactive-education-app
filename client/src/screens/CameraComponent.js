@@ -11,6 +11,13 @@ import {
 import Camera from 'react-native-camera';
 import { RNS3 } from 'react-native-aws3';
 import Spinner from 'react-native-spinkit'
+import AWS from 'aws-sdk/dist/aws-sdk-react-native'
+
+AWS.config.update({
+  accessKeyId: 'AKIAJBXWNUBWGAIFT2FA',
+  secretAccessKey: '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',
+  region: 'us-east-1'
+})
 
 var s3 = new AWS.S3();
 
@@ -139,6 +146,40 @@ class CameraComponent extends Component {
       }
       console.log(response.body);
       this.setState({ isUploading: false })
+
+      this.setState({ isProcessing: true })
+      console.log('siap-siap rekog');
+
+      let rekognition = new AWS.Rekognition();
+
+      var params = {
+        Image: {
+         S3Object: {
+          Bucket: "lisica-interactive-education-app",
+          Name: `uploads/${imageName}`
+         }
+        }
+      }
+
+      console.log('saatnya rekog');
+
+      rekognition.detectLabels(params, function(err, data) {
+       if (err) console.log(err, err.stack); // an error occurred
+       else     console.log(data);           // successful response
+      });
+
+      this.setState({ isProcessing: false })
+      /**
+       * {
+       *   postResponse: {
+       *     bucket: "your-bucket",
+       *     etag : "9f620878e06d28774406017480a59fd4",
+       *     key: "uploads/image.png",
+       *     location: "https://your-bucket.s3.amazonaws.com/uploads%2Fimage.png"
+       *   }
+       * }
+       */
+    })
   }
 
   render() {
