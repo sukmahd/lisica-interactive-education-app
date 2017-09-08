@@ -3,7 +3,8 @@ const initialState = {
   word: 'keyboard',
   answer: '',
   fetch: false,
-  game: false
+  game: false,
+  count: 0
 }
 
 export default (state = initialState, actions) => {
@@ -11,7 +12,7 @@ export default (state = initialState, actions) => {
     case 'SET_WORDS':
       return {...state, words: actions.payload.words, fetch: true}
     case 'SET_WORD':
-      return {...state, word: actions.payload.word, fetch: true}
+      return {...state, word: actions.payload.word, count: state.count + 1, fetch: true}
     case 'SET_ANSWER':
       return {...state, answer: actions.payload.answer, fetch: true}
     case 'FETCHING': 

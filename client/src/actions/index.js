@@ -1,8 +1,12 @@
-import axios from 'axios'
-
 export const fetching = () => ({
   type: 'FETCHING'
 })
+
+export const game_over = () => {
+  return {
+    type: 'GAME_OVER',
+  }
+}
 
 export const set_words = (data) => {
   return (dispatch) => {

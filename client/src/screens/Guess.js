@@ -68,7 +68,7 @@ class Guess extends Component {
   onSpeechResults(e) {
 		const { navigate } = this.props.navigation
 		const word = e.value.filter( kata => {
-			return this.props.word == kata
+			return this.props.word == kata.toLowerCase()
 		})
     this.setState({
       results: e.value,
@@ -183,6 +183,7 @@ class Guess extends Component {
             onPress={this._startRecognizing.bind(this)}
 					>
 						{this.state.started ? <Text>👂 Listening</Text> : <Text>🗣️ SPEAK!</Text>}
+						<Text>{this.state.results[0]}</Text>
 					</ButtonBig>
 					
 				</View>
@@ -258,6 +259,12 @@ const styles = {
 const mapStateToProps = (state) => {
 	return {
 		word: state.wordStore.word
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		game_over: () => dispatch('') 
 	}
 }
 
