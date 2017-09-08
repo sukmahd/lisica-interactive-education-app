@@ -17,7 +17,7 @@ export default (state = initialState, actions) => {
     case 'FETCHING': 
       return {...state, fetch: false}
     case 'GAME_OVER': 
-      return {..state, game: true}
+      return {...state, game: true}
     default:
       return state
   }

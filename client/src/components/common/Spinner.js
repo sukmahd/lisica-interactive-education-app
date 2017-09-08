@@ -19,11 +19,12 @@ const styles = {
 	spinnerStyle: {
 		flex: 1,
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
+		marginTop: 10
 	},
 	textStyle : {
 		marginTop: 5,
-		fontSize: 16
+		fontSize: 12
 	}
 }
 

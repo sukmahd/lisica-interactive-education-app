@@ -14,6 +14,7 @@ import GameOver from './screens/GameOver';
 import store from './stores'
 import Guess from './screens/Guess';
 import ListObjects from './screens/ListObjects';
+import Camera from './screens/Camera';
 
 const AppNavigator = StackNavigator({
 	GuessScreen: { screen: Guess },
@@ -22,7 +23,8 @@ const AppNavigator = StackNavigator({
 	GameOverScreen: { screen: GameOver },
 	WrongScreen: { screen: Wrong },
 	CorrectScreen: { screen: Correct },
-	ParentOptionScreen: { screen: ParentOption }
+	ParentOptionScreen: { screen: ParentOption },
+	CameraScreen: { screen: Camera }
 })
 
 class App extends Component {
