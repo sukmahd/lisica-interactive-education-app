@@ -12,8 +12,11 @@ import Correct from './screens/Correct';
 import Wrong from './screens/Wrong';
 import GameOver from './screens/GameOver';
 import store from './stores'
+import Guess from './screens/Guess';
+
 
 const AppNavigator = StackNavigator({
+	GuessScreen: { screen: Guess },
 	MainMenuScreen: { screen: MainMenu },
 	GameOverScreen: { screen: GameOver },
 	WrongScreen: { screen: Wrong },
