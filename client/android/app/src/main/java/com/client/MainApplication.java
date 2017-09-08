@@ -3,6 +3,8 @@ package com.client;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.react.rnspinkit.RNSpinkitPackage;
+import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import net.no_mad.tts.TextToSpeechPackage;
 import com.wenkesj.voice.VoicePackage;
 import com.facebook.react.ReactNativeHost;
@@ -25,6 +27,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNSpinkitPackage(),
+            new RCTCameraPackage(),
             new TextToSpeechPackage(),
             new VoicePackage()
       );

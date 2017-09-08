@@ -35,6 +35,8 @@
 		2DCD954D1E0B4F2C00145EB5 /* clientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* clientTests.m */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		AA5C1732DEBE4537A9764F93 /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB3292CC7D24F09BFBB5CA8 /* libRCTCamera.a */; };
+		C332E035218347BAA2216223 /* libRNSpinkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D65905E66544216A9254EEC /* libRNSpinkit.a */; };
 		A88FF7691CB1479693BF7C53 /* libVoice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F88EDA60F07147038C9E151C /* libVoice.a */; };
 		BB7A4917BF004EFE94AC52FA /* libSpeechSynthesizer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF9DC80C3A254079BB862E77 /* libSpeechSynthesizer.a */; };
 		8E98A74F6AF94F3D8E194F54 /* libTextToSpeech.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E2758E285914F9F99DAAD99 /* libTextToSpeech.a */; };
@@ -257,6 +259,10 @@
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		C40A857E1C8E46EE81782491 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; name = "RCTCamera.xcodeproj"; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		EBB3292CC7D24F09BFBB5CA8 /* libRCTCamera.a */ = {isa = PBXFileReference; name = "libRCTCamera.a"; path = "libRCTCamera.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		AAAEC700D57A4A07BD1D3180 /* RNSpinkit.xcodeproj */ = {isa = PBXFileReference; name = "RNSpinkit.xcodeproj"; path = "../node_modules/react-native-spinkit/ios/RNSpinkit.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		8D65905E66544216A9254EEC /* libRNSpinkit.a */ = {isa = PBXFileReference; name = "libRNSpinkit.a"; path = "libRNSpinkit.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		6D350BAFCD414EBDA8427B15 /* Voice.xcodeproj */ = {isa = PBXFileReference; name = "Voice.xcodeproj"; path = "../node_modules/react-native-voice/ios/Voice.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		F88EDA60F07147038C9E151C /* libVoice.a */ = {isa = PBXFileReference; name = "libVoice.a"; path = "libVoice.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		FC5D5848EAEF44AB8CADCA73 /* SpeechSynthesizer.xcodeproj */ = {isa = PBXFileReference; name = "SpeechSynthesizer.xcodeproj"; path = "../node_modules/react-native-speech/SpeechSynthesizer.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
@@ -289,6 +295,8 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
+				AA5C1732DEBE4537A9764F93 /* libRCTCamera.a in Frameworks */,
+				C332E035218347BAA2216223 /* libRNSpinkit.a in Frameworks */,
 				A88FF7691CB1479693BF7C53 /* libVoice.a in Frameworks */,
 				BB7A4917BF004EFE94AC52FA /* libSpeechSynthesizer.a in Frameworks */,
 				8E98A74F6AF94F3D8E194F54 /* libTextToSpeech.a in Frameworks */,
@@ -458,6 +466,8 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
+				C40A857E1C8E46EE81782491 /* RCTCamera.xcodeproj */,
+				AAAEC700D57A4A07BD1D3180 /* RNSpinkit.xcodeproj */,
 				6D350BAFCD414EBDA8427B15 /* Voice.xcodeproj */,
 				FC5D5848EAEF44AB8CADCA73 /* SpeechSynthesizer.xcodeproj */,
 				69EC0AB6FB0E4D61AFBE0097 /* TextToSpeech.xcodeproj */,
@@ -994,6 +1004,8 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
+          "$(SRCROOT)/../node_modules/react-native-camera/ios",
+					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-voice/ios/Voice",
 					"$(SRCROOT)/../node_modules/react-native-speech",
 					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
@@ -1023,6 +1035,8 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
+          "$(SRCROOT)/../node_modules/react-native-camera/ios",
+					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-voice/ios/Voice",
 					"$(SRCROOT)/../node_modules/react-native-speech",
 					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
@@ -1047,6 +1061,8 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios",
+					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-voice/ios/Voice",
 					"$(SRCROOT)/../node_modules/react-native-speech",
 					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
@@ -1070,6 +1086,8 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios",
+					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-voice/ios/Voice",
 					"$(SRCROOT)/../node_modules/react-native-speech",
 					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
@@ -1108,6 +1126,8 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
+          "$(SRCROOT)/../node_modules/react-native-camera/ios",
+					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-voice/ios/Voice",
 					"$(SRCROOT)/../node_modules/react-native-speech",
 					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
@@ -1146,6 +1166,8 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
+          "$(SRCROOT)/../node_modules/react-native-camera/ios",
+					"$(SRCROOT)/../node_modules/react-native-spinkit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-voice/ios/Voice",
 					"$(SRCROOT)/../node_modules/react-native-speech",
 					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",

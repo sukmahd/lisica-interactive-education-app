@@ -4,7 +4,6 @@ import { StackNavigator } from 'react-navigation'
 import { Provider } from 'react-redux'
 
 import MainMenu from './screens/MainMenu';
-
 import Test from './screens/test_voice'
 import Ngorte from './screens/text_to_voice_tts'
 import ParentOption from './screens/ParentOption';
@@ -15,6 +14,8 @@ import store from './stores'
 import Guess from './screens/Guess';
 import ListObjects from './screens/ListObjects';
 import Camera from './screens/Camera';
+import DetailGraph from './screens/DetailGraph';
+import CameraComponent from './screens/CameraComponent';
 
 const AppNavigator = StackNavigator({
 	GuessScreen: { screen: Guess },
@@ -25,6 +26,8 @@ const AppNavigator = StackNavigator({
 	CorrectScreen: { screen: Correct },
 	ParentOptionScreen: { screen: ParentOption },
 	CameraScreen: { screen: Camera }
+  CameraComponentScreen: { screen: CameraComponent },
+	DetailGraphScreen: { screen: DetailGraph }
 })
 
 class App extends Component {
