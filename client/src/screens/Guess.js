@@ -50,7 +50,7 @@ class Guess extends Component {
 						width={80}
 						onPress={() => navigate('ListObjectsScreen')}
 					>
-						<Text>BACK</Text>
+						<Text>👈 BACK</Text>
 					</ButtonSmall>
 				</View>
 
@@ -63,15 +63,16 @@ class Guess extends Component {
 						<ButtonSmall 
 							backgroundColor='#ff85a5'
 							onPress={() => navigate('ParentOptionScreen')}
-							marginRight={20}
+							width={260}
 						>
-							<Text>DARI VOICE</Text>
+							<Text>🔊 OBJECT</Text>
 						</ButtonSmall>
 						<ButtonSmall 
 							backgroundColor='#ff85a5'
-							marginLeft={20}
+							width={260}
+							marginTop={10}
 						>
-							<Text>JAWABAN</Text>
+							<Text>🙋 Your answer will show here!</Text>
 						</ButtonSmall>
 					</View>
 				</View>
@@ -81,13 +82,13 @@ class Guess extends Component {
 						width={180}
 						marginRight={10}
 					>
-						<Text>SPEAK!</Text>
+						<Text>🗣️ SPEAK!</Text>
 					</ButtonBig>
 					<ButtonBig
-						width={60}
-						marginLeft={10}
+						width={62}
+						marginLeft={8}
 					>
-						<Text>!</Text>
+						<Text>🤚🏼</Text>
 					</ButtonBig>
 				</View>
 
@@ -128,7 +129,7 @@ const styles = {
 		marginBottom: 20
 	},
 	guessAnswerStyle: {
-		flexDirection: 'row',
+		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
@@ -145,7 +146,7 @@ const styles = {
 	bottomContainerStyle: {
 		flexDirection: 'row',
 		justifyContent: 'center',
-		marginTop: 30
+		marginTop: 16
 	},
 	imageStyle: {
 		justifyContent: 'center',

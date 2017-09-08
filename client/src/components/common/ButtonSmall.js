@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 
-const ButtonSmall = ({ onPress, children, backgroundColor, fontSize, width, marginLeft, marginRight }) => {
+const ButtonSmall = ({ onPress, children, backgroundColor, fontSize, width, marginLeft, marginRight, marginTop }) => {
 	const styles = {
 	textStyle: {
 		alignSelf: 'center',
@@ -17,7 +17,8 @@ const ButtonSmall = ({ onPress, children, backgroundColor, fontSize, width, marg
 		backgroundColor: backgroundColor,
 		borderRadius: 25,
 		marginLeft: marginLeft || null,
-		marginRight: marginRight || null
+		marginRight: marginRight || null,
+		marginTop: marginTop || null
 	}
 }
 	
