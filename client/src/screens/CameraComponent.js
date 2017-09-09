@@ -7,12 +7,17 @@ import {
   Image,
   Text,
 } from 'react-native';
-import { ACCESS_KEY_ID, SECRET_ACCESS_KEY } from 'react-native-dotenv'
+// import { ACCESS_KEY_ID, SECRET_ACCESS_KEY } from 'react-native-dotenv'
+
+const ACCESS_KEY_ID = 'AKIAJYP4PMCMBRWDYL7A';
+const SECRET_ACCESS_KEY = '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';
 
 import Camera from 'react-native-camera';
 import { RNS3 } from 'react-native-aws3';
 import Spinner from 'react-native-spinkit';
 import AWS from 'aws-sdk/dist/aws-sdk-react-native';
+
+import { ButtonSmall } from '../components/common';
 
 AWS.config.update({
   accessKeyId: ACCESS_KEY_ID,
@@ -39,6 +44,8 @@ class CameraComponent extends Component {
   }
 
   renderCamera () {
+    const { navigate } = this.props.navigation;
+
     return (
         <Camera
           ref={(cam) => {
@@ -48,12 +55,37 @@ class CameraComponent extends Component {
           aspect={Camera.constants.Aspect.fill}
           captureTarget={Camera.constants.CaptureTarget.disk}
         >
+
+        <View style={{
+          height: null,
+          flex: 1,
+          flexDirection: 'column',
+          justifyContent: 'flex-start',
+          paddingTop: 20
+        }}>
+          <View style={{
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            paddingLeft: 20
+          }}>
+          <ButtonSmall 
+						backgroundColor='#ff85a5'
+						fontSize={14}
+						width={80}
+						onPress={() => navigate('MainMenuScreen')}
+					>
+						<Text>BACK</Text>
+					</ButtonSmall>
+          </View>
+					
+				</View>
+
         <TouchableHighlight
-          style={{ width: 70, height: 70, borderRadius: 35, borderWidth: 5, borderColor: '#FFF', marginBottom: 15 }}
+          style={{ width: 80, height: 80, borderRadius: 40, borderWidth: 10, borderColor: '#f4f9fc', marginBottom: 20, backgroundColor: '#d0e9ea', justifyContent: 'center', alignItems: 'center' }}
           onPress={ this.takePicture.bind(this) }
           underlayColor="rgba(255, 255, 255, 0.5)"
         >
-          <View></View>
+          <Text>📸</Text>
         </TouchableHighlight>
 
       </Camera>
