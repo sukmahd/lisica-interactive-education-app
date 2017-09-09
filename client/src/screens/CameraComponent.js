@@ -118,7 +118,7 @@ class CameraComponent extends Component {
     data.Labels.forEach( d => {
       result.push(d.Name)
     })
-    return result
+    return result.slice(0, 3)
   }
 
   renderImage () {
