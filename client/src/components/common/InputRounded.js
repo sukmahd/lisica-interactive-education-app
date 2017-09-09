@@ -15,6 +15,7 @@ const InputRounded = ({ label, value, onChangeText, placeholder, secureTextEntry
 				placeholder={placeholder}
 				autoCorrect={false}
 				autoCapitalize='none'
+				underlineColorAndroid= 'rgba(0,0,0,0)'
 				style={inputStyle}
 				value={value}
 				onChangeText={onChangeText}
@@ -30,8 +31,7 @@ const styles = {
 		paddingLeft: 5,
 		fontSize: 18,
 		lineHeight: 23,
-		flex: 2,
-		underlineColorAndroid: 'transparent'
+		flex: 2
 	},
 	labelStyle: {
 		fontSize: 18,
