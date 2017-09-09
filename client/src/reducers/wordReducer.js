@@ -17,9 +17,9 @@ export default (state = initialState, actions) => {
       return {...state, word: actions.payload.word, count: state.count + 1, fetch: true}
     case 'SET_ANSWER':
       return {...state, answer: actions.payload.answer, fetch: true}
-    case 'FETCHING': 
+    case 'FETCHING':
       return {...state, fetch: false}
-    case 'GAME_OVER': 
+    case 'GAME_OVER':
       return {...state, game: true}
     case 'POST_RECORD':
       return {...state, collections: actions.payload.data, fetch: true }

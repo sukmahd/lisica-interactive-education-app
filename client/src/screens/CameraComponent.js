@@ -116,7 +116,7 @@ class CameraComponent extends Component {
   parseOnlyDataName (data) {
     let result = []
     data.Labels.forEach( d => {
-      result.push(d.name)
+      result.push(d.Name)
     })
     return result
   }
