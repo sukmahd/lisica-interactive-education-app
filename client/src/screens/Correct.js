@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
+import { connect } from 'react-redux'
+import { set_word, game_over } from '../actions'
 
 import { 
 	ButtonSmall,
@@ -19,6 +21,16 @@ class Correct extends Component {
 
 	static navigationOptions = {
 		header: null,
+	}
+	
+	next_stage() {
+		const { navigate } = this.props.navigation;
+		this.props.next_word(this.props.words[this.props.count+1])
+		if(this.props.count == 2){
+			navigate('GameOverScreen')
+		}else {
+			navigate('GuessScreen')
+		}
 	}
 
 	render() {
@@ -49,7 +61,7 @@ class Correct extends Component {
 				</View>
 
 				<View style={bottomContainerStyle}>
-					<ButtonBig>
+					<ButtonBig onPress={() => this.next_stage()}>
 						<Text>NEXT</Text>
 					</ButtonBig>
 				</View>
@@ -90,5 +102,19 @@ const styles = {
 		alignItems: 'center'
 	},
 }
+const mapStateToProps = (state) => {
+	return {
+		words: state.wordStore.words,
+		count: state.wordStore.count,
+		word: state.wordStore.word
+	}
+}
 
-export default Correct;
+const mapDispatchToProps = (dispatch) => {
+	return {
+		next_word: (data) => dispatch(set_word(data)),
+		game_over: () => dispatch(game_over())
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Correct);

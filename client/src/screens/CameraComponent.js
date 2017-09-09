@@ -7,14 +7,17 @@ import {
   Image,
   Text,
 } from 'react-native';
-import { ACCESS_KEY_ID, SECRET_ACCESS_KEY } from 'react-native-dotenv'
+// import { ACCESS_KEY_ID, SECRET_ACCESS_KEY } from 'react-native-dotenv'
+
+const ACCESS_KEY_ID = 'AKIAJYP4PMCMBRWDYL7A';
+const SECRET_ACCESS_KEY = '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';
 
 import Camera from 'react-native-camera';
 import { RNS3 } from 'react-native-aws3';
 import Spinner from 'react-native-spinkit'
 import AWS from 'aws-sdk/dist/aws-sdk-react-native';
 
-import { ButtonSmall } from '../components/common'
+import { ButtonSmall, ButtonBig } from '../components/common';
 
 AWS.config.update({
   accessKeyId: ACCESS_KEY_ID,
@@ -139,8 +142,28 @@ class CameraComponent extends Component {
             </View>
             : <Text></Text>
           }
-          <Text onPress={ () => this.cancelImage() } style={{ position: 'absolute', top: 20, right: 20, backgroundColor: 'transparent' ,color: '#FFF', fontWeight: '600', fontSize: 20 }}>Cancel</Text>
-          <Text onPress={ () => this.uploadImageToS3() } style={{ position: 'absolute', bottom: 20, backgroundColor: 'transparent' ,color: '#FFF', fontWeight: '600', fontSize: 20 }}>haha</Text>
+          {/* <Text onPress={ () => this.cancelImage() } style={{ position: 'absolute', top: 20, right: 20, backgroundColor: 'transparent' ,color: '#FFF', fontWeight: '600', fontSize: 20 }}>Cancel</Text> */}
+
+          <ButtonSmall
+            onPress={ () => this.cancelImage() }
+            position='absolute'
+            top={20}
+            fontSize={14}
+            width={90}
+          >
+            <Text>CANCEL</Text>
+          </ButtonSmall>
+
+          {/* <Text onPress={ () => this.uploadImageToS3() } style={{ position: 'absolute', bottom: 20, backgroundColor: 'transparent' ,color: '#FFF', fontWeight: '600', fontSize: 20 }}>haha</Text> */}
+
+          <ButtonBig
+            onPress={() => this.uploadImageToS3()}
+            position='absolute'
+            bottom={20}
+					>
+						<Text>LET'S START!</Text>
+					</ButtonBig>
+
         </Image>
       </View>
     )

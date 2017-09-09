@@ -15,6 +15,7 @@ const InputRounded = ({ label, value, onChangeText, placeholder, secureTextEntry
 				placeholder={placeholder}
 				autoCorrect={false}
 				autoCapitalize='none'
+				underlineColorAndroid= 'rgba(0,0,0,0)'
 				style={inputStyle}
 				value={value}
 				onChangeText={onChangeText}

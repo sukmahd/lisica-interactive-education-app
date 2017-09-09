@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
+import { connect } from 'react-redux'
+import { set_word } from '../actions'
 
 import { 
 	ButtonSmall,
@@ -15,12 +17,23 @@ class Correct extends Component {
 			username: ''
 		}
 	}
+	
+	next_stage() {
+		const { navigate } = this.props.navigation;
+		this.props.next_word(this.props.words[this.props.count+1])
+		if(this.props.count == 2){
+			navigate('GameOverScreen')
+		}else {
+			navigate('GuessScreen')
+		}
+	}
 
 	static navigationOptions = {
 		header: null,
 	}
-
 	render() {
+		const { navigate } = this.props.navigation
+		
 		const { 
 			topContainerStyle,
 			bottomContainerStyle,
@@ -48,13 +61,13 @@ class Correct extends Component {
 				</View>
 
 				<View style={bottomContainerStyle}>
-					<ButtonBig>
+					<ButtonBig onPress={() => navigate('GuessScreen')}>
 						<Text>AGAIN</Text>
 					</ButtonBig>
 				</View>
 
 				<View style={bottomContainerStyle}>
-					<ButtonBig backgroundColor="#f14d38">
+					<ButtonBig backgroundColor="#f14d38" onPress={() => this.next_stage()}>
 						<Text>SKIP</Text>
 					</ButtonBig>
 				</View>
@@ -96,4 +109,18 @@ const styles = {
 	},
 }
 
-export default Correct;
+const mapStateToProps = (state) => {
+	return {
+		game: state.wordStore.game,
+		count: state.wordStore.count,
+		words: state.wordStore.words
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		next_word: (data) => dispatch(set_word(data))
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Correct);
