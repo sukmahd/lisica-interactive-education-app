@@ -77,7 +77,8 @@ describe('POST routes /records',  function() {
       email: 'adit@gmail.com',
       success: true,
       repeat: 1,
-      word: 'ball'
+      word: 'ball',
+      answer: 'ball'
     })
     .then(res => {
       res.status.should.equal(200)
@@ -89,7 +90,8 @@ describe('POST routes /records',  function() {
       email: 'adit@gmail.com',
       success: true,
       repeat: 1,
-      word: 'ball'
+      word: 'ball',
+      answer: 'ball'
     })
     .then(res => {
       res.data.should.have.property('email')
@@ -102,7 +104,8 @@ describe('POST routes /records',  function() {
       email: 'adit@gmail.com',
       success: true,
       repeat: 4,
-      word: 'ball'
+      word: 'ball',
+      answer: 'ball'
     })
     .then(res => {
       res.data.should.have.property('repeat')
@@ -115,7 +118,8 @@ describe('POST routes /records',  function() {
       email: 'adit@gmail.com',
       success: true,
       repeat: 3,
-      word: 'dadu'
+      word: 'dadu',
+      answer: 'ball'
     })
     .then(res => {
       res.data.should.have.property('word')
@@ -127,7 +131,8 @@ describe('POST routes /records',  function() {
       email: 'adit@gmail.com',
       success: true,
       repeat: 3,
-      word: 'dadu'
+      word: 'dadu',
+      answer: 'ball'
     })
     .then(res => {
       res.data.should.have.property('success')
