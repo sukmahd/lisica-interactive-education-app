@@ -160,7 +160,6 @@ class CameraComponent extends Component {
   }
 
   renderCamera () {
-    const { navigate } = this.props.navigation;
     const backNav = NavigationActions.back({
       key: null
     })
