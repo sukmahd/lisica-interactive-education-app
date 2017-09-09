@@ -7,6 +7,7 @@ import {
   Image,
   Text,
 } from 'react-native';
+import { connect } from 'react-redux'
 import { ACCESS_KEY_ID, SECRET_ACCESS_KEY } from 'react-native-dotenv'
 
 import Camera from 'react-native-camera';
@@ -15,6 +16,7 @@ import Spinner from 'react-native-spinkit'
 import AWS from 'aws-sdk/dist/aws-sdk-react-native'
 
 import { ButtonSmall, ButtonBig } from '../components/common'
+import { set_words } from '../actions'
 
 AWS.config.update({
   accessKeyId: ACCESS_KEY_ID,
@@ -104,9 +106,19 @@ class CameraComponent extends Component {
       else {
         console.log(data.Labels[0]);
         self.setState({ isProcessing: false })
+        let dataName = self.parseOnlyDataName(data)
+        self.props.setWords(dataName)
         navigate('ListObjectsScreen', { labels: data.Labels })
       }
     })
+  }
+
+  parseOnlyDataName (data) {
+    let result = []
+    data.Labels.forEach( d => {
+      result.push(d.name)
+    })
+    return result
   }
 
   renderImage () {
@@ -222,4 +234,8 @@ const styles = StyleSheet.create({
   }
 })
 
-export default CameraComponent
+const mapDispatchToProps = (dispatch) => ({
+  setWords: (data) => dispatch(set_words(data))
+})
+
+export default connect(null, mapDispatchToProps)(CameraComponent)
