@@ -12,11 +12,13 @@ import { ACCESS_KEY_ID, SECRET_ACCESS_KEY } from 'react-native-dotenv'
 import Camera from 'react-native-camera';
 import { RNS3 } from 'react-native-aws3';
 import Spinner from 'react-native-spinkit'
-import AWS from 'aws-sdk/dist/aws-sdk-react-native'
+import AWS from 'aws-sdk/dist/aws-sdk-react-native';
+
+import { ButtonSmall } from '../components/common'
 
 AWS.config.update({
-  accessKeyId: 'AKIAJBXWNUBWGAIFT2FA',
-  secretAccessKey: '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',
+  accessKeyId: ACCESS_KEY_ID,
+  secretAccessKey: SECRET_ACCESS_KEY,
   region: 'us-east-1'
 })
 
