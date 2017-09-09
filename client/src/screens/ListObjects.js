@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
 
 import {
@@ -33,7 +34,7 @@ class ListObjects extends Component {
 		} = styles;
 
 		const { navigate } = this.props.navigation;
-		const dataLabels = this.props.navigation.state.params.labels
+		const dataLabels = this.props.words
 
 		return(
 			<View behavior="padding" style={parentContainerStyle}>
@@ -63,19 +64,19 @@ class ListObjects extends Component {
 					<ButtonBig
 						onPress={() => navigate('GuessScreen')}
 					>
-						<Text>{ dataLabels[0].Name }</Text>
+						<Text>{ dataLabels[0] }</Text>
 					</ButtonBig>
 				</View>
 
 				<View style={bottomContainerStyle}>
 					<ButtonBig>
-						<Text>{ dataLabels[1].Name }</Text>
+						<Text>{ dataLabels[1] }</Text>
 					</ButtonBig>
 				</View>
 
 				<View style={bottomContainerStyle}>
 					<ButtonBig>
-						<Text>{ dataLabels[2].Name }</Text>
+						<Text>{ dataLabels[2] }</Text>
 					</ButtonBig>
 				</View>
 
@@ -135,4 +136,8 @@ const styles = {
 	},
 }
 
-export default ListObjects;
+const mapStateToProps = (state) => ({
+	words: state.wordStore.words
+})
+
+export default connect(mapStateToProps, null)(ListObjects);
