@@ -4,7 +4,9 @@ const initialState = {
   answer: '',
   fetch: false,
   game: false,
-  count: 0
+  count: 0,
+  collections: [],
+  records: []
 }
 
 export default (state = initialState, actions) => {
@@ -19,6 +21,10 @@ export default (state = initialState, actions) => {
       return {...state, fetch: false}
     case 'GAME_OVER': 
       return {...state, game: true}
+    case 'POST_RECORD':
+      return {...state, collections: actions.payload.data, fetch: true }
+    case 'GET_RECORD':
+      return {...state, records: actions.payload.data, fetch: true}
     default:
       return state
   }
