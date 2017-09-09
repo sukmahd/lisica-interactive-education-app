@@ -66,7 +66,7 @@ class CameraComponent extends Component {
           <View style={{
             flexDirection: 'row',
             justifyContent: 'flex-start',
-            paddingLeft: 20
+            paddingLeft: 50
           }}>
           <ButtonSmall 
 						backgroundColor='#ff85a5'
@@ -74,7 +74,7 @@ class CameraComponent extends Component {
 						width={80}
 						onPress={() => navigate('MainMenuScreen')}
 					>
-						<Text>BACK</Text>
+						<Text>MAIN</Text>
 					</ButtonSmall>
           </View>
 					
