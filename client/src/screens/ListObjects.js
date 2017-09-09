@@ -7,6 +7,7 @@ import {
 	ButtonBig,
 	InputRounded
 } from '../components/common';
+import { set_word } from '../actions'
 
 class ListObjects extends Component {
 	constructor(props) {
@@ -19,6 +20,13 @@ class ListObjects extends Component {
 
 	static navigationOptions = {
 		header: null,
+	}
+
+	guessWord (labelName) {
+		const { navigate } = this.props.navigation;
+		
+		this.props.setWord(labelName)
+		navigate('GuessScreen')
 	}
 
 	render() {
@@ -62,20 +70,24 @@ class ListObjects extends Component {
 
 				<View style={bottomContainerStyle}>
 					<ButtonBig
-						onPress={() => navigate('GuessScreen')}
+						onPress={ () => this.guessWord(dataLabels[0]) }
 					>
 						<Text>{ dataLabels[0] }</Text>
 					</ButtonBig>
 				</View>
 
 				<View style={bottomContainerStyle}>
-					<ButtonBig>
+					<ButtonBig
+						onPress={ () => this.guessWord(dataLabels[1]) }
+					>
 						<Text>{ dataLabels[1] }</Text>
 					</ButtonBig>
 				</View>
 
 				<View style={bottomContainerStyle}>
-					<ButtonBig>
+					<ButtonBig
+						onPress={ () => this.guessWord(dataLabels[2]) }
+					>
 						<Text>{ dataLabels[2] }</Text>
 					</ButtonBig>
 				</View>
@@ -140,4 +152,8 @@ const mapStateToProps = (state) => ({
 	words: state.wordStore.words
 })
 
-export default connect(mapStateToProps, null)(ListObjects);
+const mapDispatchToProps = (dispatch) => ({
+	setWord: (label) => dispatch(set_word(label))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListObjects);
