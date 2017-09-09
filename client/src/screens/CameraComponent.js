@@ -8,6 +8,7 @@ import {
   Text,
 } from 'react-native';
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 import { ACCESS_KEY_ID, SECRET_ACCESS_KEY } from 'react-native-dotenv'
 
 import Camera from 'react-native-camera';
@@ -160,6 +161,9 @@ class CameraComponent extends Component {
 
   renderCamera () {
     const { navigate } = this.props.navigation;
+    const backNav = NavigationActions.back({
+      key: null
+    })
 
     return (
         <Camera
@@ -186,7 +190,7 @@ class CameraComponent extends Component {
 						backgroundColor='#ff85a5'
 						fontSize={14}
 						width={80}
-						onPress={() => navigate('MainMenuScreen')}
+						onPress={() => this.props.navigation.dispatch(backNav)}
 					>
 						<Text>MAIN</Text>
 					</ButtonSmall>
