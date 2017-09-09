@@ -168,8 +168,7 @@ class CameraComponent extends Component {
         }}>
           <View style={{
             flexDirection: 'row',
-            justifyContent: 'flex-start',
-            paddingLeft: 50
+            justifyContent: 'flex-start'
           }}>
           <ButtonSmall
 						backgroundColor='#ff85a5'
