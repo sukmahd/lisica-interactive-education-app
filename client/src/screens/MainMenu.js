@@ -48,7 +48,7 @@ class MainMenu extends Component {
 				</View>
 
 				<View style={midContainerStyle}>
-					<Image style={imageStyle} source={require('../assets/images/Eevee.png')} />
+					<Image style={imageStyle} source={require('../assets/images/lisica_logo.png')} />
 				</View>
 
 				<View style={midContainerStyle}>
@@ -93,7 +93,9 @@ const styles = {
 	},
 	imageStyle: {
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
+		height: 200,
+		width: 200
 	},
 	midContainerStyle: {
 		marginTop: 60,
