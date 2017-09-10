@@ -22,7 +22,7 @@ class Correct extends Component {
 		const { navigate } = this.props.navigation;
 		this.props.hapus_kata(this.props.words[0])
 		this.props.next_word(this.props.words[0])
-		if(this.props.count == 2){
+		if(this.props.words.length == 0){
 			navigate('GameOverScreen')
 		}else {
 			navigate('GuessScreen')

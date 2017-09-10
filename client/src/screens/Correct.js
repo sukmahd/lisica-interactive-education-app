@@ -25,12 +25,9 @@ class Correct extends Component {
 
 	next_stage() {
 		const { navigate } = this.props.navigation;
-		console.log(this.props.words, 'before delete');
 		this.props.hapus_kata(this.props.words[0])
-		console.log(this.props.words, 'after delete');
 		this.props.next_word(this.props.words[0])
-		console.log(this.props.word,'set word');
-		if(this.props.game){
+		if(this.props.words.length == 0){
 			navigate('GameOverScreen')
 		}else {
 			navigate('GuessScreen')
