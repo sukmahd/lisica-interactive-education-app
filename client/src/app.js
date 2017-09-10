@@ -20,13 +20,13 @@ import CameraComponent from './screens/CameraComponent';
 const AppNavigator = StackNavigator({
 	MainMenuScreen: { screen: MainMenu },
 	ParentOptionScreen: { screen: ParentOption },
-	GameOverScreen: { screen: GameOver },
-	WrongScreen: { screen: Wrong },
-	CorrectScreen: { screen: Correct },
+	DetailGraphScreen: { screen: DetailGraph },
+	CameraComponentScreen: { screen: CameraComponent },
 	ListObjectsScreen: { screen: ListObjects },
 	GuessScreen: { screen: Guess },
-	CameraComponentScreen: { screen: CameraComponent },
-	DetailGraphScreen: { screen: DetailGraph },
+	CorrectScreen: { screen: Correct },
+	WrongScreen: { screen: Wrong },
+	GameOverScreen: { screen: GameOver },
 	CameraScreen: { screen: Camera }
 })
 
