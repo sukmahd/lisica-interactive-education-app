@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 
-import { 
+import {
 	ButtonSmall,
-	ButtonBig, 
-	InputRounded 
+	ButtonBig,
+	InputRounded
 } from '../components/common';
 
 class ParentOption extends Component {
@@ -22,7 +22,7 @@ class ParentOption extends Component {
 	}
 
 	render() {
-		const { 
+		const {
 			topContainerStyle,
 			bottomContainerStyle,
 			parentContainerStyle,
@@ -37,12 +37,12 @@ class ParentOption extends Component {
 		return(
 			<KeyboardAvoidingView behavior="padding" style={parentContainerStyle}>
 
-				<StatusBar 
+				<StatusBar
 					hidden={true}
 				/>
 
 				<View style={topContainerStyle}>
-					<ButtonSmall 
+					<ButtonSmall
 						fontSize={14}
 						width={80}
 						onPress={() => this.props.navigation.dispatch(backAction)}
@@ -50,7 +50,7 @@ class ParentOption extends Component {
 						<Text>MAIN</Text>
 					</ButtonSmall>
 				</View>
-				
+
 				<View style={midContainerStyle}>
 					<View style={bottomContainerStyle}>
 						<ButtonBig>
@@ -59,7 +59,9 @@ class ParentOption extends Component {
 					</View>
 
 					<View style={bottomContainerStyle}>
-						<ButtonBig>
+						<ButtonBig
+							onPress={ () => navigate('DetailGraphScreen') }
+						>
 							<Text>KID'S DATA</Text>
 						</ButtonBig>
 					</View>
