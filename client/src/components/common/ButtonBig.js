@@ -14,7 +14,7 @@ const ButtonBig = ({ onPress, children, backgroundColor, width, marginLeft, marg
 	buttonStyle: {
 		width: width || 260,
 		justifyContent: 'flex-end',
-		backgroundColor: backgroundColor || '#66C3FF',
+		backgroundColor: backgroundColor || '#5887FF',
 		borderRadius: 50,
 		marginLeft: marginLeft || null,
 		marginRight: marginRight || null,
