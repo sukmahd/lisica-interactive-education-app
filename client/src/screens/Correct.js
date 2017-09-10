@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
 import { connect } from 'react-redux'
-import { set_word, game_over } from '../actions'
+import { set_word, game_over, remove_word } from '../actions'
 
-import { 
+import {
 	ButtonSmall,
-	ButtonBig, 
-	InputRounded 
+	ButtonBig,
+	InputRounded
 } from '../components/common';
 
 
@@ -22,11 +22,15 @@ class Correct extends Component {
 	static navigationOptions = {
 		header: null,
 	}
-	
+
 	next_stage() {
 		const { navigate } = this.props.navigation;
-		this.props.next_word(this.props.words[this.props.count+1])
-		if(this.props.count == 2){
+		console.log(this.props.words, 'before delete');
+		this.props.hapus_kata(this.props.words[0])
+		console.log(this.props.words, 'after delete');
+		this.props.next_word(this.props.words[0])
+		console.log(this.props.word,'set word');
+		if(this.props.game){
 			navigate('GameOverScreen')
 		}else {
 			navigate('GuessScreen')
@@ -34,7 +38,7 @@ class Correct extends Component {
 	}
 
 	render() {
-		const { 
+		const {
 			topContainerStyle,
 			bottomContainerStyle,
 			parentContainerStyle,
@@ -46,7 +50,7 @@ class Correct extends Component {
 		return(
 			<KeyboardAvoidingView behavior="padding" style={parentContainerStyle}>
 
-				<StatusBar 
+				<StatusBar
 					hidden={true}
 				/>
 
@@ -55,7 +59,7 @@ class Correct extends Component {
 						Yeay! You got it!
 					</Text>
 				</View>
-				
+
 				<View style={midContainerStyle}>
 					<Image style={imageStyle} source={require('../assets/images/XMLID_730_.png')} />
 				</View>
@@ -106,14 +110,16 @@ const mapStateToProps = (state) => {
 	return {
 		words: state.wordStore.words,
 		count: state.wordStore.count,
-		word: state.wordStore.word
+		word: state.wordStore.word,
+		game: state.wordStore.game
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		next_word: (data) => dispatch(set_word(data)),
-		game_over: () => dispatch(game_over())
+		game_over: () => dispatch(game_over()),
+		hapus_kata: (data) => dispatch(remove_word(data))
 	}
 }
 

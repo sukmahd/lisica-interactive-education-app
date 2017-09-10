@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
 import { connect } from 'react-redux'
-import { set_word } from '../actions'
+import { set_word, remove_word } from '../actions'
 
-import { 
+import {
 	ButtonSmall,
-	ButtonBig, 
-	InputRounded 
+	ButtonBig,
+	InputRounded
 } from '../components/common';
 
 class Correct extends Component {
@@ -17,10 +17,11 @@ class Correct extends Component {
 			username: ''
 		}
 	}
-	
+
 	next_stage() {
 		const { navigate } = this.props.navigation;
-		this.props.next_word(this.props.words[this.props.count+1])
+		this.props.hapus_kata(this.props.words[0])
+		this.props.next_word(this.props.words[0])
 		if(this.props.count == 2){
 			navigate('GameOverScreen')
 		}else {
@@ -33,8 +34,8 @@ class Correct extends Component {
 	}
 	render() {
 		const { navigate } = this.props.navigation
-		
-		const { 
+
+		const {
 			topContainerStyle,
 			bottomContainerStyle,
 			parentContainerStyle,
@@ -46,7 +47,7 @@ class Correct extends Component {
 		return(
 			<KeyboardAvoidingView behavior="padding" style={parentContainerStyle}>
 
-				<StatusBar 
+				<StatusBar
 					hidden={true}
 				/>
 
@@ -55,7 +56,7 @@ class Correct extends Component {
 						Oops! Not yet, buddy!
 					</Text>
 				</View>
-				
+
 				<View style={midContainerStyle}>
 					<Image style={imageStyle} source={require('../assets/images/XMLID_615_.png')} />
 				</View>
@@ -113,12 +114,14 @@ const mapStateToProps = (state) => {
 	return {
 		game: state.wordStore.game,
 		count: state.wordStore.count,
-		words: state.wordStore.words
+		words: state.wordStore.words,
+		word: state.wordStore.word
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
+		hapus_kata: (data) => dispatch(remove_word(data)),
 		next_word: (data) => dispatch(set_word(data))
 	}
 }
