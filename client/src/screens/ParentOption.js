@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 
 import { 
 	ButtonSmall,
@@ -29,6 +30,9 @@ class ParentOption extends Component {
 		} = styles;
 
 		const { navigate } = this.props.navigation;
+		const backAction = NavigationActions.back({
+			key: null
+		})
 
 		return(
 			<KeyboardAvoidingView behavior="padding" style={parentContainerStyle}>
@@ -39,10 +43,9 @@ class ParentOption extends Component {
 
 				<View style={topContainerStyle}>
 					<ButtonSmall 
-						backgroundColor='#ff85a5'
 						fontSize={14}
 						width={80}
-						onPress={() => navigate('MainMenuScreen')}
+						onPress={() => this.props.navigation.dispatch(backAction)}
 					>
 						<Text>MAIN</Text>
 					</ButtonSmall>

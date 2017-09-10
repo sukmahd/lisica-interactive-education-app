@@ -40,7 +40,7 @@ class MainMenu extends Component {
 
 				<View style={topContainerStyle}>
 					<ButtonSmall
-						backgroundColor='#ff85a5'
+						backgroundColor='#EB9486'
 						onPress={() => navigate('ParentOptionScreen')}
 					>
 						<Text>PARENT</Text>
@@ -63,6 +63,7 @@ class MainMenu extends Component {
 				<View style={bottomContainerStyle}>
 					<ButtonBig
 						onPress={() => navigate('CameraComponentScreen')}
+						backgroundColor="#66C3FF"
 					>
 						<Text>START</Text>
 					</ButtonBig>
@@ -77,7 +78,7 @@ const styles = {
 	parentContainerStyle: {
 		flexDirection: 'column',
 		flex: 1,
-		backgroundColor: '#f4f9fc'
+		backgroundColor: '#F9F8F8'
 	},
 	topContainerStyle: {
 		flexDirection: 'row',
