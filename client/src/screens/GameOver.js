@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
 
-import { 
+import {
 	ButtonSmall,
-	ButtonBig, 
-	InputRounded 
+	ButtonBig,
+	InputRounded
 } from '../components/common';
 
 class GameOver extends Component {
@@ -21,7 +21,7 @@ class GameOver extends Component {
 	}
 
 	render() {
-		const { 
+		const {
 			topContainerStyle,
 			subTopContainerStyle,
 			bottomContainerStyle,
@@ -32,10 +32,12 @@ class GameOver extends Component {
 			subTextStyle
 		} = styles;
 
+		const { navigate } = this.props.navigation
+
 		return(
 			<KeyboardAvoidingView behavior="padding" style={parentContainerStyle}>
 
-				<StatusBar 
+				<StatusBar
 					hidden={true}
 				/>
 
@@ -50,14 +52,14 @@ class GameOver extends Component {
 						+5 Exp!
 					</Text>
 				</View>
-				
+
 				<View style={midContainerStyle}>
 					<Image style={imageStyle} source={require('../assets/images/Medals.png')} />
 				</View>
 
 				<View style={bottomContainerStyle}>
-					<ButtonBig>
-						<Text>NEXT</Text>
+					<ButtonBig onPress={() => navigate('CameraComponentScreen')}>
+						<Text>Play Again</Text>
 					</ButtonBig>
 				</View>
 
