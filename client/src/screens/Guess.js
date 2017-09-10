@@ -153,12 +153,12 @@ class Guess extends Component {
 
 				<View style={topBtnContainerStyle}>
 					<ButtonSmall 
-						backgroundColor='#ff85a5'
+						backgroundColor='#EB9486'
 						fontSize={14}
 						width={80}
 						onPress={() => navigate('ListObjectsScreen')}
 					>
-						<Text>👈 BACK</Text>
+						<Text>BACK</Text>
 					</ButtonSmall>
 				</View>
 
@@ -168,7 +168,7 @@ class Guess extends Component {
 					</View>
 					{this.state.end ? <Spinner feedback="Processing..."/> : <View style={guessAnswerStyle}>
 						<ButtonSmall 
-							backgroundColor='#ff85a5'
+							backgroundColor='#7E7F9A'
 							onPress={() => this.ngomong(this.props.word)}
 							width={260}
 						>
@@ -181,15 +181,16 @@ class Guess extends Component {
 				<View style={bottomContainerStyle}>
 					<ButtonBig
             onPress={this._startRecognizing.bind(this)}
+						backgroundColor="#66C3FF"
 					>
-						{this.state.started ? <Text>👂 Listening</Text> : <Text>🗣️ SPEAK!</Text>}
+						{this.state.started ? <Text>Listening</Text> : <Text>SPEAK!</Text>}
 						<Text>{this.state.results[0]}</Text>
 					</ButtonBig>
 					
 				</View>
 
 				<View style={bottomContainerStyle}>
-					<ButtonBig  backgroundColor="#f14d38">
+					<ButtonBig  backgroundColor="#EB9486">
 						<Text>SKIP</Text>
 					</ButtonBig>
 				</View>
@@ -215,7 +216,7 @@ const styles = {
 	parentContainerStyle: {
 		flexDirection: 'column',
 		flex: 1,
-		backgroundColor: '#faf7eb'
+		backgroundColor: '#272838'
 	},
 	topContainerStyle: {
 		flexDirection: 'column',

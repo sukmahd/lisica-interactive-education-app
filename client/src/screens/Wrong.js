@@ -67,7 +67,7 @@ class Correct extends Component {
 				</View>
 
 				<View style={bottomContainerStyle}>
-					<ButtonBig backgroundColor="#f14d38" onPress={() => this.next_stage()}>
+					<ButtonBig backgroundColor="#EB9486" onPress={() => this.next_stage()}>
 						<Text>SKIP</Text>
 					</ButtonBig>
 				</View>
@@ -81,7 +81,7 @@ const styles = {
 	parentContainerStyle: {
 		flexDirection: 'column',
 		flex: 1,
-		backgroundColor: '#faf7eb'
+		backgroundColor: '#F9F8F8'
 	},
 	topContainerStyle: {
 		flexDirection: 'row',
