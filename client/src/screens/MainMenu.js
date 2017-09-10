@@ -63,7 +63,6 @@ class MainMenu extends Component {
 				<View style={bottomContainerStyle}>
 					<ButtonBig
 						onPress={() => navigate('CameraComponentScreen')}
-						backgroundColor="#66C3FF"
 					>
 						<Text>START</Text>
 					</ButtonBig>

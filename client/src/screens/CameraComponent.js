@@ -186,7 +186,6 @@ class CameraComponent extends Component {
             justifyContent: 'flex-start'
           }}>
           <ButtonSmall
-						backgroundColor='#ff85a5'
 						fontSize={14}
 						width={80}
 						onPress={() => this.props.navigation.dispatch(backNav)}
@@ -197,11 +196,11 @@ class CameraComponent extends Component {
 				</View>
 
         <TouchableHighlight
-          style={{ width: 80, height: 80, borderRadius: 40, borderWidth: 10, borderColor: '#f4f9fc', marginBottom: 20, backgroundColor: '#d0e9ea', justifyContent: 'center', alignItems: 'center' }}
+          style={{ width: 80, height: 80, borderRadius: 40, borderWidth: 10, borderColor: '#FEFDFF', marginBottom: 20, backgroundColor: '#F9F8F8', justifyContent: 'center', alignItems: 'center' }}
           onPress={ this.takePicture.bind(this) }
           underlayColor="rgba(255, 255, 255, 0.5)"
         >
-          <Text>📸</Text>
+          <Text></Text>
         </TouchableHighlight>
 
       </Camera>
