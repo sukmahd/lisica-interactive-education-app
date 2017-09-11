@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
 import { connect } from 'react-redux'
-import { set_word, game_over, remove_word } from '../actions'
+import { set_word, game_over, remove_word, post_record } from '../actions'
 
 import {
 	ButtonSmall,
@@ -25,6 +25,7 @@ class Correct extends Component {
 
 	next_stage() {
 		const { navigate } = this.props.navigation;
+		this.props.save_data(this.props.word, true)
 		this.props.hapus_kata(this.props.words[0])
 		this.props.next_word(this.props.words[0])
 		if(this.props.words.length == 0){
@@ -62,7 +63,7 @@ class Correct extends Component {
 				</View>
 
 				<View style={bottomContainerStyle}>
-					<ButtonBig 
+					<ButtonBig
 						onPress={() => this.next_stage()}
 					>
 						<Text>NEXT</Text>
@@ -116,6 +117,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
+		save_data: (data, status) => dispatch(post_record(data, status)),
 		next_word: (data) => dispatch(set_word(data)),
 		game_over: () => dispatch(game_over()),
 		hapus_kata: (data) => dispatch(remove_word(data))

@@ -4,6 +4,7 @@ import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native
 import Tts from 'react-native-tts';
 import Voice from 'react-native-voice';
 import { connect } from 'react-redux'
+import { set_word, remove_word, set_answer } from '../actions'
 
 import {
 	ButtonSmall,
@@ -76,10 +77,13 @@ class Guess extends Component {
 			started: false
     });
 
+
 		if(this.state.status[0])
 		{
+			this.props.set_answer(this.state.status)
 			navigate('CorrectScreen')
 		}else {
+			this.props.set_answer(this.state.results[0])
 			navigate('WrongScreen')
 		}
 
@@ -129,6 +133,17 @@ class Guess extends Component {
     }
   }
 
+	next_stage() {
+		const { navigate } = this.props.navigation;
+		this.props.hapus_kata(this.props.words[0])
+		this.props.next_word(this.props.words[0])
+		if(this.props.words.length == 0){
+			navigate('GameOverScreen')
+		}else {
+			navigate('GuessScreen')
+		}
+	}
+
 	render() {
 		const {
 			topContainerStyle,
@@ -152,7 +167,7 @@ class Guess extends Component {
 				/>
 
 				<View style={topBtnContainerStyle}>
-					<ButtonSmall 
+					<ButtonSmall
 						backgroundColor='#EB9486'
 						fontSize={14}
 						width={80}
@@ -167,7 +182,7 @@ class Guess extends Component {
 						<Image style={imageStyle} source={require('../assets/images/XMLID_730_.png')} />
 					</View>
 					{this.state.end ? <Spinner feedback="Processing..."/> : <View style={guessAnswerStyle}>
-						<ButtonSmall 
+						<ButtonSmall
 							backgroundColor='#7E7F9A'
 							onPress={() => this.ngomong(this.props.word)}
 							width={260}
@@ -190,7 +205,7 @@ class Guess extends Component {
 				</View>
 
 				<View style={bottomContainerStyle}>
-					<ButtonBig  backgroundColor="#EB9486">
+					<ButtonBig onPress={() => this.next_stage()} backgroundColor="#EB9486">
 						<Text>SKIP</Text>
 					</ButtonBig>
 				</View>
@@ -259,14 +274,19 @@ const styles = {
 
 const mapStateToProps = (state) => {
 	return {
+		game: state.wordStore.game,
+		count: state.wordStore.count,
+		words: state.wordStore.words,
 		word: state.wordStore.word
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		game_over: () => dispatch('')
+		hapus_kata: (data) => dispatch(remove_word(data)),
+		next_word: (data) => dispatch(set_word(data)),
+		set_answer: (data) => dispatch(set_answer(data))
 	}
 }
 
-export default connect(mapStateToProps)(Guess);
+export default connect(mapStateToProps, mapDispatchToProps)(Guess);

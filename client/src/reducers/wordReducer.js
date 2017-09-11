@@ -8,8 +8,8 @@ const initialState = {
   collections: [],
   records: [],
   try: 0,
-  email: 'adit@gmail.com'
-}
+  email: 'testing@gmail.com'
+
 
 export default (state = initialState, actions) => {
   switch (actions.type) {
