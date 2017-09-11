@@ -64,7 +64,6 @@ class Correct extends Component {
 				<View style={bottomContainerStyle}>
 					<ButtonBig 
 						onPress={() => this.next_stage()}
-						backgroundColor="#66C3FF"
 					>
 						<Text>NEXT</Text>
 					</ButtonBig>
