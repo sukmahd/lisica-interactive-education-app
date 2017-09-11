@@ -3,6 +3,7 @@ import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native
 import Tts from 'react-native-tts';
 import Voice from 'react-native-voice';
 import { connect } from 'react-redux'
+import SpinnerSpinKit from 'react-native-spinkit'
 import axios from 'axios'
 
 import { set_word, remove_word, set_answer } from '../actions'
@@ -200,7 +201,12 @@ class Guess extends Component {
 				<View style={topContainerStyle}>
 					<View style={imgContainerStyle}>
 						{ this.state.fetchingImage
-							? <Text>Loading</Text>
+							? <SpinnerSpinKit
+	                type="Wave"
+	                isVisible={ true }
+	                size={ 100 }
+	                color="#5887FF"
+              	/>
 							: this.state.imageURL
 								? <Image style={ externalImageStyle } source={{ uri: this.state.imageURL }} />
 								: <Image style={ imageStyle } source={ require('../assets/images/XMLID_730_.png') } />
