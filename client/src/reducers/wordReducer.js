@@ -7,7 +7,8 @@ const initialState = {
   count: 0,
   collections: [],
   records: [],
-  try: 0
+  try: 0,
+  email: ''
 }
 
 export default (state = initialState, actions) => {
