@@ -88,10 +88,10 @@ export const post_record = (data, status) => {
   }
 }
 
-export const get_record = () => {
+export const get_record = (email) => {
   return (dispatch) => {
     dispatch(fetching())
-    axios.get('http://reactchallengeapi.appspot.com/records')
+    axios.get(`http://reactchallengeapi.appspot.com/records/${email}`)
     .then(resp => {
       dispatch({
         type: 'GET_RECORD',

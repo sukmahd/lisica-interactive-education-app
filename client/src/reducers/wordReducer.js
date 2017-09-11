@@ -9,7 +9,7 @@ const initialState = {
   records: [],
   try: 0,
   email: 'testing@gmail.com'
-}
+
 
 export default (state = initialState, actions) => {
   switch (actions.type) {

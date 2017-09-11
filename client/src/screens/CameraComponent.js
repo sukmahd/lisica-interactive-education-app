@@ -152,8 +152,26 @@ class CameraComponent extends Component {
             </View>
             : <Text></Text>
           }
-          <Text onPress={ () => this.cancelImage() } style={{ position: 'absolute', top: 20, right: 20, backgroundColor: 'transparent' ,color: '#FFF', fontWeight: '600', fontSize: 20 }}>Cancel</Text>
-          <Text onPress={ () => this.uploadImageToS3() } style={{ position: 'absolute', bottom: 20, backgroundColor: 'transparent' ,color: '#FFF', fontWeight: '600', fontSize: 20 }}>haha</Text>
+          {/* <Text onPress={ () => this.cancelImage() } style={{ position: 'absolute', top: 20, right: 20, backgroundColor: 'transparent' ,color: '#FFF', fontWeight: '600', fontSize: 20 }}>Cancel</Text> */}
+
+          <ButtonSmall
+            onPress={ () => this.cancelImage() }
+            position='absolute'
+            top={20}
+          >
+            <Text>CANCEL</Text>
+          </ButtonSmall>
+
+          {/* <Text onPress={ () => this.uploadImageToS3() } style={{ position: 'absolute', bottom: 20, backgroundColor: 'transparent' ,color: '#FFF', fontWeight: '600', fontSize: 20 }}>haha</Text> */}
+
+          <ButtonBig
+            onPress={ () => this.uploadImageToS3() }
+            position='absolute'
+            bottom={20}
+          >
+            <Text>LET'S PLAY!</Text>
+          </ButtonBig>
+
         </Image>
       </View>
     )

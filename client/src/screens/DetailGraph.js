@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
-import { StyleSheet, ART, ScrollView, Button, Text } from 'react-native'
+import { StyleSheet, ART, ScrollView, Button, Text, View } from 'react-native'
 import { Bar } from 'react-native-pathjs-charts'
 import { ArtyChartyPie } from 'arty-charty';
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
+import { NavigationActions } from 'react-navigation'
 
+import { ButtonSmall } from '../components/common';
+ 
 let kidsProgress = [
   { success: true, repeat: 0, word: 'water bottle' },
   { success: false, repeat: 0, word: 'bottle' },
@@ -42,7 +45,7 @@ kidsFail = kidsFail.slice(Math.max(kidsFail.length - 10, 0))
 
 class DetailGraph extends Component {
   static navigationOptions = {
-    title: 'Detail Graph',
+    title: 'Kid\'s Data',
     header: null
   }
 
@@ -56,7 +59,7 @@ class DetailGraph extends Component {
 
   _handleIndexChange = index => this.setState({ index });
 
-  _renderHeader = props => <TabBar {...props} />;
+  _renderHeader = props => <TabBar {...props} style={styles.tabbar} indicatorStyle={styles.indicator} />;
 
   render() {
     let successData = [
@@ -76,7 +79,7 @@ class DetailGraph extends Component {
         bottom: 50,
         right: 20
       },
-      color: '#2980B9',
+      color: '#66C3FF',
       gutter: 20,
       animate: {
         type: 'oneByOne',
@@ -91,7 +94,7 @@ class DetailGraph extends Component {
         zeroAxis: false,
         orient: 'bottom',
         label: {
-          fontFamily: 'Arial',
+          
           fontSize: 8,
           fontWeight: true,
           fill: '#34495E'
@@ -105,8 +108,8 @@ class DetailGraph extends Component {
         zeroAxis: false,
         orient: 'left',
         label: {
-          fontFamily: 'Arial',
-          fontSize: 8,
+          
+          fontSize: 12,
           fontWeight: true,
           fill: '#34495E'
         }
@@ -122,7 +125,7 @@ class DetailGraph extends Component {
         bottom: 50,
         right: 20
       },
-      color: '#2980B9',
+      color: '#CD533B',
       gutter: 20,
       animate: {
         type: 'oneByOne',
@@ -137,7 +140,7 @@ class DetailGraph extends Component {
         zeroAxis: false,
         orient: 'bottom',
         label: {
-          fontFamily: 'Arial',
+          
           fontSize: 8,
           fontWeight: true,
           fill: '#34495E'
@@ -151,8 +154,8 @@ class DetailGraph extends Component {
         zeroAxis: false,
         orient: 'left',
         label: {
-          fontFamily: 'Arial',
-          fontSize: 8,
+          
+          fontSize: 12,
           fontWeight: true,
           fill: '#34495E'
         }
@@ -161,26 +164,101 @@ class DetailGraph extends Component {
 
     const FirstRoute = () => {
       return (
-        <ScrollView style={[ styles.container, { backgroundColor: '#F9F8F8' } ]}>
+        <ScrollView style={[ styles.container, { backgroundColor: '#FEFDFF' } ]}>
           <ArtyChartyPie
             data={{
             data: [
-              {value: .6, color: 'red'},
-              {value: 5, color: 'green'},
-              {value: 3, color: 'blue'}]
-          }}/>
+              {value: .6, color: '#EB9486'},
+              {value: 5, color: '#93E5AB'},
+              {value: 3, color: '#66C3FF'}
+              ]
+            }}/>
         </ScrollView>
       )
     }
     const SecondRoute = () => {
       return (
-        <ScrollView style={[ styles.container, { backgroundColor: '#F9F8F8' } ]}>
+        <ScrollView style={[ styles.container, { backgroundColor: '#FEFDFF' } ]}>
+          {/* FAIL RATE */}
+          <View 
+            style={{
+              marginTop: 10
+            }}
+          >
+            <Text
+            style={{
+                fontSize: 32,
+                fontWeight: '700',
+                left: 20,
+                letterSpacing: 2,
+                color: '#272838'
+              }}
+            >
+              ATTEMPTS
+            </Text>
+          </View>
+
+          <View 
+            style={{
+              marginTop: 10,
+              paddingLeft: 20,
+              paddingRight: 20
+            }}
+          >
+          <Text
+          style={{
+              fontSize: 20,
+              letterSpacing: 2,
+              color: '#66C3FF'
+            }}
+          >
+            Success Rate
+          </Text>
+          </View>
           <ScrollView horizontal={true}>
-            <Text>Success (Lower, Better)</Text>
+            
             <Bar data={successData} options={successChartOptions} accessorKey='repeat'/>
           </ScrollView>
+
+          {/* FAIL RATE */}
+
+          <View 
+          style={{
+            marginTop: 10
+          }}
+          >
+          <Text
+          style={{
+              fontSize: 32,
+              fontWeight: '700',
+              left: 20,
+              letterSpacing: 2,
+              color: '#272838'
+            }}
+          >
+            ATTEMPTS
+          </Text>
+          </View>
+
+          <View 
+            style={{
+              marginTop: 10,
+              paddingLeft: 20,
+              paddingRight: 20
+            }}
+          >
+          <Text
+          style={{
+            fontSize: 20,
+            letterSpacing: 2,
+            color: '#CD533B'
+            }}
+          >
+            Incorrect Rate
+          </Text>
+          </View>
           <ScrollView horizontal={true}>
-            <Text>Fail (Higher, Better)</Text>
+            
             <Bar data={failData} options={failChartOptions} accessorKey='repeat'/>
           </ScrollView>
         </ScrollView>
@@ -192,22 +270,67 @@ class DetailGraph extends Component {
       '2': SecondRoute,
     });
 
+    const backAction = NavigationActions.back({
+      key: null
+    })
+
     return (
-      <TabViewAnimated
+      <View style={styles.container}>
+        <View style={styles.headerStyle}>
+          <ButtonSmall
+            onPress={ () => this.props.navigation.dispatch(backAction) }
+          >
+            <Text>PARENT</Text>
+          </ButtonSmall>
+          <Text
+            style={{
+              fontSize: 24,
+              color: 'white',
+              fontWeight: 'bold',
+              left: 50,
+              letterSpacing: 2
+            }}
+          >
+            KID'S DATA
+          </Text>
+        </View>
+        <TabViewAnimated
         style={styles.container}
         navigationState={this.state}
         renderScene={_renderScene}
         renderHeader={this._renderHeader}
         onIndexChange={this._handleIndexChange}
       />
+      </View>
+      
     )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
+  tabbar: {
+    backgroundColor: '#7E7F9A',
+  },
+  indicator: {
+    backgroundColor: '#EB9486',
+  },
+  headerStyle: {
+		backgroundColor: '#7E7F9A',
+    height: 80,
+    alignItems: 'center',
+    paddingTop: 20,
+    paddingBottom: 20,
+    paddingLeft: 20,
+		shadowColor: '#000',
+		shadowOffset: { width: 0, height: 1 },
+		shadowOpacity: 0.1,
+		elevation: 2,
+    position: 'relative',
+    flexDirection: 'row'
+	},
 });
 
 export default DetailGraph

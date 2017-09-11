@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
 import App from './src/app';
 
-AppRegistry.registerComponent('client', () => App);
+AppRegistry.registerComponent('Lisica', () => App);
