@@ -10,6 +10,12 @@ export const game_over = () => {
   }
 }
 
+export const try_again = () => {
+  return{
+    type: 'TRY_AGAIN'
+  }
+}
+
 export const set_words = (data) => {
   return (dispatch) => {
     dispatch(fetching())
