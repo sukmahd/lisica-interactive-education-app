@@ -32,7 +32,7 @@ export default (state = initialState, actions) => {
         return kata != actions.payload.word
       })}
     case 'TRY_AGAIN':
-      return {...state, try: state.try++}
+      return {...state, try: state.try + 1}
     default:
       return state
   }
