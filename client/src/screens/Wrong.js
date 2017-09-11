@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
 import { connect } from 'react-redux'
-import { set_word, remove_word,post_record } from '../actions'
+import { set_word, remove_word,post_record, try_again } from '../actions'
 
 import {
 	ButtonSmall,
@@ -28,6 +28,12 @@ class Correct extends Component {
 		}else {
 			navigate('GuessScreen')
 		}
+	}
+
+	repeat_again(){
+		const { navigate } = this.props.navigation
+		this.props.repeat()
+		navigate('GuessScreen')
 	}
 
 	static navigationOptions = {
@@ -63,7 +69,7 @@ class Correct extends Component {
 				</View>
 
 				<View style={bottomContainerStyle}>
-					<ButtonBig onPress={() => navigate('GuessScreen')}>
+					<ButtonBig onPress={() => this.repeat_again()}>
 						<Text>AGAIN</Text>
 					</ButtonBig>
 				</View>
@@ -124,7 +130,8 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		save_data: (data, status) => dispatch(post_record(data, status)),
 		hapus_kata: (data) => dispatch(remove_word(data)),
-		next_word: (data) => dispatch(set_word(data))
+		next_word: (data) => dispatch(set_word(data)),
+		repeat: () => dispatch(try_again())
 	}
 }
 
