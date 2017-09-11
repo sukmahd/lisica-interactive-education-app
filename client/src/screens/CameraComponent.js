@@ -5,16 +5,17 @@ import {
   Dimensions,
   TouchableHighlight,
   Image,
+  Alert,
   Text,
 } from 'react-native';
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import { ACCESS_KEY_ID, SECRET_ACCESS_KEY } from 'react-native-dotenv'
-
 import Camera from 'react-native-camera';
 import { RNS3 } from 'react-native-aws3';
 import Spinner from 'react-native-spinkit'
 import AWS from 'aws-sdk/dist/aws-sdk-react-native'
+import ImageResizer from 'react-native-image-resizer';
 
 import { ButtonSmall, ButtonBig } from '../components/common'
 import { set_words } from '../actions'
@@ -50,6 +51,19 @@ class CameraComponent extends Component {
     header: null
   }
 
+  resize() {
+    ImageResizer.createResizedImage(this.state.path, 800, 600, 'JPEG', 80)
+    .then(({uri}) => {
+      this.setState({
+        path: uri,
+      });
+    }).catch((err) => {
+      console.log(err);
+      return Alert.alert('Unable to resize the photo',
+        'Check the console for full the error message');
+    });
+  }
+
   cancelImage () {
     this.setState({ path: null, isUploading: false, isProcessing: false })
   }
@@ -59,6 +73,7 @@ class CameraComponent extends Component {
       .then((data) => {
         console.log(data);
         this.setState({ path: data.path })
+        this.resize()
       })
       .catch(err => console.error(err));
   }
@@ -66,7 +81,8 @@ class CameraComponent extends Component {
   uploadImageToS3 () {
     this.setState({ isUploading: true })
     console.log(this.state.path);
-    let imageName = this.state.path.split("Pictures/")[1]
+    let imageName = this.state.path.split("cache/")[1]
+    imageName = imageName.replace(".JPEG", ".jpeg")
 
     const file = {
       uri: this.state.path,
