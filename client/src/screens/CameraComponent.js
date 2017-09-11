@@ -6,7 +6,7 @@ import {
   TouchableHighlight,
   Image,
   Alert,
-  Text,
+  Text
 } from 'react-native';
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'

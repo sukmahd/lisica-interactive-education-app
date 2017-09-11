@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
+import {
+	View,
+	Text,
+	Image,
+	KeyboardAvoidingView,
+	StatusBar,
+	Alert
+} from 'react-native';
 
 import {
 	ButtonSmall,
@@ -44,6 +51,8 @@ class ListObjects extends Component {
 		const { navigate } = this.props.navigation;
 		const dataLabels = this.props.words
 
+		console.log('ini adalah', dataLabels[0])
+
 		return(
 			<View behavior="padding" style={parentContainerStyle}>
 
@@ -68,32 +77,52 @@ class ListObjects extends Component {
 					</View>
 				</View>
 
-				<View style={bottomContainerStyle}>
-					<ButtonBig
-						onPress={ () => this.guessWord(dataLabels[0]) }
-						backgroundColor="#7E7F9A"
-					>
-						<Text>{ dataLabels[0] }</Text>
-					</ButtonBig>
-				</View>
+				{ dataLabels[0] ?
+					<View>
+						<View style={bottomContainerStyle}>
+							<ButtonBig
+								onPress={ () => this.guessWord(dataLabels[0]) }
+								backgroundColor="#7E7F9A"
+							>
+								<Text>{ dataLabels[0] }</Text>
+							</ButtonBig>
+						</View>
 
-				<View style={bottomContainerStyle}>
-					<ButtonBig
-						onPress={ () => this.guessWord(dataLabels[1]) }
-						backgroundColor="#7E7F9A"
-					>
-						<Text>{ dataLabels[1] }</Text>
-					</ButtonBig>
-				</View>
+						<View style={bottomContainerStyle}>
+							<ButtonBig
+								onPress={ () => this.guessWord(dataLabels[1]) }
+								backgroundColor="#7E7F9A"
+							>
+								<Text>{ dataLabels[1] }</Text>
+							</ButtonBig>
+						</View>
 
-				<View style={bottomContainerStyle}>
-					<ButtonBig
-						onPress={ () => this.guessWord(dataLabels[2]) }
-						backgroundColor="#7E7F9A"
-					>
-						<Text>{ dataLabels[2] }</Text>
-					</ButtonBig>
-				</View>
+						<View style={bottomContainerStyle}>
+							<ButtonBig
+								onPress={ () => this.guessWord(dataLabels[2]) }
+								backgroundColor="#7E7F9A"
+							>
+								<Text>{ dataLabels[2] }</Text>
+							</ButtonBig>
+						</View>
+					</View>
+					:
+					<View>
+						<View style={bottomContainerStyle}>
+							<Text style={ styles.warningText }>No Object Found!</Text>
+						</View>
+						<View style={bottomContainerStyle}>
+							<Text style={ styles.warningText }>Try Snapping a different object</Text>
+						</View>
+						<View style={bottomContainerStyle}>
+							<ButtonBig
+								onPress={ () => navigate('CameraComponentScreen') }
+							>
+								<Text>SNAP</Text>
+							</ButtonBig>
+						</View>
+					</View>
+				}
 
 			</View>
 		)
@@ -149,6 +178,12 @@ const styles = {
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
+	warningText: {
+		color: '#ecf0f1',
+		fontWeight: '900',
+		fontSize: 20,
+		marginBottom: 10
+	}
 }
 
 const mapStateToProps = (state) => ({
