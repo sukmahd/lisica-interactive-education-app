@@ -8,8 +8,9 @@ const ButtonBig = ({ onPress, children, backgroundColor, width, marginLeft, marg
 		color: '#fff',
 		fontSize: 28,
 		fontWeight: 'bold',
-		paddingTop: 14,
-		paddingBottom: 14
+		paddingTop: 10,
+		letterSpacing: 4,
+		paddingBottom: 10
 	},
 	buttonStyle: {
 		width: width || 260,

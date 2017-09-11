@@ -9,6 +9,7 @@ const ButtonSmall = ({ onPress, children, backgroundColor, fontSize, width, marg
 		fontSize: fontSize || 16,
 		fontWeight: 'bold',
 		paddingTop: 10,
+		letterSpacing: 2,
 		paddingBottom: 10
 	},
 	buttonStyle: {

@@ -181,7 +181,6 @@ class Guess extends Component {
 				<View style={bottomContainerStyle}>
 					<ButtonBig
             onPress={this._startRecognizing.bind(this)}
-						backgroundColor="#66C3FF"
 					>
 						{this.state.started ? <Text>Listening</Text> : <Text>SPEAK!</Text>}
 						<Text>{this.state.results[0]}</Text>
@@ -216,7 +215,7 @@ const styles = {
 	parentContainerStyle: {
 		flexDirection: 'column',
 		flex: 1,
-		backgroundColor: '#272838'
+		backgroundColor: '#F9F8F8'
 	},
 	topContainerStyle: {
 		flexDirection: 'column',
