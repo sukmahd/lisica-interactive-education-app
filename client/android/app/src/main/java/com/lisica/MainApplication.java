@@ -1,4 +1,4 @@
-package com.client;
+package com.lisica;
 
 import android.app.Application;
 
