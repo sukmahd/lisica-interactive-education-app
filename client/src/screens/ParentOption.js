@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
+import { View, Text, Image, KeyboardAvoidingView, StatusBar, Modal, TouchableHighlight } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 
 import {
@@ -13,12 +13,17 @@ class ParentOption extends Component {
 		super(props);
 
 		this.state= {
-			username: ''
+			username: '',
+			modalVisible: false
 		}
 	}
 
 	static navigationOptions = {
 		header: null,
+	}
+
+	setModalVisible(visible) {
+		this.setState({modalVisible: visible});
 	}
 
 	render() {
@@ -41,6 +46,30 @@ class ParentOption extends Component {
 					hidden={true}
 				/>
 
+				<Modal
+					animationType="slide"
+					transparent={false}
+					visible={this.state.modalVisible}
+					onRequestClose={() => {alert("Modal has been closed.")}}
+				>
+					<View style={{
+						marginTop: 22,
+						height: '80%'
+						}}
+					>
+						<View>
+							<Text>Hello World!</Text>
+
+							<TouchableHighlight onPress={() => {
+							this.setModalVisible(!this.state.modalVisible)
+							}}>
+							<Text>Hide Modal</Text>
+							</TouchableHighlight>
+
+						</View>
+					</View>
+				</Modal>
+
 				<View style={topContainerStyle}>
 					<ButtonSmall
 						fontSize={14}
@@ -53,7 +82,9 @@ class ParentOption extends Component {
 
 				<View style={midContainerStyle}>
 					<View style={bottomContainerStyle}>
-						<ButtonBig>
+						<ButtonBig
+						onPress={() => this.setModalVisible(true)}
+						>
 							<Text>LOG IN</Text>
 						</ButtonBig>
 					</View>
