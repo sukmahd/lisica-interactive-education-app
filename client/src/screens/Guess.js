@@ -77,12 +77,13 @@ class Guess extends Component {
 			started: false
     });
 
-		this.props.set_answer(this.state.status)
 
 		if(this.state.status[0])
 		{
+			this.props.set_answer(this.state.status)
 			navigate('CorrectScreen')
 		}else {
+			this.props.set_answer(this.state.results[0])
 			navigate('WrongScreen')
 		}
 
