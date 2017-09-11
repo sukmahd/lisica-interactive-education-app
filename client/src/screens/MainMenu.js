@@ -40,7 +40,7 @@ class MainMenu extends Component {
 
 				<View style={topContainerStyle}>
 					<ButtonSmall
-						backgroundColor='#ff85a5'
+						backgroundColor='#EB9486'
 						onPress={() => navigate('ParentOptionScreen')}
 					>
 						<Text>PARENT</Text>
@@ -48,7 +48,7 @@ class MainMenu extends Component {
 				</View>
 
 				<View style={midContainerStyle}>
-					<Image style={imageStyle} source={require('../assets/images/Eevee.png')} />
+					<Image style={imageStyle} source={require('../assets/images/lisica_logo.png')} />
 				</View>
 
 				<View style={midContainerStyle}>
@@ -77,7 +77,7 @@ const styles = {
 	parentContainerStyle: {
 		flexDirection: 'column',
 		flex: 1,
-		backgroundColor: '#f4f9fc'
+		backgroundColor: '#F9F8F8'
 	},
 	topContainerStyle: {
 		flexDirection: 'row',
@@ -92,7 +92,9 @@ const styles = {
 	},
 	imageStyle: {
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
+		height: 200,
+		width: 200
 	},
 	midContainerStyle: {
 		marginTop: 60,

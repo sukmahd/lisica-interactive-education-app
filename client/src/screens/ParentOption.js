@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 
-import { 
+import {
 	ButtonSmall,
-	ButtonBig, 
-	InputRounded 
+	ButtonBig,
+	InputRounded
 } from '../components/common';
 
 class ParentOption extends Component {
@@ -21,7 +22,7 @@ class ParentOption extends Component {
 	}
 
 	render() {
-		const { 
+		const {
 			topContainerStyle,
 			bottomContainerStyle,
 			parentContainerStyle,
@@ -29,25 +30,27 @@ class ParentOption extends Component {
 		} = styles;
 
 		const { navigate } = this.props.navigation;
+		const backAction = NavigationActions.back({
+			key: null
+		})
 
 		return(
 			<KeyboardAvoidingView behavior="padding" style={parentContainerStyle}>
 
-				<StatusBar 
+				<StatusBar
 					hidden={true}
 				/>
 
 				<View style={topContainerStyle}>
-					<ButtonSmall 
-						backgroundColor='#ff85a5'
+					<ButtonSmall
 						fontSize={14}
 						width={80}
-						onPress={() => navigate('MainMenuScreen')}
+						onPress={() => this.props.navigation.dispatch(backAction)}
 					>
 						<Text>MAIN</Text>
 					</ButtonSmall>
 				</View>
-				
+
 				<View style={midContainerStyle}>
 					<View style={bottomContainerStyle}>
 						<ButtonBig>
@@ -56,7 +59,9 @@ class ParentOption extends Component {
 					</View>
 
 					<View style={bottomContainerStyle}>
-						<ButtonBig>
+						<ButtonBig
+							onPress={ () => navigate('DetailGraphScreen') }
+						>
 							<Text>KID'S DATA</Text>
 						</ButtonBig>
 					</View>
@@ -71,7 +76,7 @@ const styles = {
 	parentContainerStyle: {
 		flexDirection: 'column',
 		flex: 1,
-		backgroundColor: '#faf7eb'
+		backgroundColor: '#F9F8F8'
 	},
 	topContainerStyle: {
 		flexDirection: 'row',

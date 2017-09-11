@@ -53,7 +53,7 @@ class ListObjects extends Component {
 
 				<View style={topBtnContainerStyle}>
 					<ButtonSmall
-						backgroundColor='#ff85a5'
+						backgroundColor='#EB9486'
 						fontSize={14}
 						width={80}
 						onPress={() => navigate('MainMenuScreen')}
@@ -71,6 +71,7 @@ class ListObjects extends Component {
 				<View style={bottomContainerStyle}>
 					<ButtonBig
 						onPress={ () => this.guessWord(dataLabels[0]) }
+						backgroundColor="#7E7F9A"
 					>
 						<Text>{ dataLabels[0] }</Text>
 					</ButtonBig>
@@ -79,6 +80,7 @@ class ListObjects extends Component {
 				<View style={bottomContainerStyle}>
 					<ButtonBig
 						onPress={ () => this.guessWord(dataLabels[1]) }
+						backgroundColor="#7E7F9A"
 					>
 						<Text>{ dataLabels[1] }</Text>
 					</ButtonBig>
@@ -87,6 +89,7 @@ class ListObjects extends Component {
 				<View style={bottomContainerStyle}>
 					<ButtonBig
 						onPress={ () => this.guessWord(dataLabels[2]) }
+						backgroundColor="#7E7F9A"
 					>
 						<Text>{ dataLabels[2] }</Text>
 					</ButtonBig>
@@ -113,7 +116,7 @@ const styles = {
 	parentContainerStyle: {
 		flexDirection: 'column',
 		flex: 1,
-		backgroundColor: '#faf7eb'
+		backgroundColor: '#272838'
 	},
 	topContainerStyle: {
 		flexDirection: 'column',
