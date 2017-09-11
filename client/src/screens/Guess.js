@@ -194,7 +194,10 @@ class Guess extends Component {
 
 				<View style={topContainerStyle}>
 					<View style={imgContainerStyle}>
-						<Image style={ externalImageStyle } source={{ uri: this.state.imageURL }} />
+						{ this.state.imageURL
+							? <Image style={ externalImageStyle } source={{ uri: this.state.imageURL }} />
+							: <Image style={ imageStyle } source={ require('../assets/images/XMLID_730_.png') } />
+						}
 					</View>
 					{this.state.end ? <Spinner feedback="Processing..."/> : <View style={guessAnswerStyle}>
 						<ButtonSmall
