@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { StyleSheet, ART, ScrollView, Button, Text, View } from 'react-native'
 import { Bar } from 'react-native-pathjs-charts'
 import { ArtyChartyPie } from 'arty-charty';
@@ -6,42 +7,31 @@ import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 import { NavigationActions } from 'react-navigation'
 
 import { ButtonSmall } from '../components/common';
- 
-let kidsProgress = [
+import { get_record } from '../actions'
+
+let kidsProgressDummy = [
   { success: true, repeat: 0, word: 'water bottle' },
   { success: false, repeat: 0, word: 'bottle' },
   { success: true, repeat: 5, word: 'toy' },
-  { success: true, repeat: 0, word: 'electronics' },
-  { success: false, repeat: 3, word: 'keyboard' },
-  { success: true, repeat: 2, word: 'table' },
-  { success: false, repeat: 1, word: 'jug' },
-  { success: true, repeat: 0, word: 'handphone' },
-  { success: true, repeat: 3, word: 'key' },
-  { success: false, repeat: 2, word: 'paper' },
-  { success: true, repeat: 1, word: 'book' },
-  { success: true, repeat: 4, word: 'glasses' },
-  { success: false, repeat: 1, word: 'cup' },
-  { success: true, repeat: 0, word: 'guitar' },
-  { success: false, repeat: 5, word: 'piano' },
-  { success: true, repeat: 2, word: 'coffee table' }
+  { success: false, repeat: 3, word: 'electronics' }
 ]
 
-kidsProgress.forEach(k => {
+kidsProgressDummy.forEach(k => {
   Object.defineProperty(k, 'name', Object.getOwnPropertyDescriptor(k, 'word'))
   delete k['word']
 })
 
-let kidsSuccess = kidsProgress.filter(p => {
+let kidsSuccessDummy = kidsProgressDummy.filter(p => {
   return p.success ? true : false
 })
 
-let kidsFail = kidsProgress.filter(p => {
+let kidsFailDummy = kidsProgressDummy.filter(p => {
   return p.success ? false : true
 })
 
 // Take only the last few elements
-kidsSuccess = kidsSuccess.slice(Math.max(kidsSuccess.length - 10, 0))
-kidsFail = kidsFail.slice(Math.max(kidsFail.length - 10, 0))
+kidsSuccessDummy = kidsSuccessDummy.slice(Math.max(kidsSuccessDummy.length - 10, 0))
+kidsFailDummy = kidsFailDummy.slice(Math.max(kidsFailDummy.length - 10, 0))
 
 class DetailGraph extends Component {
   static navigationOptions = {
@@ -49,19 +39,63 @@ class DetailGraph extends Component {
     header: null
   }
 
-  state = {
-    index: 0,
-    routes: [
-      { key: '1', title: 'Machine Learning' },
-      { key: '2', title: 'Kid\'s Progress ' },
-    ],
-  };
+  constructor (props) {
+    super(props)
+    this.state = {
+      records: [],
+      kidsSuccess: 'empty',
+      kidsFail: 'empty',
+      index: 0,
+      routes: [
+        { key: '1', title: 'Machine Learning' },
+        { key: '2', title: 'Kid\'s Progress ' },
+      ],
+    };
+  }
+
+  kidsProgressFunc (kidsProgress) {
+    kidsProgress.forEach(k => {
+      Object.defineProperty(k, 'name', Object.getOwnPropertyDescriptor(k, 'word'))
+      delete k['word']
+    })
+    this.setState({ records: kidsProgress })
+    console.log('hihihi')
+    console.log('hehehe', kidsProgress)
+    this.kidsSuccessAndFailFunc(kidsProgress)
+  }
+
+  kidsSuccessAndFailFunc (kidsProgress) {
+    let kidsSuccess = kidsProgress.filter(p => {
+      return p.success ? true : false
+    })
+    let kidsFail = kidsProgress.filter(p => {
+      return p.success ? false : true
+    })
+
+    kidsSuccess = kidsSuccess.slice(Math.max(kidsSuccess.length - 10, 0))
+    kidsFail = kidsFail.slice(Math.max(kidsFail.length - 10, 0))
+
+    this.setState({ kidsSuccess, kidsFail })
+  }
+
+  componentWillMount () {
+    let self = this
+    this.props.getRecord(this.props.email)
+  }
+
+  componentWillReceiveProps (nextProps){
+    console.log('------------------------dapet props', nextProps);
+    this.kidsProgressFunc(nextProps.records)
+  }
 
   _handleIndexChange = index => this.setState({ index });
 
   _renderHeader = props => <TabBar {...props} style={styles.tabbar} indicatorStyle={styles.indicator} />;
 
   render() {
+    let kidsSuccess = this.state.kidsSuccess === 'empty' ? kidsSuccessDummy : this.state.kidsSuccess
+    let kidsFail = this.state.kidsFail === 'empty' ? kidsFailDummy : this.state.kidsFail
+
     let successData = [
       kidsSuccess
     ]
@@ -71,7 +105,7 @@ class DetailGraph extends Component {
     ]
 
     let successChartOptions = {
-      width: kidsSuccess <= 5 ? 250 : 250 + (50 * (kidsSuccess.length - 5)),
+      width: kidsSuccess.length <= 5 ? 250 : 250 + (50 * (kidsSuccess.length - 5)),
       height: 200,
       margin: {
         top: 20,
@@ -94,7 +128,7 @@ class DetailGraph extends Component {
         zeroAxis: false,
         orient: 'bottom',
         label: {
-          
+
           fontSize: 8,
           fontWeight: true,
           fill: '#34495E'
@@ -108,7 +142,7 @@ class DetailGraph extends Component {
         zeroAxis: false,
         orient: 'left',
         label: {
-          
+
           fontSize: 12,
           fontWeight: true,
           fill: '#34495E'
@@ -117,7 +151,7 @@ class DetailGraph extends Component {
     }
 
     let failChartOptions = {
-      width: kidsFail <= 5 ? 250 : 250 + (50 * (kidsSuccess.length - 5)),
+      width: kidsFail.length <= 5 ? 250 : 250 + (50 * (kidsFail.length - 5)),
       height: 200,
       margin: {
         top: 20,
@@ -140,7 +174,7 @@ class DetailGraph extends Component {
         zeroAxis: false,
         orient: 'bottom',
         label: {
-          
+
           fontSize: 8,
           fontWeight: true,
           fill: '#34495E'
@@ -154,7 +188,7 @@ class DetailGraph extends Component {
         zeroAxis: false,
         orient: 'left',
         label: {
-          
+
           fontSize: 12,
           fontWeight: true,
           fill: '#34495E'
@@ -180,7 +214,7 @@ class DetailGraph extends Component {
       return (
         <ScrollView style={[ styles.container, { backgroundColor: '#FEFDFF' } ]}>
           {/* FAIL RATE */}
-          <View 
+          <View
             style={{
               marginTop: 10
             }}
@@ -191,14 +225,14 @@ class DetailGraph extends Component {
                 fontWeight: '700',
                 left: 20,
                 letterSpacing: 2,
-                color: '#272838'
+                color: '#66C3FF'
               }}
             >
-              ATTEMPTS
+              Correct
             </Text>
           </View>
 
-          <View 
+          <View
             style={{
               marginTop: 10,
               paddingLeft: 20,
@@ -209,20 +243,29 @@ class DetailGraph extends Component {
           style={{
               fontSize: 20,
               letterSpacing: 2,
-              color: '#66C3FF'
+              color: '#272838'
             }}
           >
-            Success Rate
+            Attempts Rate (Lower, Better)
+          </Text>
+          <Text
+          style={{
+              fontSize: 15,
+              letterSpacing: 2,
+              color: '#34495e'
+            }}
+          >
+            Success with fewer attempts, indicates faster learning curve
           </Text>
           </View>
           <ScrollView horizontal={true}>
-            
+
             <Bar data={successData} options={successChartOptions} accessorKey='repeat'/>
           </ScrollView>
 
           {/* FAIL RATE */}
 
-          <View 
+          <View
           style={{
             marginTop: 10
           }}
@@ -233,14 +276,14 @@ class DetailGraph extends Component {
               fontWeight: '700',
               left: 20,
               letterSpacing: 2,
-              color: '#272838'
+              color: '#CD533B'
             }}
           >
-            ATTEMPTS
+            Incorrect
           </Text>
           </View>
 
-          <View 
+          <View
             style={{
               marginTop: 10,
               paddingLeft: 20,
@@ -251,14 +294,23 @@ class DetailGraph extends Component {
           style={{
             fontSize: 20,
             letterSpacing: 2,
-            color: '#CD533B'
+            color: '#272838'
             }}
           >
-            Incorrect Rate
+            Attempts Rate (Higher, Better)
+          </Text>
+          <Text
+          style={{
+              fontSize: 15,
+              letterSpacing: 2,
+              color: '#34495e'
+            }}
+          >
+            More attempts, indicates unwillingness to give-up
           </Text>
           </View>
           <ScrollView horizontal={true}>
-            
+
             <Bar data={failData} options={failChartOptions} accessorKey='repeat'/>
           </ScrollView>
         </ScrollView>
@@ -291,7 +343,7 @@ class DetailGraph extends Component {
               letterSpacing: 2
             }}
           >
-            KID'S DATA
+            KIDS DATA
           </Text>
         </View>
         <TabViewAnimated
@@ -302,7 +354,7 @@ class DetailGraph extends Component {
         onIndexChange={this._handleIndexChange}
       />
       </View>
-      
+
     )
   }
 }
@@ -333,4 +385,15 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default DetailGraph
+const mapStateToProps = (state) => {
+  console.log('---------------------------mapStateToProps:', state  );
+  return {
+  records: state.wordStore.records,
+  email: state.wordStore.email
+}}
+
+const mapDispatchToProps = (dispatch) => ({
+  getRecord: (email) => dispatch(get_record(email))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(DetailGraph)
