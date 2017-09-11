@@ -7,7 +7,7 @@ import {
 	ButtonBig,
 	InputRounded
 } from '../components/common';
-import { set_word } from '../actions'
+import { set_word, remove_word } from '../actions'
 
 class ListObjects extends Component {
 	constructor(props) {
@@ -24,7 +24,7 @@ class ListObjects extends Component {
 
 	guessWord (labelName) {
 		const { navigate } = this.props.navigation;
-		
+		this.props.hapus_kata(labelName)
 		this.props.setWord(labelName)
 		navigate('GuessScreen')
 	}
@@ -156,7 +156,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-	setWord: (label) => dispatch(set_word(label))
+	setWord: (label) => dispatch(set_word(label)),
+	hapus_kata: (label) => dispatch(remove_word(label))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListObjects);

@@ -5,9 +5,9 @@ import Tts from 'react-native-tts';
 import Voice from 'react-native-voice';
 import { connect } from 'react-redux'
 
-import { 
+import {
 	ButtonSmall,
-	ButtonBig, 
+	ButtonBig,
 	InputRounded,
 	Spinner
 } from '../components/common';
@@ -33,18 +33,18 @@ class Guess extends Component {
     Voice.onSpeechResults = this.onSpeechResults.bind(this);
     Voice.onSpeechPartialResults = this.onSpeechPartialResults.bind(this);
     Voice.onSpeechVolumeChanged = this.onSpeechVolumeChanged.bind(this);
-		
+
   }
 
 	static navigationOptions = {
 		header: null,
 	}
-	
-	
-  ngomong(word){    
+
+
+  ngomong(word){
     Tts.speak(word);
   }
-  
+
   onSpeechStart(e) {
     this.setState({
       started: true,
@@ -68,21 +68,21 @@ class Guess extends Component {
   onSpeechResults(e) {
 		const { navigate } = this.props.navigation
 		const word = e.value.filter( kata => {
-			return this.props.word == kata.toLowerCase()
+			return this.props.word.toLowerCase() == kata.toLowerCase()
 		})
     this.setState({
       results: e.value,
 			status: word,
 			started: false
     });
-		
+
 		if(this.state.status[0])
 		{
 			navigate('CorrectScreen')
 		}else {
 			navigate('WrongScreen')
 		}
-		
+
   }
   onSpeechPartialResults(e) {
     this.setState({
@@ -130,7 +130,7 @@ class Guess extends Component {
   }
 
 	render() {
-		const { 
+		const {
 			topContainerStyle,
 			bottomContainerStyle,
 			parentContainerStyle,
@@ -147,7 +147,7 @@ class Guess extends Component {
 		return(
 			<View behavior="padding" style={parentContainerStyle}>
 
-				<StatusBar 
+				<StatusBar
 					hidden={true}
 				/>
 
@@ -174,7 +174,7 @@ class Guess extends Component {
 						>
 							<Text>🔊 {this.props.word}</Text>
 						</ButtonSmall>
-						
+
 					</View>}
 				</View>
 
@@ -186,7 +186,7 @@ class Guess extends Component {
 						{this.state.started ? <Text>Listening</Text> : <Text>SPEAK!</Text>}
 						<Text>{this.state.results[0]}</Text>
 					</ButtonBig>
-					
+
 				</View>
 
 				<View style={bottomContainerStyle}>
@@ -265,7 +265,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		game_over: () => dispatch('') 
+		game_over: () => dispatch('')
 	}
 }
 

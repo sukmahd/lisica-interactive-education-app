@@ -46,6 +46,15 @@ export const set_answer = (data) => {
   }
 }
 
+export const remove_word = (data) => {
+  return {
+    type: 'REMOVE_WORD',
+    payload: {
+      word: data
+    }
+  }
+}
+
 export const post_record = (data) => {
   return (dispatch) => {
     dispatch(fetching())
