@@ -4,7 +4,7 @@ import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native
 import Tts from 'react-native-tts';
 import Voice from 'react-native-voice';
 import { connect } from 'react-redux'
-import { set_word, remove_word } from '../actions'
+import { set_word, remove_word, set_answer } from '../actions'
 
 import {
 	ButtonSmall,
@@ -76,6 +76,8 @@ class Guess extends Component {
 			status: word,
 			started: false
     });
+
+		this.props.set_answer(this.state.status)
 
 		if(this.state.status[0])
 		{
@@ -281,7 +283,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		hapus_kata: (data) => dispatch(remove_word(data)),
-		next_word: (data) => dispatch(set_word(data))
+		next_word: (data) => dispatch(set_word(data)),
+		set_answer: (data) => dispatch(set_answer(data))
 	}
 }
 

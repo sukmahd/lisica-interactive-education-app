@@ -61,18 +61,20 @@ export const remove_word = (data) => {
   }
 }
 
-export const post_record = (data) => {
-  return (dispatch) => {
+export const post_record = (data, status) => {
+  return (dispatch, getState) => {
     dispatch(fetching())
+    console.log(data, 'kjhjhjh');
     axios.post('http://reactchallengeapi.appspot.com/records', {
-      email: data.email,
-      success: data.success,
-      repeat: data.repeat,
-      word: data.word,
-      answer: data.answer,
+      email: getState().wordStore.email,
+      success: status,
+      repeat: getState().wordStore.try,
+      word: data,
+      answer: getState().wordStore.answer,
       data: new Date()
     })
     .then(resp => {
+      console.log(resp);
       dispatch({
         type: 'POST_RECORD',
         payload: {
