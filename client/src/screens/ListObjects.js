@@ -88,23 +88,31 @@ class ListObjects extends Component {
 							</ButtonBig>
 						</View>
 
-						<View style={bottomContainerStyle}>
-							<ButtonBig
-								onPress={ () => this.guessWord(dataLabels[1]) }
-								backgroundColor="#7E7F9A"
-							>
-								<Text>{ dataLabels[1] }</Text>
-							</ButtonBig>
-						</View>
+						{ dataLabels[1] ?
+							<View style={bottomContainerStyle}>
+								<ButtonBig
+									onPress={ () => this.guessWord(dataLabels[1]) }
+									backgroundColor="#7E7F9A"
+								>
+									<Text>{ dataLabels[1] }</Text>
+								</ButtonBig>
+							</View>
+							:
+							<Text></Text>
+						}
 
-						<View style={bottomContainerStyle}>
-							<ButtonBig
-								onPress={ () => this.guessWord(dataLabels[2]) }
-								backgroundColor="#7E7F9A"
-							>
-								<Text>{ dataLabels[2] }</Text>
-							</ButtonBig>
-						</View>
+						{ dataLabels[2] ?
+							<View style={bottomContainerStyle}>
+								<ButtonBig
+									onPress={ () => this.guessWord(dataLabels[2]) }
+									backgroundColor="#7E7F9A"
+								>
+									<Text>{ dataLabels[2] }</Text>
+								</ButtonBig>
+							</View>
+							:
+							<Text></Text>
+						}
 					</View>
 					:
 					<View>
