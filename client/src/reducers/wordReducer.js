@@ -6,7 +6,9 @@ const initialState = {
   game: false,
   count: 0,
   collections: [],
-  records: []
+  records: [],
+  try: 0,
+  email: ''
 }
 
 export default (state = initialState, actions) => {
@@ -14,7 +16,7 @@ export default (state = initialState, actions) => {
     case 'SET_WORDS':
       return {...state, words: actions.payload.words, fetch: true}
     case 'SET_WORD':
-      return {...state, word: actions.payload.word, fetch: true}
+      return {...state, word: actions.payload.word, try:0, fetch: true}
     case 'SET_ANSWER':
       return {...state, answer: actions.payload.answer, fetch: true}
     case 'FETCHING':
@@ -29,6 +31,8 @@ export default (state = initialState, actions) => {
       return {...state, words: state.words.filter(kata => {
         return kata != actions.payload.word
       })}
+    case 'TRY_AGAIN':
+      return {...state, try: state.try++}
     default:
       return state
   }
