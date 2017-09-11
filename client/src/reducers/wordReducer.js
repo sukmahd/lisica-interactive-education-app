@@ -8,7 +8,7 @@ const initialState = {
   collections: [],
   records: [],
   try: 0,
-  email: ''
+  email: 'adit@gmail.com'
 }
 
 export default (state = initialState, actions) => {
