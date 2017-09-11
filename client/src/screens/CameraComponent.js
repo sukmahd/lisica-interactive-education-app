@@ -82,6 +82,7 @@ class CameraComponent extends Component {
     this.setState({ isUploading: true })
     console.log(this.state.path);
     let imageName = this.state.path.split("cache/")[1]
+    imageName = imageName.replace(".JPEG", ".jpeg")
 
     const file = {
       uri: this.state.path,
