@@ -59,7 +59,7 @@ class GameOver extends Component {
 
 				<View style={bottomContainerStyle}>
 					<ButtonBig onPress={() => navigate('CameraComponentScreen')}>
-						<Text>Play Again</Text>
+						<Text>Play Again!</Text>
 					</ButtonBig>
 				</View>
 
