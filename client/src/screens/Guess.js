@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
-
 import Tts from 'react-native-tts';
 import Voice from 'react-native-voice';
 import { connect } from 'react-redux'
-import { set_word, remove_word, set_answer } from '../actions'
+import axios from 'axios'
 
+import { set_word, remove_word, set_answer } from '../actions'
 import {
 	ButtonSmall,
 	ButtonBig,
@@ -25,7 +25,8 @@ class Guess extends Component {
       results: [],
       partialResults: [],
 			username: 'Lisica',
-			status: ''
+			status: '',
+			imageURL: ''
     };
     Voice.onSpeechStart = this.onSpeechStart.bind(this);
     Voice.onSpeechRecognized = this.onSpeechRecognized.bind(this);
@@ -41,6 +42,15 @@ class Guess extends Component {
 		header: null,
 	}
 
+	searchImage () {
+		let self = this
+		axios.get(`https://api.qwant.com/api/search/images?count=1&offset=1&q=${this.props.word}`)
+		.then(resp => {
+			console.log(resp.data.data.result.items[0].media);
+			self.setState({ imageURL: resp.data.data.result.items[0].media })
+		})
+		.catch(err => console.log(err))
+	}
 
   ngomong(word){
     Tts.speak(word);
@@ -144,12 +154,17 @@ class Guess extends Component {
 		}
 	}
 
+	componentWillMount () {
+		this.searchImage()
+	}
+
 	render() {
 		const {
 			topContainerStyle,
 			bottomContainerStyle,
 			parentContainerStyle,
 			imageStyle,
+			externalImageStyle,
 			midContainerStyle,
 			textStyle,
 			imgContainerStyle,
@@ -179,7 +194,7 @@ class Guess extends Component {
 
 				<View style={topContainerStyle}>
 					<View style={imgContainerStyle}>
-						<Image style={imageStyle} source={require('../assets/images/XMLID_730_.png')} />
+						<Image style={ externalImageStyle } source={{ uri: this.state.imageURL }} />
 					</View>
 					{this.state.end ? <Spinner feedback="Processing..."/> : <View style={guessAnswerStyle}>
 						<ButtonSmall
@@ -262,6 +277,11 @@ const styles = {
 	imageStyle: {
 		justifyContent: 'center',
 		alignItems: 'center'
+	},
+	externalImageStyle: {
+		resizeMode: 'center',
+		width: 222,
+		height: 222
 	},
 	midContainerStyle: {
 		marginTop: 60,
