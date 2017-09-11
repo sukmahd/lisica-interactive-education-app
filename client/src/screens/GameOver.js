@@ -59,7 +59,13 @@ class GameOver extends Component {
 
 				<View style={bottomContainerStyle}>
 					<ButtonBig onPress={() => navigate('CameraComponentScreen')}>
-						<Text>Play Again!</Text>
+						<Text>AGAIN!</Text>
+					</ButtonBig>
+				</View>
+
+				<View style={bottomContainerStyle}>
+					<ButtonBig onPress={() => navigate('MainMenuScreen')} backgroundColor="#EB9486" >
+						<Text>MAIN MENU!</Text>
 					</ButtonBig>
 				</View>
 
@@ -95,7 +101,7 @@ const styles = {
 	bottomContainerStyle: {
 		flexDirection: 'row',
 		justifyContent: 'center',
-		marginTop: 90
+		marginTop: 16
 	},
 	imageStyle: {
 		justifyContent: 'center',
@@ -103,6 +109,7 @@ const styles = {
 	},
 	midContainerStyle: {
 		marginTop: 40,
+		marginBottom: 20,
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center'
