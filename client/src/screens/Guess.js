@@ -26,6 +26,7 @@ class Guess extends Component {
       partialResults: [],
 			username: 'Lisica',
 			status: '',
+			fetchingImage: false,
 			imageURL: ''
     };
     Voice.onSpeechStart = this.onSpeechStart.bind(this);
@@ -42,14 +43,17 @@ class Guess extends Component {
 		header: null,
 	}
 
-	searchImage () {
+	async searchImage () {
 		let self = this
-		axios.get(`https://api.qwant.com/api/search/images?count=1&offset=1&q=${this.props.word}`)
+		await axios.get(`https://api.qwant.com/api/search/images?count=1&offset=1&q=${this.props.word}`)
 		.then(resp => {
 			console.log(resp.data.data.result.items[0].media);
-			self.setState({ imageURL: resp.data.data.result.items[0].media })
+			self.setState({ imageURL: resp.data.data.result.items[0].media, fetchingImage: false })
 		})
-		.catch(err => console.log(err))
+		.catch(err => {
+			console.log(err)
+			self.setState({ fetchingImage: false })
+		})
 	}
 
   ngomong(word){
@@ -155,6 +159,7 @@ class Guess extends Component {
 	}
 
 	componentWillMount () {
+		this.setState({ fetchingImage: true })
 		this.searchImage()
 	}
 
@@ -194,9 +199,11 @@ class Guess extends Component {
 
 				<View style={topContainerStyle}>
 					<View style={imgContainerStyle}>
-						{ this.state.imageURL
-							? <Image style={ externalImageStyle } source={{ uri: this.state.imageURL }} />
-							: <Image style={ imageStyle } source={ require('../assets/images/XMLID_730_.png') } />
+						{ this.state.fetchingImage
+							? <Text>Loading</Text>
+							: this.state.imageURL
+								? <Image style={ externalImageStyle } source={{ uri: this.state.imageURL }} />
+								: <Image style={ imageStyle } source={ require('../assets/images/XMLID_730_.png') } />
 						}
 					</View>
 					{this.state.end ? <Spinner feedback="Processing..."/> : <View style={guessAnswerStyle}>
