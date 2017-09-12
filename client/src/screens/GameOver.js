@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
 import { connect } from 'react-redux'
 
+import Sound from 'react-native-sound';
+
 import {
 	ButtonSmall,
 	ButtonBig,
@@ -19,6 +21,34 @@ class GameOver extends Component {
 
 	static navigationOptions = {
 		header: null,
+	}
+
+	endSoundFunc () {
+		var endSound = new Sound('over_1.mp3', Sound.MAIN_BUNDLE, (error) => {
+		  if (error) {
+		    console.log('failed to load the sound', error);
+		    return;
+		  }
+		  // loaded successfully
+		  console.log('duration in seconds: ' + endSound.getDuration() + 'number of channels: ' + endSound.getNumberOfChannels());
+
+
+			// Play the sound with an onEnd callback
+			endSound.play((success) => {
+			  if (success) {
+			    console.log('successfully finished playing');
+			  } else {
+			    console.log('playback failed due to audio decoding errors');
+			    // reset the player to its uninitialized state (android only)
+			    // this is the only option to recover after an error occured and use the player again
+			    endSound.reset();
+			  }
+			});
+		});
+	}
+
+	componentWillMount () {
+		this.endSoundFunc()
 	}
 
 	render() {
