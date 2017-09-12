@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
 import Tts from 'react-native-tts'
 import Voice from 'react-native-voice';
+import { connect } from 'react-redux'
+import { set_username } from '../actions'
 import {
 	ButtonSmall,
 	ButtonBig,
@@ -68,6 +70,8 @@ class MainMenu extends Component {
 			status: e.value[0]
     });
 
+		this.props.set_user(e.value[0])
+
   }
   onSpeechPartialResults(e) {
     this.setState({
@@ -115,15 +119,20 @@ class MainMenu extends Component {
   }
 
 	tell_your_name() {
+		this.props.set_user('')
 		Tts.speak('Hello, i am Lisica, What is your name?');
 		Tts.addEventListener('tts-finish', (event) => {
 			console.log('masuk');
-			this._startRecognizing(this)
+			if(!this.props.username){
+				this._startRecognizing(this)
+			}
 		});
 	}
 
 	componentWillReceiveProps(nextProps){
-
+		if(nextProps.username){
+			Tts.speak(`hai, ${nextProps.username}`)
+		}
 	}
 
 	render() {
@@ -218,4 +227,16 @@ const styles = {
 	},
 }
 
-export default MainMenu;
+const mapStateToProps = (state) => {
+	return {
+		username: state.wordStore.username
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		set_user: (name) => dispatch(set_username(name))
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainMenu);
