@@ -267,6 +267,7 @@ const styles = {
 		alignItems: 'center',
 		padding: 20,
 		width: 280,
+		height: 265,
 		flexDirection: 'row',
 		marginBottom: 20,
 		borderRadius: 50,
