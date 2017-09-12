@@ -19,8 +19,8 @@ import CameraComponent from './screens/CameraComponent';
 import Login from './screens/Login';
 
 const AppNavigator = StackNavigator({
+	MainMenuScreen: { screen: MainMenu },
 	GameOverScreen: { screen: GameOver },
-  MainMenuScreen: { screen: MainMenu },
 	ParentOptionScreen: { screen: ParentOption },
 	LoginScreen: { screen: Login },
 	GuessScreen: { screen: Guess },
