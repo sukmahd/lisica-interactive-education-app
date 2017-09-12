@@ -19,7 +19,8 @@ import CameraComponent from './screens/CameraComponent';
 import Login from './screens/Login';
 
 const AppNavigator = StackNavigator({
-  MainMenuScreen: { screen: MainMenu },
+	MainMenuScreen: { screen: MainMenu },
+	GameOverScreen: { screen: GameOver },
 	ParentOptionScreen: { screen: ParentOption },
 	LoginScreen: { screen: Login },
 	GuessScreen: { screen: Guess },
@@ -28,7 +29,6 @@ const AppNavigator = StackNavigator({
 	ListObjectsScreen: { screen: ListObjects },
 	CorrectScreen: { screen: Correct },
 	WrongScreen: { screen: Wrong },
-	GameOverScreen: { screen: GameOver },
 	CameraScreen: { screen: Camera }
 })
 

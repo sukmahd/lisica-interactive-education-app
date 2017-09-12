@@ -11,12 +11,49 @@ import {
 	InputRounded
 } from '../components/common';
 
+const MedalOfHonor = () => {
+	return (
+		<Image 
+			style={{width: 70, height: 70}}
+			resizeMode="contain"
+			source={require('../assets/images/Medals.png')}
+		/>
+	)
+}
+
+
+
+
 class GameOver extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state= {
-			username: ''
+			username: '',
+			medal_count: 0
+		}
+	}
+
+
+	renderMedalCountText() {
+		if (this.state.medal_count == 1) {
+			return (
+				<Text>
+					One medal for you!
+				</Text>
+			)
+		} else if (this.state.medal_count == 2) {
+			return (
+				<Text>
+					Two medal for you!
+				</Text>
+			)
+		} else if (this.state.medal_count == 3) {
+			return (
+				<Text>
+				Three medal for you!
+			</Text>
+			)
 		}
 	}
 
@@ -70,7 +107,11 @@ class GameOver extends Component {
 			imageStyle,
 			midContainerStyle,
 			textStyle,
-			subTextStyle
+			expTextStyle,
+			achievementStyle,
+			recordStyle,
+			recordTextStyle,
+			medalStyle
 		} = styles;
 
 		const { navigate } = this.props.navigation
@@ -88,16 +129,60 @@ class GameOver extends Component {
 					</Text>
 				</View>
 
-				<View style={subTopContainerStyle}>
-					{
-						this.props.collections.map( (data, i) => {
-							return (<Text key={i} style={subTextStyle}>
-								{data.success ?  '+5 Exp!' : '+0 Exp'}
-								word: {data.word}, answer: {data.answer}, repeat: {data.repeat}
-							</Text>)
-						})
-					}
+				<View >
+					<View style={subTopContainerStyle}>
+						{
+							this.props.collections.map( (data, i) => {
+								return (
+									<View style={recordStyle} key={i}>
+									<Text  style={expTextStyle}>
+										{data.success ?  '+5 Exp!' : '+0 Exp'}
+										
+									</Text>
+									<Text style={recordTextStyle}>
+										<Text style={{fontWeight: 'bold'}}>Word: </Text>
+										<Text style={{textDecorationLine: 'underline'}}>{data.word}</Text>
+										, 
+										<Text style={{fontWeight: 'bold'}}> Answer: </Text>
+										<Text style={{textDecorationLine: 'underline'}}>{data.answer}</Text>
+										, 
+										<Text style={{fontWeight: 'bold'}}> Try: </Text>
+										<Text style={{textDecorationLine: 'underline'}}>{data.repeat}</Text>
+									</Text>
+
+
+									</View>
+
+									
+									
+								)
+							})
+						}
+						
+					</View>
+					<View>
+						
+							{this.renderMedalCountText()}
+						
+					</View>
+					<View style={medalStyle}>
+						{
+							this.props.collections.map( (data, idx) => {
+								return (
+									<View style={{
+										height: 70
+									}} key={idx}>
+										
+											{data.success ? <MedalOfHonor /> : <View />}
+										
+									</View>
+								)
+							})
+						}
+					</View>
+					
 				</View>
+				
 
 				{/* <View style={midContainerStyle}>
 					<Image style={imageStyle} source={require('../assets/images/Medals.png')} />
@@ -124,25 +209,57 @@ const styles = {
 	parentContainerStyle: {
 		flexDirection: 'column',
 		flex: 1,
+		alignItems: 'center',
 		backgroundColor: '#F9F8F8'
 	},
 	topContainerStyle: {
 		flexDirection: 'row',
 		justifyContent: 'center',
-		marginTop: 60
+		marginTop: 40
 	},
 	subTopContainerStyle: {
 		flexDirection: 'column',
 		justifyContent: 'center',
-		marginTop: 16
+		marginTop: 16,
+		paddingLeft: 20,
+		paddingRight: 20,
+		paddingTop: 15,
+		paddingBottom: 15,
+		backgroundColor: 'white',
+		width: '95%',
+		borderRadius: 20
 	},
 	textStyle: {
 		fontSize: 28,
 		fontWeight: 'bold'
 	},
-	subTextStyle: {
-		fontSize: 20,
-		fontWeight: 'bold'
+	achievementStyle: {
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+	medalStyle: {
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+		height: 80,
+		marginTop: 20,
+		marginBottom: 4
+	},
+	expTextStyle: {
+		fontWeight: 'bold',
+		fontSize: 18,
+		color: 'white'
+	},
+	recordTextStyle: {
+		color: 'white'
+	},
+	recordStyle: {
+		backgroundColor: '#7E7F9A',
+		marginTop: 5,
+		marginBottom: 5,
+		padding: 10,
+		borderRadius: 10
 	},
 	bottomContainerStyle: {
 		flexDirection: 'row',
