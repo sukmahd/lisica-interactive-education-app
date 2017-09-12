@@ -10,6 +10,12 @@ export const game_over = () => {
   }
 }
 
+export const reset_game = () => {
+  return {
+    type: 'RESET_GAME'
+  }
+}
+
 export const try_again = () => {
   return{
     type: 'TRY_AGAIN'
