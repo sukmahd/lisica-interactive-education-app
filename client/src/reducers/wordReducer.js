@@ -23,6 +23,8 @@ export default (state = initialState, actions) => {
       return {...state, user_uid: null, email: 'testing@gmail.com'}
     case 'USER_LOGIN':
       return {...state, user_uid: actions.payload.data.uid, email: actions.payload.data.providerData[0].uid, fetch: true}
+    case 'GAGAL_LOGIN':
+      return{...state, user_uid: null}
     case 'SET_WORDS':
       return {...state, words: actions.payload.words, fetch: true}
     case 'SET_WORD':

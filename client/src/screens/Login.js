@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, KeyboardAvoidingView } from 'react-native';
+import { View, Text, KeyboardAvoidingView, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 
 import { user_login, setModalHide } from '../actions';
@@ -22,19 +22,23 @@ class Login extends Component {
     }
   }
 
-  async onButtonPress() {
-    const userEmail = this.state.email;
-    const userPassword = this.state.password;
-
-    this.props.pengguna_login(userEmail, userPassword);
-    
-    if (this.props.user_masuk) {
+  componentWillReceiveProps(nextProps){
+    if (nextProps.user_masuk) {
       console.log('Data login bener')
       this.onLoginSuccess()
     } else {
       console.log('Ada kesalahan login, alias state user_uid kosong')
       this.onLoginFail()
     }
+  }
+
+  async onButtonPress() {
+    const userEmail = this.state.email;
+    const userPassword = this.state.password;
+
+    this.props.pengguna_login(userEmail, userPassword);
+    
+    
   }
 
   onLoginSuccess() {
@@ -92,6 +96,10 @@ class Login extends Component {
 
     return (
       <KeyboardAvoidingView behavior="padding" style={parentContainerStyle} >
+
+        <StatusBar
+					hidden={true}
+				/>
 
         <View style={topContainerStyle}>
 					<ButtonSmall
