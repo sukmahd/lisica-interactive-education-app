@@ -30,8 +30,9 @@ class GameOver extends Component {
 		    return;
 		  }
 		  // loaded successfully
-		  console.log('duration in seconds: ' + endSound.getDuration() + 'number of channels: ' + endSound.getNumberOfChannels());
+		  console.log('volume' + endSound.getVolume() + ' duration in seconds: ' + endSound.getDuration() + 'number of channels: ' + endSound.getNumberOfChannels());
 
+			endSound.setVolume(1)
 
 			// Play the sound with an onEnd callback
 			endSound.play((success) => {
