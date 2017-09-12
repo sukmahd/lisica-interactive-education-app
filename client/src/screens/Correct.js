@@ -27,7 +27,10 @@ class Correct extends Component {
 		const { navigate } = this.props.navigation;
 		this.props.save_data(this.props.word, true)
 		this.props.hapus_kata(this.props.words[0])
+		console.log(this.props.words[0], 'index ke  0 1');
 		this.props.next_word(this.props.words[0])
+		console.log(this.props.words, 'ini words 2');
+		console.log(this.props.word, 'ini kata 3');
 		if(this.props.words.length == 0){
 			navigate('GameOverScreen')
 		}else {

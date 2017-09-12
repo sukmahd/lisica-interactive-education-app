@@ -24,7 +24,7 @@ export default (state = initialState, actions) => {
     case 'GAME_OVER':
       return {...state, game: true, count: 0}
     case 'POST_RECORD':
-      return {...state, collections: actions.payload.data, fetch: true }
+      return {...state, collections: state.collections.concat(actions.payload.data), fetch: true }
     case 'GET_RECORD':
       return {...state, records: actions.payload.data, fetch: true}
     case 'REMOVE_WORD':
