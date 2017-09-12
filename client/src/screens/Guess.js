@@ -153,6 +153,8 @@ class Guess extends Component {
 		this.props.save_data(this.props.word, false)
 		this.props.hapus_kata(this.props.words[0])
 		this.props.next_word(this.props.words[0])
+		console.log(this.props.words, 'ini words');
+		console.log(this.props.word, 'ini kata');
 		if(this.props.words.length == 0){
 			navigate('GameOverScreen')
 		}else {

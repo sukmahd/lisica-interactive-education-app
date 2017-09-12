@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
+import { connect } from 'react-redux'
 
 import {
 	ButtonSmall,
@@ -21,6 +22,7 @@ class GameOver extends Component {
 	}
 
 	render() {
+		console.log(this.props.collections);
 		const {
 			topContainerStyle,
 			subTopContainerStyle,
@@ -48,14 +50,19 @@ class GameOver extends Component {
 				</View>
 
 				<View style={subTopContainerStyle}>
-					<Text style={subTextStyle}>
-						+5 Exp!
-					</Text>
+					{
+						this.props.collections.map( (data, i) => {
+							return (<Text key={i} style={subTextStyle}>
+								{data.success ?  '+5 Exp!' : '+0 Exp'}
+								word: {data.word}, answer: {data.answer}, repeat: {data.repeat}
+							</Text>)
+						})
+					}
 				</View>
 
-				<View style={midContainerStyle}>
+				{/* <View style={midContainerStyle}>
 					<Image style={imageStyle} source={require('../assets/images/Medals.png')} />
-				</View>
+				</View> */}
 
 				<View style={bottomContainerStyle}>
 					<ButtonBig onPress={() => navigate('CameraComponentScreen')}>
@@ -86,7 +93,7 @@ const styles = {
 		marginTop: 60
 	},
 	subTopContainerStyle: {
-		flexDirection: 'row',
+		flexDirection: 'column',
 		justifyContent: 'center',
 		marginTop: 16
 	},
@@ -116,4 +123,10 @@ const styles = {
 	},
 }
 
-export default GameOver;
+const mapStateToProps = (state) => {
+	return {
+		collections: state.wordStore.collections
+	}
+}
+
+export default connect(mapStateToProps)(GameOver);
