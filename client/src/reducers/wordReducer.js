@@ -8,11 +8,21 @@ const initialState = {
   collections: [],
   records: [],
   try: 0,
-  email: 'testing@gmail.com'
+  email: 'testing@gmail.com',
+  user_uid: '',
+  modal_visible: false
 }
 
 export default (state = initialState, actions) => {
   switch (actions.type) {
+    case 'SET_MODAL_HIDE':
+      return {...state, modal_visible: false}
+    case 'SET_MODAL_VISIBLE':
+      return {...state, modal_visible: true }
+    case 'LOG_OUT':
+      return {...state, user_uid: null, email: 'testing@gmail.com'}
+    case 'USER_LOGIN':
+      return {...state, user_uid: actions.payload.data.uid, email: actions.payload.data.providerData[0].uid, fetch: true}
     case 'SET_WORDS':
       return {...state, words: actions.payload.words, fetch: true}
     case 'SET_WORD':

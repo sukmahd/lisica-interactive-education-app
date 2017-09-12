@@ -1,29 +1,48 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar, Modal, TouchableHighlight } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 
+import Login from '../screens/Login';
 import {
 	ButtonSmall,
 	ButtonBig,
 	InputRounded
 } from '../components/common';
+import { setModalVisible, loggingUserOut } from '../actions';
 
 class ParentOption extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state= {
-			username: '',
-			modalVisible: false
+			username: ''
+		}
+	}
+
+	renderLoginOrLogoutButton() {
+		if (this.props.user_masuk) {
+			return (
+				<ButtonBig
+				onPress={() => this.props.user_keluar()}
+				>
+					<Text>LOG OUT</Text>
+				</ButtonBig>
+			)
+		} else {
+			
+			return (
+				<ButtonBig
+				onPress={() => this.props.munculin_modal()}
+				>
+					<Text>LOG IN</Text>
+				</ButtonBig>
+			)
 		}
 	}
 
 	static navigationOptions = {
 		header: null,
-	}
-
-	setModalVisible(visible) {
-		this.setState({modalVisible: visible});
 	}
 
 	render() {
@@ -48,26 +67,29 @@ class ParentOption extends Component {
 
 				<Modal
 					animationType="slide"
-					transparent={false}
-					visible={this.state.modalVisible}
+					transparent={true}
+					visible={this.props.modal_visible}
 					onRequestClose={() => {alert("Modal has been closed.")}}
 				>
+				<View 
+					style={{
+						flex: 1,
+						flexDirection: 'column',
+						justifyContent: 'center',
+						alignItems: 'center',
+						backgroundColor: 'rgba(249,248,248,0.9)'
+					}}
+				>
 					<View style={{
-						marginTop: 22,
-						height: '80%'
+							width: '90%',
+							height: '70%'
+							
 						}}
 					>
-						<View>
-							<Text>Hello World!</Text>
-
-							<TouchableHighlight onPress={() => {
-							this.setModalVisible(!this.state.modalVisible)
-							}}>
-							<Text>Hide Modal</Text>
-							</TouchableHighlight>
-
-						</View>
+						<Login />
 					</View>
+				</View>
+					
 				</Modal>
 
 				<View style={topContainerStyle}>
@@ -82,11 +104,7 @@ class ParentOption extends Component {
 
 				<View style={midContainerStyle}>
 					<View style={bottomContainerStyle}>
-						<ButtonBig
-						onPress={() => this.setModalVisible(true)}
-						>
-							<Text>LOG IN</Text>
-						</ButtonBig>
+						{this.renderLoginOrLogoutButton()}
 					</View>
 
 					<View style={bottomContainerStyle}>
@@ -125,4 +143,18 @@ const styles = {
 	}
 }
 
-export default ParentOption;
+const mapStateToProps = (state) => {
+	return {
+		modal_visible: state.wordStore.modal_visible,
+		user_masuk: state.wordStore.user_uid
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		munculin_modal: () => dispatch(setModalVisible()),
+		user_keluar: () => dispatch(loggingUserOut())
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ParentOption);

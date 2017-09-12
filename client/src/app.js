@@ -16,14 +16,16 @@ import ListObjects from './screens/ListObjects';
 import Camera from './screens/Camera';
 import DetailGraph from './screens/DetailGraph';
 import CameraComponent from './screens/CameraComponent';
+import Login from './screens/Login';
 
 const AppNavigator = StackNavigator({
-	MainMenuScreen: { screen: MainMenu },
+  MainMenuScreen: { screen: MainMenu },
 	ParentOptionScreen: { screen: ParentOption },
+	LoginScreen: { screen: Login },
+	GuessScreen: { screen: Guess },
 	DetailGraphScreen: { screen: DetailGraph },
 	CameraComponentScreen: { screen: CameraComponent },
 	ListObjectsScreen: { screen: ListObjects },
-	GuessScreen: { screen: Guess },
 	CorrectScreen: { screen: Correct },
 	WrongScreen: { screen: Wrong },
 	GameOverScreen: { screen: GameOver },
