@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
-
 import Tts from 'react-native-tts';
 import Voice from 'react-native-voice';
 import { connect } from 'react-redux'
-import { set_word, remove_word, set_answer } from '../actions'
+import SpinnerSpinKit from 'react-native-spinkit'
+import axios from 'axios'
 
+import { set_word, remove_word, set_answer,post_record } from '../actions'
 import {
 	ButtonSmall,
 	ButtonBig,
@@ -25,7 +26,9 @@ class Guess extends Component {
       results: [],
       partialResults: [],
 			username: 'Lisica',
-			status: ''
+			status: '',
+			fetchingImage: false,
+			imageURL: ''
     };
     Voice.onSpeechStart = this.onSpeechStart.bind(this);
     Voice.onSpeechRecognized = this.onSpeechRecognized.bind(this);
@@ -41,6 +44,18 @@ class Guess extends Component {
 		header: null,
 	}
 
+	async searchImage () {
+		let self = this
+		await axios.get(`https://api.qwant.com/api/search/images?count=1&offset=1&q=${this.props.word}`)
+		.then(resp => {
+			console.log(resp.data.data.result.items[0].media);
+			self.setState({ imageURL: resp.data.data.result.items[0].media, fetchingImage: false })
+		})
+		.catch(err => {
+			console.log(err)
+			self.setState({ fetchingImage: false })
+		})
+	}
 
   ngomong(word){
     Tts.speak(word);
@@ -135,13 +150,21 @@ class Guess extends Component {
 
 	next_stage() {
 		const { navigate } = this.props.navigation;
+		this.props.save_data(this.props.word, false)
 		this.props.hapus_kata(this.props.words[0])
 		this.props.next_word(this.props.words[0])
+		console.log(this.props.words, 'ini words');
+		console.log(this.props.word, 'ini kata');
 		if(this.props.words.length == 0){
 			navigate('GameOverScreen')
 		}else {
 			navigate('GuessScreen')
 		}
+	}
+
+	componentWillMount () {
+		this.setState({ fetchingImage: true })
+		this.searchImage()
 	}
 
 	render() {
@@ -150,6 +173,7 @@ class Guess extends Component {
 			bottomContainerStyle,
 			parentContainerStyle,
 			imageStyle,
+			externalImageStyle,
 			midContainerStyle,
 			textStyle,
 			imgContainerStyle,
@@ -179,7 +203,17 @@ class Guess extends Component {
 
 				<View style={topContainerStyle}>
 					<View style={imgContainerStyle}>
-						<Image style={imageStyle} source={require('../assets/images/XMLID_730_.png')} />
+						{ this.state.fetchingImage
+							? <SpinnerSpinKit
+	                type="Wave"
+	                isVisible={ true }
+	                size={ 100 }
+	                color="#5887FF"
+              	/>
+							: this.state.imageURL
+								? <Image style={ externalImageStyle } source={{ uri: this.state.imageURL }} />
+								: <Image style={ imageStyle } source={ require('../assets/images/XMLID_730_.png') } />
+						}
 					</View>
 					{this.state.end ? <Spinner feedback="Processing..."/> : <View style={guessAnswerStyle}>
 						<ButtonSmall
@@ -263,6 +297,11 @@ const styles = {
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
+	externalImageStyle: {
+		resizeMode: 'center',
+		width: 222,
+		height: 222
+	},
 	midContainerStyle: {
 		marginTop: 60,
 		flexDirection: 'row',
@@ -282,6 +321,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
+		save_data: (data, status) => dispatch(post_record(data, status)),
 		hapus_kata: (data) => dispatch(remove_word(data)),
 		next_word: (data) => dispatch(set_word(data)),
 		set_answer: (data) => dispatch(set_answer(data))
