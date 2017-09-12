@@ -71,6 +71,11 @@ class ParentOption extends Component {
 					visible={this.props.modal_visible}
 					onRequestClose={() => {alert("Modal has been closed.")}}
 				>
+
+					<StatusBar
+						hidden={true}
+					/>
+
 				<View 
 					style={{
 						flex: 1,
@@ -80,12 +85,20 @@ class ParentOption extends Component {
 						backgroundColor: 'rgba(249,248,248,0.9)'
 					}}
 				>
+					<StatusBar
+						hidden={true}
+					/>
 					<View style={{
 							width: '90%',
 							height: '70%'
 							
 						}}
 					>
+
+						<StatusBar
+							hidden={true}
+						/>
+
 						<Login />
 					</View>
 				</View>
