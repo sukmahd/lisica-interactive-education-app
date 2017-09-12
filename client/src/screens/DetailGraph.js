@@ -126,7 +126,6 @@ class DetailGraph extends Component {
         zeroAxis: false,
         orient: 'bottom',
         label: {
-
           fontSize: 8,
           fontWeight: true,
           fill: '#34495E'
@@ -140,7 +139,6 @@ class DetailGraph extends Component {
         zeroAxis: false,
         orient: 'left',
         label: {
-
           fontSize: 12,
           fontWeight: true,
           fill: '#34495E'
@@ -172,7 +170,6 @@ class DetailGraph extends Component {
         zeroAxis: false,
         orient: 'bottom',
         label: {
-
           fontSize: 8,
           fontWeight: true,
           fill: '#34495E'
@@ -186,7 +183,6 @@ class DetailGraph extends Component {
         zeroAxis: false,
         orient: 'left',
         label: {
-
           fontSize: 12,
           fontWeight: true,
           fill: '#34495E'
@@ -199,12 +195,14 @@ class DetailGraph extends Component {
         <ScrollView style={[ styles.container, { backgroundColor: '#FEFDFF' } ]}>
             {/* SUCCESS RATE */}
           { this.state.isLoading ?
-            <Spinner
-              type="Bounce"
-              isVisible={ true }
-              size={ 100 }
-              color="#5887FF"
-            />
+            <View style={{ flex: 1, flexDirection: 'column', marginTop: 130, justifyContent: 'center', alignItems: 'center' }}>
+              <Spinner
+                type="ThreeBounce"
+                isVisible={ true }
+                size={ 150 }
+                color="#5887FF"
+              />
+            </View>
             :
             <View>
               <View
@@ -262,58 +260,65 @@ class DetailGraph extends Component {
     const SecondRoute = () => {
       return (
         <ScrollView style={[ styles.container, { backgroundColor: '#FEFDFF' } ]}>
+        {/* FAIL RATE */}
+          { this.state.isLoading ?
+            <View style={{ flex: 1, flexDirection: 'column', marginTop: 130, justifyContent: 'center', alignItems: 'center' }}>
+              <Spinner
+                type="ThreeBounce"
+                isVisible={ true }
+                size={ 150 }
+                color="#5887FF"
+              />
+            </View>
+            :
+            <View>
+              <View
+                style={{ marginTop: 10 }}
+              >
+                <Text
+                  style={{
+                    fontSize: 32,
+                    fontWeight: '700',
+                    left: 20,
+                    letterSpacing: 2,
+                    color: '#CD533B'
+                  }}
+                >
+                  Incorrect
+                </Text>
+              </View>
 
-
-          {/* FAIL RATE */}
-
-          <View
-          style={{
-            marginTop: 10
-          }}
-          >
-          <Text
-          style={{
-              fontSize: 32,
-              fontWeight: '700',
-              left: 20,
-              letterSpacing: 2,
-              color: '#CD533B'
-            }}
-          >
-            Incorrect
-          </Text>
-          </View>
-
-          <View
-            style={{
-              marginTop: 10,
-              paddingLeft: 20,
-              paddingRight: 20
-            }}
-          >
-          <Text
-          style={{
-            fontSize: 20,
-            letterSpacing: 2,
-            color: '#272838'
-            }}
-          >
-            Attempts Rate (Higher, Better)
-          </Text>
-          <Text
-          style={{
-              fontSize: 15,
-              letterSpacing: 2,
-              color: '#34495e'
-            }}
-          >
-            More attempts, indicates unwillingness to give-up
-          </Text>
-          </View>
-          <ScrollView horizontal={true}>
-
-            <Bar data={failData} options={failChartOptions} accessorKey='repeat'/>
-          </ScrollView>
+              <View
+                style={{
+                  marginTop: 10,
+                  paddingLeft: 20,
+                  paddingRight: 20
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 20,
+                    letterSpacing: 2,
+                    color: '#272838'
+                  }}
+                >
+                  Attempts Rate (Higher, Better)
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 15,
+                    letterSpacing: 2,
+                    color: '#34495e'
+                  }}
+                >
+                  More attempts, indicates unwillingness to give-up
+                </Text>
+              </View>
+              <ScrollView horizontal={true}>
+                <Bar data={failData} options={failChartOptions} accessorKey='repeat'/>
+              </ScrollView>
+            </View>
+          }
         </ScrollView>
       )
     }
