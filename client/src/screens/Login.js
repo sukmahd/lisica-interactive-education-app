@@ -10,6 +10,8 @@ import {
   ButtonSmall
 } from '../components/common';
 
+StatusBar.setHidden(true);
+
 class Login extends Component {
   constructor(props) {
     super(props)

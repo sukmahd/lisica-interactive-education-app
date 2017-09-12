@@ -11,6 +11,8 @@ import {
 } from '../components/common';
 import { setModalVisible, loggingUserOut } from '../actions';
 
+StatusBar.setHidden(true);
+
 class ParentOption extends Component {
 	constructor(props) {
 		super(props);
@@ -70,6 +72,7 @@ class ParentOption extends Component {
 					transparent={true}
 					visible={this.props.modal_visible}
 					onRequestClose={() => {alert("Modal has been closed.")}}
+					hidden={true}
 				>
 
 					<StatusBar
@@ -143,7 +146,7 @@ const styles = {
 	topContainerStyle: {
 		flexDirection: 'row',
 		justifyContent: 'flex-start',
-		paddingTop: 20,
+		paddingTop: 30,
 		paddingLeft: 20
 	},
 	bottomContainerStyle: {
