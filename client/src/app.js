@@ -18,6 +18,8 @@ import DetailGraph from './screens/DetailGraph';
 import CameraComponent from './screens/CameraComponent';
 
 const AppNavigator = StackNavigator({
+	GameOverScreen: { screen: GameOver },
+	
 	MainMenuScreen: { screen: MainMenu },
 	ParentOptionScreen: { screen: ParentOption },
 	DetailGraphScreen: { screen: DetailGraph },
@@ -26,7 +28,6 @@ const AppNavigator = StackNavigator({
 	GuessScreen: { screen: Guess },
 	CorrectScreen: { screen: Correct },
 	WrongScreen: { screen: Wrong },
-	GameOverScreen: { screen: GameOver },
 	CameraScreen: { screen: Camera }
 })
 

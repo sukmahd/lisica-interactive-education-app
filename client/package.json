@@ -19,6 +19,7 @@
     "react-native-image-resizer": "^1.0.0",
     "react-native-pathjs-charts": "0.0.31",
     "react-native-rename": "^2.1.5",
+    "react-native-sound": "^0.10.4",
     "react-native-speech": "^0.1.2",
     "react-native-spinkit": "^1.1.1",
     "react-native-tab-view": "0.0.69",
