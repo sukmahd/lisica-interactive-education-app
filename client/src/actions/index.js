@@ -29,6 +29,15 @@ export const setModalVisible = () => {
   }
 }
 
+export const set_username = (name) => {
+  return {
+    type: 'SET_NAME',
+    payload: {
+      data: name
+    }
+  }
+}
+
 export const setModalHide = () => {
   return {
     type: 'SET_MODAL_HIDE'

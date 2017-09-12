@@ -67,6 +67,7 @@ class MainMenu extends Component {
 			started: false,
 			status: e.value[0]
     });
+
   }
   onSpeechPartialResults(e) {
     this.setState({
@@ -118,10 +119,11 @@ class MainMenu extends Component {
 		Tts.addEventListener('tts-finish', (event) => {
 			console.log('masuk');
 			this._startRecognizing(this)
-			if(this.state.end){
-				Tts.speak(`Hai, ${this.state.status}!`)
-			}
 		});
+	}
+
+	componentWillReceiveProps(nextProps){
+
 	}
 
 	render() {
