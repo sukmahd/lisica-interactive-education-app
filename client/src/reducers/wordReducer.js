@@ -43,6 +43,8 @@ export default (state = initialState, actions) => {
       return {...state, words: state.words.filter(kata => {
         return kata != actions.payload.word
       })}
+    case 'RESET_GAME':
+      return {...state, collections: []}
     case 'TRY_AGAIN':
       return {...state, try: state.try + 1}
     default:

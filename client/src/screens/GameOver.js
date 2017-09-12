@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image, KeyboardAvoidingView, StatusBar } from 'react-native';
 import { connect } from 'react-redux'
+import { reset_game } from '../actions'
 
 import Sound from 'react-native-sound';
 
@@ -45,6 +46,13 @@ class GameOver extends Component {
 			  }
 			});
 		});
+	}
+
+	reset_game(direction) {
+		const { navigate } = this.props.navigation
+		this.props.reset()
+
+		navigate(direction)
 	}
 
 	componentWillMount () {
@@ -95,13 +103,13 @@ class GameOver extends Component {
 				</View> */}
 
 				<View style={bottomContainerStyle}>
-					<ButtonBig onPress={() => navigate('CameraComponentScreen')}>
+					<ButtonBig onPress={() => this.reset_game('CameraComponentScreen')}>
 						<Text>AGAIN!</Text>
 					</ButtonBig>
 				</View>
 
 				<View style={bottomContainerStyle}>
-					<ButtonBig onPress={() => navigate('MainMenuScreen')} backgroundColor="#EB9486" >
+					<ButtonBig onPress={() => this.reset_game('MainMenuScreen')} backgroundColor="#EB9486" >
 						<Text>MAIN MENU!</Text>
 					</ButtonBig>
 				</View>
@@ -159,4 +167,10 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps)(GameOver);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		reset: () => dispatch(reset_game())
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GameOver);
