@@ -2,18 +2,18 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, ART, ScrollView, Button, Text, View } from 'react-native'
 import { Bar } from 'react-native-pathjs-charts'
-import { ArtyChartyPie } from 'arty-charty';
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 import { NavigationActions } from 'react-navigation'
+import Spinner from 'react-native-spinkit'
 
 import { ButtonSmall } from '../components/common';
 import { get_record } from '../actions'
 
 let kidsProgressDummy = [
-  { success: true, repeat: 0, word: 'water bottle' },
-  { success: false, repeat: 0, word: 'bottle' },
-  { success: true, repeat: 5, word: 'toy' },
-  { success: false, repeat: 3, word: 'electronics' }
+  { success: true, repeat: 0, word: 'water bottle', answer: 'water bottle' },
+  { success: false, repeat: 0, word: 'bottle', answer: 'headset' },
+  { success: true, repeat: 5, word: 'toy', answer: 'toy' },
+  { success: false, repeat: 3, word: 'electronics', answer: 'laptop' }
 ]
 
 kidsProgressDummy.forEach(k => {
@@ -42,13 +42,13 @@ class DetailGraph extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      records: [],
-      kidsSuccess: 'empty',
-      kidsFail: 'empty',
+      kidsSuccess: kidsSuccessDummy,
+      kidsFail: kidsFailDummy,
+      isLoading: false,
       index: 0,
       routes: [
-        { key: '1', title: 'Machine Learning' },
-        { key: '2', title: 'Kid\'s Progress ' },
+        { key: '1', title: 'Kid\'s Success' },
+        { key: '2', title: 'Kid\'s Failure ' },
       ],
     };
   }
@@ -58,8 +58,6 @@ class DetailGraph extends Component {
       Object.defineProperty(k, 'name', Object.getOwnPropertyDescriptor(k, 'word'))
       delete k['word']
     })
-    this.setState({ records: kidsProgress })
-    console.log('hihihi')
     console.log('hehehe', kidsProgress)
     this.kidsSuccessAndFailFunc(kidsProgress)
   }
@@ -75,11 +73,11 @@ class DetailGraph extends Component {
     kidsSuccess = kidsSuccess.slice(Math.max(kidsSuccess.length - 10, 0))
     kidsFail = kidsFail.slice(Math.max(kidsFail.length - 10, 0))
 
-    this.setState({ kidsSuccess, kidsFail })
+    this.setState({ kidsSuccess, kidsFail, isLoading: false })
   }
 
   componentWillMount () {
-    let self = this
+    this.setState({ isLoading: true })
     this.props.getRecord(this.props.email)
   }
 
@@ -93,8 +91,8 @@ class DetailGraph extends Component {
   _renderHeader = props => <TabBar {...props} style={styles.tabbar} indicatorStyle={styles.indicator} />;
 
   render() {
-    let kidsSuccess = this.state.kidsSuccess === 'empty' ? kidsSuccessDummy : this.state.kidsSuccess
-    let kidsFail = this.state.kidsFail === 'empty' ? kidsFailDummy : this.state.kidsFail
+    let kidsSuccess = this.state.kidsSuccess
+    let kidsFail = this.state.kidsFail
 
     let successData = [
       kidsSuccess
@@ -128,7 +126,6 @@ class DetailGraph extends Component {
         zeroAxis: false,
         orient: 'bottom',
         label: {
-
           fontSize: 8,
           fontWeight: true,
           fill: '#34495E'
@@ -142,7 +139,6 @@ class DetailGraph extends Component {
         zeroAxis: false,
         orient: 'left',
         label: {
-
           fontSize: 12,
           fontWeight: true,
           fill: '#34495E'
@@ -174,7 +170,6 @@ class DetailGraph extends Component {
         zeroAxis: false,
         orient: 'bottom',
         label: {
-
           fontSize: 8,
           fontWeight: true,
           fill: '#34495E'
@@ -188,7 +183,6 @@ class DetailGraph extends Component {
         zeroAxis: false,
         orient: 'left',
         label: {
-
           fontSize: 12,
           fontWeight: true,
           fill: '#34495E'
@@ -199,120 +193,132 @@ class DetailGraph extends Component {
     const FirstRoute = () => {
       return (
         <ScrollView style={[ styles.container, { backgroundColor: '#FEFDFF' } ]}>
-          <ArtyChartyPie
-            data={{
-            data: [
-              {value: .6, color: '#EB9486'},
-              {value: 5, color: '#93E5AB'},
-              {value: 3, color: '#66C3FF'}
-              ]
-            }}/>
+            {/* SUCCESS RATE */}
+          { this.state.isLoading ?
+            <View style={{ flex: 1, flexDirection: 'column', marginTop: 130, justifyContent: 'center', alignItems: 'center' }}>
+              <Spinner
+                type="ThreeBounce"
+                isVisible={ true }
+                size={ 150 }
+                color="#5887FF"
+              />
+            </View>
+            :
+            <View>
+              <View
+                style={{
+                  marginTop: 10
+                }}
+              >
+                <Text
+                style={{
+                    fontSize: 32,
+                    fontWeight: '700',
+                    left: 20,
+                    letterSpacing: 2,
+                    color: '#66C3FF'
+                  }}
+                >
+                  Correct
+                </Text>
+              </View>
+
+              <View
+                style={{
+                  marginTop: 10,
+                  paddingLeft: 20,
+                  paddingRight: 20
+                }}
+              >
+                <Text
+                style={{
+                    fontSize: 20,
+                    letterSpacing: 2,
+                    color: '#272838'
+                  }}
+                >
+                  Attempts Rate (Lower, Better)
+                </Text>
+                <Text
+                style={{
+                    fontSize: 15,
+                    letterSpacing: 2,
+                    color: '#34495e'
+                  }}
+                >
+                  Success with fewer attempts, indicates faster learning curve
+                </Text>
+              </View>
+              <ScrollView horizontal={true}>
+                <Bar data={successData} options={successChartOptions} accessorKey='repeat'/>
+              </ScrollView>
+            </View>
+          }
         </ScrollView>
       )
     }
     const SecondRoute = () => {
       return (
         <ScrollView style={[ styles.container, { backgroundColor: '#FEFDFF' } ]}>
-          {/* FAIL RATE */}
-          <View
-            style={{
-              marginTop: 10
-            }}
-          >
-            <Text
-            style={{
-                fontSize: 32,
-                fontWeight: '700',
-                left: 20,
-                letterSpacing: 2,
-                color: '#66C3FF'
-              }}
-            >
-              Correct
-            </Text>
-          </View>
+        {/* FAIL RATE */}
+          { this.state.isLoading ?
+            <View style={{ flex: 1, flexDirection: 'column', marginTop: 130, justifyContent: 'center', alignItems: 'center' }}>
+              <Spinner
+                type="ThreeBounce"
+                isVisible={ true }
+                size={ 150 }
+                color="#5887FF"
+              />
+            </View>
+            :
+            <View>
+              <View
+                style={{ marginTop: 10 }}
+              >
+                <Text
+                  style={{
+                    fontSize: 32,
+                    fontWeight: '700',
+                    left: 20,
+                    letterSpacing: 2,
+                    color: '#CD533B'
+                  }}
+                >
+                  Incorrect
+                </Text>
+              </View>
 
-          <View
-            style={{
-              marginTop: 10,
-              paddingLeft: 20,
-              paddingRight: 20
-            }}
-          >
-          <Text
-          style={{
-              fontSize: 20,
-              letterSpacing: 2,
-              color: '#272838'
-            }}
-          >
-            Attempts Rate (Lower, Better)
-          </Text>
-          <Text
-          style={{
-              fontSize: 15,
-              letterSpacing: 2,
-              color: '#34495e'
-            }}
-          >
-            Success with fewer attempts, indicates faster learning curve
-          </Text>
-          </View>
-          <ScrollView horizontal={true}>
-
-            <Bar data={successData} options={successChartOptions} accessorKey='repeat'/>
-          </ScrollView>
-
-          {/* FAIL RATE */}
-
-          <View
-          style={{
-            marginTop: 10
-          }}
-          >
-          <Text
-          style={{
-              fontSize: 32,
-              fontWeight: '700',
-              left: 20,
-              letterSpacing: 2,
-              color: '#CD533B'
-            }}
-          >
-            Incorrect
-          </Text>
-          </View>
-
-          <View
-            style={{
-              marginTop: 10,
-              paddingLeft: 20,
-              paddingRight: 20
-            }}
-          >
-          <Text
-          style={{
-            fontSize: 20,
-            letterSpacing: 2,
-            color: '#272838'
-            }}
-          >
-            Attempts Rate (Higher, Better)
-          </Text>
-          <Text
-          style={{
-              fontSize: 15,
-              letterSpacing: 2,
-              color: '#34495e'
-            }}
-          >
-            More attempts, indicates unwillingness to give-up
-          </Text>
-          </View>
-          <ScrollView horizontal={true}>
-
-            <Bar data={failData} options={failChartOptions} accessorKey='repeat'/>
-          </ScrollView>
+              <View
+                style={{
+                  marginTop: 10,
+                  paddingLeft: 20,
+                  paddingRight: 20
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 20,
+                    letterSpacing: 2,
+                    color: '#272838'
+                  }}
+                >
+                  Attempts Rate (Higher, Better)
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 15,
+                    letterSpacing: 2,
+                    color: '#34495e'
+                  }}
+                >
+                  More attempts, indicates unwillingness to give-up
+                </Text>
+              </View>
+              <ScrollView horizontal={true}>
+                <Bar data={failData} options={failChartOptions} accessorKey='repeat'/>
+              </ScrollView>
+            </View>
+          }
         </ScrollView>
       )
     }
@@ -347,14 +353,13 @@ class DetailGraph extends Component {
           </Text>
         </View>
         <TabViewAnimated
-        style={styles.container}
-        navigationState={this.state}
-        renderScene={_renderScene}
-        renderHeader={this._renderHeader}
-        onIndexChange={this._handleIndexChange}
-      />
+          style={styles.container}
+          navigationState={this.state}
+          renderScene={_renderScene}
+          renderHeader={this._renderHeader}
+          onIndexChange={this._handleIndexChange}
+        />
       </View>
-
     )
   }
 }
