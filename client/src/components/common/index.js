@@ -7,3 +7,4 @@ export * from './Spinner';
 export * from './ButtonSmall';
 export * from './InputRounded';
 export * from './ButtonBig';
+export * from './InputRoundedBig';

@@ -16,6 +16,26 @@ export const try_again = () => {
   }
 }
 
+export const setModalVisible = () => {
+  console.log('Masuk action reducer, cuy!')
+  return {
+    type: 'SET_MODAL_VISIBLE'
+  }
+}
+
+export const setModalHide = () => {
+  return {
+    type: 'SET_MODAL_HIDE'
+  }
+}
+
+export const loggingUserOut = () => {
+  console.log('Harusnya log out kalo masuk sini')
+  return {
+    type: 'LOG_OUT'
+  }
+}
+
 export const set_words = (data) => {
   return (dispatch) => {
     dispatch(fetching())
@@ -58,6 +78,31 @@ export const remove_word = (data) => {
     payload: {
       word: data
     }
+  }
+}
+
+export const user_login = (email, password) => {
+  return (dispatch, getState) => {
+    dispatch(fetching())
+    console.log('Masuk user_login')
+    console.log(`Props dari component: ${email} dan ${password}`)
+    axios.post('https://reactchallengeapi.appspot.com/user/login', {
+      email: email,
+      password: password
+    })
+    .then(resp => {
+      console.log('Resp data KEY (user_uid): ',resp.data.uid)
+      console.log('Email user from uid: ',resp.data.providerData[0].uid)
+      dispatch({
+        type: 'USER_LOGIN',
+        payload: {
+          data: resp.data
+        }
+      })
+    })
+    .catch(err => {
+      console.log('Error nih: ', err)
+    })
   }
 }
 
