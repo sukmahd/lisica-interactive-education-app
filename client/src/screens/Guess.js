@@ -150,6 +150,7 @@ class Guess extends Component {
 
 	next_stage() {
 		const { navigate } = this.props.navigation;
+		this.props.set_answer('Skip')
 		this.props.save_data(this.props.word, false)
 		this.props.hapus_kata(this.props.words[0])
 		this.props.next_word(this.props.words[0])
