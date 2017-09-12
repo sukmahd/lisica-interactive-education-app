@@ -102,6 +102,9 @@ export const user_login = (email, password) => {
     })
     .catch(err => {
       console.log('Error nih: ', err)
+      dispatch({
+        type: 'GAGAL_LOGIN'
+      })
     })
   }
 }
