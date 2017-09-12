@@ -10,7 +10,8 @@ const initialState = {
   try: 1,
   email: 'testing@gmail.com',
   user_uid: '',
-  modal_visible: false
+  modal_visible: false,
+  username: ''
 }
 
 export default (state = initialState, actions) => {
@@ -31,6 +32,8 @@ export default (state = initialState, actions) => {
       return {...state, word: actions.payload.word, try:1, fetch: true}
     case 'SET_ANSWER':
       return {...state, answer: actions.payload.answer, fetch: true}
+    case 'SET_NAME':
+      return {...state, username: actions.payload.data}
     case 'FETCHING':
       return {...state, fetch: false}
     case 'GAME_OVER':
