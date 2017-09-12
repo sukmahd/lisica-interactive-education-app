@@ -14,6 +14,9 @@ import {
 	Spinner
 } from '../components/common';
 
+Tts.setDefaultRate(0.4);
+Tts.setDefaultPitch(1.5);
+
 class Guess extends Component {
 	constructor(props) {
     super(props);
@@ -58,7 +61,10 @@ class Guess extends Component {
 	}
 
   ngomong(word){
-    Tts.speak(word);
+		// for (var i = 0; i < word.length; i++) {
+		// 	Tts.speak(word[i])
+		// }
+		Tts.speak(word)
   }
 
   onSpeechStart(e) {
@@ -83,6 +89,11 @@ class Guess extends Component {
   }
   onSpeechResults(e) {
 		const { navigate } = this.props.navigation
+		if(e.value){
+			this.setState({
+				end:true
+			})
+		}
 		const word = e.value.filter( kata => {
 			return this.props.word.toLowerCase() == kata.toLowerCase()
 		})

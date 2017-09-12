@@ -7,7 +7,7 @@ const initialState = {
   count: 0,
   collections: [],
   records: [],
-  try: 0,
+  try: 1,
   email: 'testing@gmail.com',
   user_uid: '',
   modal_visible: false
@@ -28,7 +28,7 @@ export default (state = initialState, actions) => {
     case 'SET_WORDS':
       return {...state, words: actions.payload.words, fetch: true}
     case 'SET_WORD':
-      return {...state, word: actions.payload.word, try:0, fetch: true}
+      return {...state, word: actions.payload.word, try:1, fetch: true}
     case 'SET_ANSWER':
       return {...state, answer: actions.payload.answer, fetch: true}
     case 'FETCHING':
