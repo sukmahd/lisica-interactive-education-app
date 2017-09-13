@@ -194,6 +194,7 @@ class CameraComponent extends Component {
   }
 
   renderCamera () {
+    const { navigate } = this.props.navigation;
     const backNav = NavigationActions.back({
       key: null
     })
@@ -222,7 +223,7 @@ class CameraComponent extends Component {
           <ButtonSmall
 						fontSize={14}
 						width={80}
-						onPress={() => this.props.navigation.dispatch(backNav)}
+						onPress={() => navigate('MainMenuScreen')}
 					>
 						<Text>MAIN</Text>
 					</ButtonSmall>

@@ -203,7 +203,7 @@ class Guess extends Component {
 					hidden={true}
 				/>
 
-				<View style={topBtnContainerStyle}>
+				{/* <View style={topBtnContainerStyle}>
 					<ButtonSmall
 						backgroundColor='#EB9486'
 						fontSize={14}
@@ -212,7 +212,7 @@ class Guess extends Component {
 					>
 						<Text>BACK</Text>
 					</ButtonSmall>
-				</View>
+				</View> */}
 
 				<View style={topContainerStyle}>
 					<View style={imgContainerStyle}>
@@ -284,7 +284,7 @@ const styles = {
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
-		marginTop: 20,
+		marginTop: 70,
 		marginBottom: 20
 	},
 	guessAnswerStyle: {

@@ -20,15 +20,15 @@ import Login from './screens/Login';
 
 const AppNavigator = StackNavigator({
 	MainMenuScreen: { screen: MainMenu },
+	GuessScreen: { screen: Guess },
+	CameraComponentScreen: { screen: CameraComponent },
+	GameOverScreen: { screen: GameOver },
 	ParentOptionScreen: { screen: ParentOption },
 	LoginScreen: { screen: Login },
 	DetailGraphScreen: { screen: DetailGraph },
-	CameraComponentScreen: { screen: CameraComponent },
 	ListObjectsScreen: { screen: ListObjects },
-  GuessScreen: { screen: Guess },
 	CorrectScreen: { screen: Correct },
 	WrongScreen: { screen: Wrong },
-  GameOverScreen: { screen: GameOver },
 	CameraScreen: { screen: Camera }
 })
 

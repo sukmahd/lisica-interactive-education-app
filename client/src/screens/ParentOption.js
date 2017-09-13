@@ -162,7 +162,8 @@ const styles = {
 const mapStateToProps = (state) => {
 	return {
 		modal_visible: state.wordStore.modal_visible,
-		user_masuk: state.wordStore.user_uid
+		user_masuk: state.wordStore.user_uid,
+		collections: state.wordStore.collections
 	}
 }
 
