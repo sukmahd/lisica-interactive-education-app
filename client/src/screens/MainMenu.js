@@ -188,10 +188,10 @@ class MainMenu extends Component {
 					/>
 
 					<ButtonSmall
-						backgroundColor='#7E7F9A'
-						width={30}
-						height={30}
-						marginLeft={15}
+						backgroundColor='#FE5F55'
+						width={40}
+						height={40}
+						marginLeft={20}
 						onPress={() => this.tell_your_name()}
 					>
 						<Text></Text>

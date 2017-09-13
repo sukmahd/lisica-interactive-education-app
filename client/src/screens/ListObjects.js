@@ -153,7 +153,7 @@ const styles = {
 	parentContainerStyle: {
 		flexDirection: 'column',
 		flex: 1,
-		backgroundColor: '#272838'
+		backgroundColor: '#F9F8F8'
 	},
 	topContainerStyle: {
 		flexDirection: 'column',
