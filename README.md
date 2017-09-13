@@ -10,7 +10,7 @@
 2. [Tech to build Lisica?](https://github.com/sukmahd/lisica-interactive-education-app#2-tech-to-build-lisica)
 3. [Getting started](https://github.com/sukmahd/lisica-interactive-education-app#2-tech-to-build-lisica)
 4. [Lisica team](https://github.com/sukmahd/lisica-interactive-education-app#4-lisica-team)
-5. [License](https://github.com/sukmahd/lisica-interactive-education-app#license)
+5. [Feedback and suggestions](https://github.com/sukmahd/lisica-interactive-education-app#5-feedback-and-suggestions)
 
 # 1.What is Lisica?
 Lisica is an educational-purposed app for kids to learn english by capturing picture of objects by their surrounding. The app will tell them 3 objects within the picture, and kids can learn what that objects called in english and practice to pronounce the objects.
