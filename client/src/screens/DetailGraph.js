@@ -47,8 +47,8 @@ class DetailGraph extends Component {
       isLoading: false,
       index: 0,
       routes: [
-        { key: '1', title: 'Kid\'s Success' },
-        { key: '2', title: 'Kid\'s Failure ' },
+        { key: '1', title: 'CORRECT' },
+        { key: '2', title: 'INCORRECT' },
       ],
     };
   }
