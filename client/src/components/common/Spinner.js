@@ -17,14 +17,16 @@ const Spinner = ({ size, feedback }) => {
 
 const styles = {
 	spinnerStyle: {
-		flex: 1,
+		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginTop: 10
 	},
 	textStyle : {
-		marginTop: 5,
-		fontSize: 12
+		marginTop: 15,
+		marginBottom: 15,
+		fontSize: 18,
+		marginLeft: 15
 	}
 }
 

@@ -7,7 +7,8 @@ import { user_login, setModalHide } from '../actions';
 import {
   InputRoundedBig,
   ButtonBig,
-  ButtonSmall
+  ButtonSmall,
+  Spinner
 } from '../components/common';
 
 StatusBar.setHidden(true);
@@ -37,6 +38,11 @@ class Login extends Component {
   async onButtonPress() {
     const userEmail = this.state.email;
     const userPassword = this.state.password;
+
+    this.setState({
+      error: '',
+      loading: true
+    })
 
     this.props.pengguna_login(userEmail, userPassword);
     
@@ -73,14 +79,36 @@ class Login extends Component {
       )
     }
   }
-  
+
   tryToLoginAgain() {
     this.setState({
       email: '',
       password: '',
-      error: ''
+      error: '',
+      loading: false
     })
   }
+  
+  renderButton() {
+    if (this.state.loading) {
+      return (
+        <Spinner 
+          size="small"
+          feedback="Logging you in..."
+        />
+      )
+    } else {
+      return (
+        <ButtonBig
+          onPress={this.onButtonPress.bind(this)}
+        >
+          <Text>LOGIN</Text>
+        </ButtonBig>
+      )
+    }
+  }
+
+  
 
   static navigationOptions = {
     header: null
@@ -131,18 +159,11 @@ class Login extends Component {
             />
           </View>
         </View>
-        
-        
-				
 				
 
         <View style={buttonStyle}>
-        {this.renderFailLoginFeedback()}
-          <ButtonBig
-            onPress={this.onButtonPress.bind(this)}
-          >
-            <Text>LOGIN</Text>
-          </ButtonBig>
+          {this.renderFailLoginFeedback()}
+          {this.renderButton()}
         </View>
       </KeyboardAvoidingView>
     )
