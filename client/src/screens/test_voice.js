@@ -24,6 +24,9 @@ class VoiceTest extends Component {
       started: '',
       results: [],
       partialResults: [],
+      track: 0,
+      testing: '',
+      status: '...'
     };
     Voice.onSpeechStart = this.onSpeechStart.bind(this);
     Voice.onSpeechRecognized = this.onSpeechRecognized.bind(this);
@@ -32,47 +35,73 @@ class VoiceTest extends Component {
     Voice.onSpeechResults = this.onSpeechResults.bind(this);
     Voice.onSpeechPartialResults = this.onSpeechPartialResults.bind(this);
     Voice.onSpeechVolumeChanged = this.onSpeechVolumeChanged.bind(this);
+    Voice.isRecognizing = this.test.bind(this)
   }
-  
+
+  test(e){
+    this.setState({
+      testing: 'done'
+    })
+  }
+
   ngomong(word){
     // for(i = 0; i < word.length; i++) {
     //   Tts.speak(word[i]);
     // }
-    
+
     Tts.speak(word);
   }
-  
+
   onSpeechStart(e) {
     this.setState({
       started: '√',
+      status: 'started'
     });
   }
   onSpeechRecognized(e) {
     this.setState({
+      status: "onSpeechRecognized",
       recognized: '√',
     });
   }
   onSpeechEnd(e) {
     this.setState({
+      status: "onSpeechEnd",
       end: '√',
+      track: 0,
+      loader: false
     });
   }
   onSpeechError(e) {
     this.setState({
+      status: "onSpeechError",
       error: e.error,
     });
   }
   onSpeechResults(e) {
     this.setState({
+      status: "onSpeechResults",
       results: e.value,
     });
   }
   onSpeechPartialResults(e) {
     this.setState({
+      status: "onSpeechPartialResults",
       partialResults: e.value,
     });
   }
   onSpeechVolumeChanged(e) {
+    let currentTrack = this.state.track
+    if(e.value === 10){
+      currentTrack += 1
+      this.setState({
+        status: "onSpeechVolumeChanged",
+        track: currentTrack
+      })
+    }
+    if(currentTrack > 1){
+      loader: true
+    }
     this.setState({
       pitch: e.value,
     });
@@ -113,31 +142,10 @@ class VoiceTest extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native Voice!
+          Welcome to React Native Voice! {this.state.testing}
+          {this.state.track > 1 ? 'loading...' : ' '}
         </Text>
-        <Text style={styles.instructions}>
-          Press the button and start speaking when you hear the beep.
-        </Text>
-        <Text
-          style={styles.stat}>
-          {`Started: ${this.state.started}`}
-        </Text>
-        <Text
-          style={styles.stat}>
-          {`Recognized: ${this.state.recognized}`}
-        </Text>
-        <Text
-          style={styles.stat}>
-          {`Pitch: ${this.state.pitch}`}
-        </Text>
-        <Text
-          style={styles.stat}>
-          {`Error: ${this.state.error}`}
-        </Text>
-        <Text
-          style={styles.stat}>
-          Results
-        </Text>
+        <Text style={{fontSize: 40}}>{`STATUS: ${this.state.status}`}</Text>
         {this.state.results.map((result, index) => {
           return (
             <Button key={`partial-result-${index}`} onPress={() => this.ngomong(result)} title={result} />
