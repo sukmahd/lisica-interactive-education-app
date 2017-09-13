@@ -173,14 +173,16 @@ class MainMenu extends Component {
 						placeholder="Your username"
 						secureTextEntry={false}
 					/>
-				</View>
 
-				<View style={bottomContainerStyle}>
-					<ButtonBig
+					<ButtonSmall
+						backgroundColor='#7E7F9A'
+						width={30}
+						height={30}
+						marginLeft={15}
 						onPress={() => this.tell_your_name()}
 					>
-						<Text>Say Name</Text>
-					</ButtonBig>
+						<Text></Text>
+					</ButtonSmall>
 				</View>
 
 				<View style={bottomContainerStyle}>
