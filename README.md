@@ -88,5 +88,5 @@ This project was made for final project in Coding Bootcamp, [Hacktiv8](https://h
 # License
 MIT
 
-5. Feedback and suggestions
+# 5. Feedback and suggestions
 If you have any idea on how this app should developed. Fire me an email: adithwidyapradipta@gmail.com
