@@ -34,13 +34,13 @@ Lisica uses a number of open source projects to work properly:
 # 3. Getting started
 If you want to test Lisica right in your phone or clone the project to test it on your Xcode simulator or Android Stuido Virtual Device, simply follow this very simple steps.
 
-### Download the .apk to install it on your Android phone
+## Download the .apk to install it on your Android phone
 We provided the .apk files for you to download and test it, in case you wondering how the app will work. And planning to deploy it to Play Store, soon. You can get the .apk [here.](https://drive.google.com/file/d/0B2aHLNEACPkgekVUZWRnLXlGbjg/view?usp=sharing)
 
-### Clone the project and this following steps
+## Clone the project and this following steps
 You can clone this project and run it with your computer and even contribute to us! Follow this step if you want to:
 
-#### 1. git clone
+### 1. git clone
 ```
 HTTP:
 git clone https://github.com/sukmahd/lisica-interactive-education-app.git
@@ -49,12 +49,12 @@ SSH:
 git clone git@github.com:sukmahd/lisica-interactive-education-app.git
 ```
 
-#### 2. Go to lisica app directory
+### 2. Go to lisica app directory
 ```
 cd <lisica folder name>
 ```
 
-#### 3. Setting up the npm and react native link
+### 3. Setting up the npm and react native link
 Go to client folder and run this two important command:
 ```
 npm install
@@ -62,7 +62,7 @@ npm install
 react-native link
 ```
 
-#### 4. Run the react native app (Android and iOS)
+### 4. Run the react native app (Android and iOS)
 If you want to run it on iOS, you need XCode installed and fully set-up in your Mac. And run this:
 ```
 react-native run-ios
