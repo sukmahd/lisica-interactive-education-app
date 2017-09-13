@@ -244,7 +244,7 @@ class Guess extends Component {
 					<ButtonBig
             onPress={this._startRecognizing.bind(this)}
 					>
-						{this.state.started ? <Text>Listening...</Text> : <Text>SPEAK!</Text>}
+						{this.state.started ? this.state.error ? <Text>{this.state.error}</Text> : <Text>Listening...</Text> : <Text>SPEAK!</Text>}
 						<Text>{this.state.results[0]}</Text>
 					</ButtonBig>
 
