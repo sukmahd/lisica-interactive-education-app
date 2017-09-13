@@ -13,7 +13,7 @@ import {
 
 const MedalOfHonor = () => {
 	return (
-		<Image 
+		<Image
 			style={{width: 70, height: 70}}
 			resizeMode="contain"
 			source={require('../assets/images/Medals.png')}
@@ -125,7 +125,7 @@ class GameOver extends Component {
 
 				<View style={topContainerStyle}>
 					<Text style={textStyle}>
-						Congrats, buddy!
+						Congrats, {this.props.username}
 					</Text>
 				</View>
 
@@ -137,15 +137,15 @@ class GameOver extends Component {
 									<View style={recordStyle} key={i}>
 									<Text  style={expTextStyle}>
 										{data.success ?  '+5 Exp!' : '+0 Exp'}
-										
+
 									</Text>
 									<Text style={recordTextStyle}>
 										<Text style={{fontWeight: 'bold'}}>Word: </Text>
 										<Text style={{textDecorationLine: 'underline'}}>{data.word}</Text>
-										, 
+										,
 										<Text style={{fontWeight: 'bold'}}> Answer: </Text>
 										<Text style={{textDecorationLine: 'underline'}}>{data.answer}</Text>
-										, 
+										,
 										<Text style={{fontWeight: 'bold'}}> Try: </Text>
 										<Text style={{textDecorationLine: 'underline'}}>{data.repeat}</Text>
 									</Text>
@@ -153,17 +153,17 @@ class GameOver extends Component {
 
 									</View>
 
-									
-									
+
+
 								)
 							})
 						}
-						
+
 					</View>
 					<View>
-						
+
 							{this.renderMedalCountText()}
-						
+
 					</View>
 					<View style={medalStyle}>
 						{
@@ -172,17 +172,17 @@ class GameOver extends Component {
 									<View style={{
 										height: 70
 									}} key={idx}>
-										
+
 											{data.success ? <MedalOfHonor /> : <View />}
-										
+
 									</View>
 								)
 							})
 						}
 					</View>
-					
+
 				</View>
-				
+
 
 				{/* <View style={midContainerStyle}>
 					<Image style={imageStyle} source={require('../assets/images/Medals.png')} />
@@ -281,7 +281,8 @@ const styles = {
 
 const mapStateToProps = (state) => {
 	return {
-		collections: state.wordStore.collections
+		collections: state.wordStore.collections,
+		username: state.wordStore.username
 	}
 }
 
