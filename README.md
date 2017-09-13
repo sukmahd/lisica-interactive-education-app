@@ -89,4 +89,4 @@ This project was made for final project in Coding Bootcamp, [Hacktiv8](https://h
 MIT
 
 # 5. Feedback and suggestions
-If you have any idea on how this app should developed. Fire me an email: adithwidyapradipta@gmail.com
+If you have any idea on how this app should developed. Fire us an email: adithwidyapradipta@gmail.com, hd.wijoyo@gmail.com, or patrickbenz.09@gmail.com
