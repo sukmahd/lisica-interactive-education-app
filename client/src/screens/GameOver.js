@@ -125,7 +125,7 @@ class GameOver extends Component {
 
 				<View style={topContainerStyle}>
 					<Text style={textStyle}>
-						Congrats, {this.props.username}
+						Congrats, {this.props.username ?  this.props.username : 'buddy'} !
 					</Text>
 				</View>
 

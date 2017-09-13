@@ -135,6 +135,18 @@ class MainMenu extends Component {
 		}
 	}
 
+	handleUsername(e){
+		this.setState({
+			status: e
+		})
+	}
+
+	start_game(){
+		const { navigate } = this.props.navigation;
+		this.props.set_user(this.state.status)
+		navigate('CameraComponentScreen')
+	}
+
 	render() {
 		const {
 			topContainerStyle,
@@ -171,6 +183,7 @@ class MainMenu extends Component {
 						label="Username"
 						value={this.state.status}
 						placeholder="Your username"
+						onChangeText= {(val) => this.handleUsername(val)}
 						secureTextEntry={false}
 					/>
 
@@ -187,7 +200,7 @@ class MainMenu extends Component {
 
 				<View style={bottomContainerStyle}>
 					<ButtonBig
-						onPress={() => navigate('CameraComponentScreen')}
+						onPress={() => this.start_game()}
 					>
 						<Text>START</Text>
 					</ButtonBig>
