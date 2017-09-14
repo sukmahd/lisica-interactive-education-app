@@ -127,11 +127,14 @@ export const user_login = (email, password) => {
 export const post_record = (data, status) => {
   return (dispatch, getState) => {
     dispatch(fetching())
-    console.log(data, 'kjhjhjh');
+    let coba = getState().wordStore.try
+    if(getState().wordStore.answer === 'Skip') {
+      coba = 0
+    }
     axios.post('http://reactchallengeapi.appspot.com/records', {
       email: getState().wordStore.email,
       success: status,
-      repeat: getState().wordStore.try,
+      repeat: coba,
       word: data,
       answer: getState().wordStore.answer,
       data: new Date()
