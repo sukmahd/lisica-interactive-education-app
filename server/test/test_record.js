@@ -138,5 +138,19 @@ describe('POST routes /records',  function() {
       res.data.should.have.property('success')
     })
   })
+})
 
+
+describe('GET route /records/:id', function() {
+  it('success connect and return data', function() {
+    return $http.get('/records/adit@gmail.com')
+    .then(res => {
+      res.status.should.equal(200)
+      res.data.should.be.an('array')
+      res.data[0].should.have.property('email')
+      res.data[0].should.have.property('success')
+      res.data[0].should.have.property('repeat')
+      res.data[0].should.have.property('word')
+    })
+  })
 })
