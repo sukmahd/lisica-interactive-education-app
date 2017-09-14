@@ -5,7 +5,7 @@ const assert = chai.assert
 const axios = require('axios')
 
 const $http = axios.create({
-  baseURL: 'http://localhost:3000/user'
+  baseURL: 'http://reactchallengeapi.appspot.com//user'
 })
 
 describe("GET method on route /register", () => {
