@@ -5,7 +5,7 @@ const should = chai.should()
 const axios = require('axios')
 
 const $http = axios.create({
-  baseURL: 'http://localhost:3000'
+  baseURL: 'http://reactchallengeapi.appspot.com'
 })
 
 
