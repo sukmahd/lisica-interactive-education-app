@@ -6,7 +6,7 @@ const axios = require('axios');
 chai.use(chaiHttp);
 
 const $http = axios.create({
-	baseURL: 'http://localhost:3000'
+	baseURL: 'http://reactchallengeapi.appspot.com'
 });
 
 describe('GET: /user/login', () => {
